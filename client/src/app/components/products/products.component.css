@@ -1,0 +1,16 @@
+.productsCard {
+  margin-left: 20px;
+}
+
+.All {
+  color: rgb(89, 152, 194);
+  margin-left: 300px;
+  cursor: pointer;
+  margin-top: 8px;
+  /* top: 40px; */
+  position: relative;
+}
+
+#sidenav {
+  width: 250px;
+}

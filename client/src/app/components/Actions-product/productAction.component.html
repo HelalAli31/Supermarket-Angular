@@ -1,0 +1,87 @@
+<div class="formCss">
+  <form [formGroup]="productForm">
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          name="name"
+          formControlName="productName"
+          placeholder="name "
+        />
+        <mat-error *ngIf="productForm.get('productName').invalid"
+          >please insert product name
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-select
+          name="category"
+          formControlName="category"
+          placeholder="category"
+          [(value)]="SelectedCategory"
+        >
+          <mat-option
+            *ngFor="let category of categoryArray"
+            [value]="category._id"
+          >
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="productForm.get('category').invalid"
+          >please insert product category
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          name="description"
+          formControlName="productDescription"
+          placeholder="description "
+        />
+        <mat-error *ngIf="productForm.get('productDescription').invalid"
+          >please insert product description
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          name="price"
+          formControlName="productPrice"
+          placeholder="price "
+          value="product.price"
+        />
+        <mat-error *ngIf="productForm.get('productPrice').invalid"
+          >please insert product price
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          name="picture"
+          formControlName="productImage"
+          placeholder="picture"
+        />
+        <mat-error *ngIf="productForm.get('productImage').invalid"
+          >please insert product picture
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <button mat-raised-button color="primary" (click)="ActionProduct()">
+        {{ ActionName }} product
+      </button>
+      <br />
+      <button mat-raised-button color="primary" (click)="resetProduct()">
+        Reset
+      </button>
+    </div>
+  </form>
+</div>

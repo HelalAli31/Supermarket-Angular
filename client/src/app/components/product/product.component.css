@@ -1,0 +1,10 @@
+.productCard {
+  display: flex;
+  width: 2 00px;
+  height: 100%;
+  min-height: 400px;
+  margin-bottom: 50px;
+}
+.mat-card {
+  flex-flow: row wrap;
+}

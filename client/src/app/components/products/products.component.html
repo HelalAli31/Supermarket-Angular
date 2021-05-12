@@ -1,0 +1,78 @@
+<div>
+  <div
+    class="example-container"
+    [class.example-is-mobile]="mobileQuery.matches"
+  >
+    <mat-toolbar style="background-color: grey" class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1 class="example-app-name">Supermarket App</h1>
+    </mat-toolbar>
+
+    <mat-sidenav-container
+      class="example-sidenav-container"
+      [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+    >
+      <mat-sidenav
+        #snav
+        [mode]="mobileQuery.matches ? 'over' : 'side'"
+        [fixedInViewport]="mobileQuery.matches"
+        fixedTopGap="56"
+      >
+        <mat-nav-list>
+          <app-productAction
+            [product]="productToUpdate"
+            [actionTypeIsAdd]="actionTypeIsAdd"
+            (updateProductEvent)="EditProduct($event)"
+            (addNewProductEvent)="addNewProduct($event)"
+          >
+          </app-productAction>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <div style="margin-left: 50px" class="row">
+          <h2 style="margin-left: 5px" class="col-1">Menu:</h2>
+
+          <mat-form-field class="example-full-width col-2">
+            <mat-label>search</mat-label>
+            <input
+              matInput
+              placeholder="product name"
+              [(ngModel)]="filterModel"
+              (keyup)="filterPipe(filterModel, 'title')"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <div class="row">
+            <a (click)="getProducts()" class="All col-1">All</a>
+            <app-categories
+              (categoryIdEvent)="filterPipe($event, '_id')"
+              class="col-5"
+            ></app-categories>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <app-product
+              *ngFor="let product of filterProducts"
+              [product]="product"
+              (deleteProductEvent)="deleteProduct($event)"
+              (updateProductEvent)="updateProduct($event)"
+            ></app-product>
+          </div>
+
+          <div>
+            <button (click)="prev()" mat-button>Prev</button>
+            <button (click)="next()" style="float: right" mat-button>
+              Next
+            </button>
+          </div>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>
