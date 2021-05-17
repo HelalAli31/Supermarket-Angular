@@ -33,12 +33,12 @@
             </h1>
           </div>
           <div *ngIf="user[0]?.role === 'user'">
-            <h1>cartaaaaaaaaaaaaa</h1>
+            <app-cart [items]="this.items"></app-cart>
           </div>
         </mat-nav-list>
       </mat-sidenav>
 
-      <mat-sidenav-content>
+      <mat-sidenav-content style="overflow-x: hidden">
         <div style="margin-left: 50px" class="row">
           <h2 style="margin-left: 5px" class="col-1">Menu:</h2>
 
@@ -68,10 +68,11 @@
               *ngFor="let product of filterProducts"
               [product]="product"
               (updateProductEvent)="updateProduct($event)"
+              (AddItemsToCartEvent)="addItemsToCart($event)"
             ></app-product>
           </div>
 
-          <div>
+          <div style="margin-top: 50px">
             <button (click)="prev()" mat-button>Prev</button>
             <button (click)="next()" style="float: right" mat-button>
               Next

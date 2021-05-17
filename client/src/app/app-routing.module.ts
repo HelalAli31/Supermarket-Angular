@@ -15,7 +15,11 @@ const routes: Routes = [
     canActivate: [AdminGuard],
   },
   { path: 'login', component: LoginComponent },
-  { path: 'products', component: ProductsComponent, canActivate: [AdminGuard] },
+  {
+    path: 'products/:cartId',
+    component: ProductsComponent,
+    canActivate: [AdminGuard],
+  },
   {
     path: 'ProductActions',
     component: productActionsComponent,

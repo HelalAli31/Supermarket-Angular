@@ -10,6 +10,19 @@ const router = express.Router();
 const logger = require("../logger");
 const { verifyJWT } = require("../controller/JWT/jwt");
 
+router.use(async (req, res, next) => {
+  try {
+    const clientJwt = req.body.Authorization;
+    const UpdateToken = clientJwt.replace(clientJwt[0], "");
+    const lastToken = UpdateToken.replace(clientJwt[UpdateToken.length], "");
+    const verify = await verifyJWT(lastToken);
+    if (verify.data[0].role) return next();
+  } catch (error) {
+    logger.error("er:", error);
+    return next(error);
+  }
+});
+
 router.post("/", async (req, res, next) => {
   const { from, limit } = req.query;
   const { keyName, valueName } = req.body;
@@ -23,7 +36,7 @@ router.use(async (req, res, next) => {
     const UpdateToken = clientJwt.replace(clientJwt[0], "");
     const lastToken = UpdateToken.replace(clientJwt[UpdateToken.length], "");
     const verify = await verifyJWT(lastToken);
-    if (verify.data.userType === "admin") return next();
+    if (verify.data[0].role === "admin") return next();
   } catch (error) {
     logger.error("er:", error);
     return next(error);

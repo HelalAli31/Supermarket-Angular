@@ -19,6 +19,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FilterPipe } from './pipe/filter.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PopUpLoginComponent } from './components/pop-up-login/pop-up-login.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     FilterPipe,
     LoginComponent,
     NotFoundComponent,
+    PopUpLoginComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

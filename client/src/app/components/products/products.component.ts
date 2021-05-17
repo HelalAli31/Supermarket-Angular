@@ -4,6 +4,8 @@ import { FilterPipe } from '../../pipe/filter.pipe';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import getPayload from 'src/app/service/Payload/getPayload';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/service/cartService/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -23,17 +25,23 @@ export class ProductsComponent implements OnInit {
   public actionTypeIsAdd: boolean;
   public user: any;
   public actionState: string;
+  public subscriber: any;
+  public cartId: string;
+  public items: any;
+  public item: any;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   constructor(
     private productsService: ProductsService,
     changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher
+    media: MediaMatcher,
+    private route: ActivatedRoute,
+    private cartItemsService: CartService
   ) {
     this.products = [];
     this.filterModel = '';
-    this.limit = 10;
+    this.limit = 12;
     this.from = 0;
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -41,13 +49,35 @@ export class ProductsComponent implements OnInit {
     this.actionTypeIsAdd = false;
     this.user = {};
     this.actionState = '';
+    this.cartId = '';
+    this.items = [];
+    this.item = {};
   }
 
   async ngOnInit() {
     await this.getProducts();
-    console.log(this.products);
     const { data } = await getPayload();
     this.user = data;
+    this.subscriber = this.route.params.subscribe((params) => {
+      this.cartId = params['cartId'];
+    });
+    await this.getCartItems();
+  }
+
+  async getCartItems() {
+    console.log('aa');
+    this.items = await this.cartItemsService.getCartItems(this.cartId);
+    console.log('items:', this.items);
+  }
+
+  async addItemsToCart(event: any) {
+    this.item.product_id = event.id;
+    this.item.amount = event.amount;
+    this.item.cart_id = this.cartId;
+    this.item.full_price = event.price * event.amount;
+    this.items = await this.cartItemsService.addItemsToCart(this.item);
+    console.log(this.items);
+    await this.getCartItems();
   }
 
   async getProducts(valueName?: any, keyName?: any) {
@@ -89,5 +119,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.subscriber.unsubscribe();
   }
 }

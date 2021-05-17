@@ -16,7 +16,11 @@ export class ProductsService {
     const queryParams =
       from >= 0 && limit ? `?from=${from}&limit=${limit}` : '';
     return this.httpService
-      .post(`${PRODUCTS_URL}${queryParams}`, { valueName, keyName })
+      .post(`${PRODUCTS_URL}${queryParams}`, {
+        valueName,
+        keyName,
+        Authorization: localStorage.getItem('token'),
+      })
       .toPromise();
   }
 
@@ -34,6 +38,11 @@ export class ProductsService {
   updateProduct(product: any) {
     console.log(product);
     const UPDATE_URL = `${PRODUCTS_URL}/updateProduct`;
-    this.httpService.put(UPDATE_URL, { product }).toPromise();
+    this.httpService
+      .put(UPDATE_URL, {
+        product,
+        Authorization: localStorage.getItem('token'),
+      })
+      .toPromise();
   }
 }

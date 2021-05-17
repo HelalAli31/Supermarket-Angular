@@ -1,0 +1,13 @@
+<div>
+  Hello
+  <a
+    mat-raised-button
+    *ngIf="this.cart.length"
+    routerLink="/products/{{ this.cart[0]._id }}"
+  >
+    Resume Cart
+  </a>
+  <a mat-raised-button *ngIf="!this.cart.length" routerLink="/products/none">
+    Start Cart
+  </a>
+</div>

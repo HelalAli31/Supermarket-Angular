@@ -41,4 +41,30 @@
     <p class="price">** {{ product.price }}₪ **</p>
     {{ product.description }}
   </div>
+  <button
+    *ngIf="user[0]?.role === 'admin'"
+    mat-raised-button
+    (click)="updateProduct(product)"
+  >
+    EDIT
+  </button>
+  <button
+    *ngIf="user[0]?.role === 'user'"
+    mat-raised-button
+    (click)="selected = !selected"
+  >
+    SELECT
+  </button>
+  <div *ngIf="selected">
+    <input
+      matInput
+      type="text"
+      name="amount"
+      placeholder="amount"
+      [(ngModel)]="amount"
+    />
+    <button mat-raised-button (click)="AddToCart(product._id, product.price)">
+      Add
+    </button>
+  </div>
 </div>

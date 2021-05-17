@@ -21,9 +21,10 @@
 
 .CardName {
   margin-top: 30px;
+  margin-left: 30px;
 }
 .content {
-  overflow: scroll;
+  overflow: inherit;
   overflow-x: hidden;
   height: 70px;
   max-width: 150px;

@@ -16,7 +16,7 @@ async function getAllProducts(from, limit, value, key) {
         let filterBy = key == "_id" ? item["category"]._id : item[key];
         return filterBy.toString().includes(value);
       });
-      return filteredProducts;
+      return filteredProducts.slice(from, limit);
     } else return result;
   } catch (error) {
     console.log(error);

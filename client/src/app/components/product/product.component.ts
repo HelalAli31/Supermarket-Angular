@@ -13,9 +13,13 @@ import getPayload from 'src/app/service/Payload/getPayload';
 export class ProductComponent implements OnInit {
   @Input() product: any;
   @Output() updateProductEvent = new EventEmitter<any>();
+  @Output() AddItemsToCartEvent = new EventEmitter<any>();
   public basePath: string;
   public imagePath: string;
   public user: any;
+  public selected: boolean;
+  public amount: number;
+  public item: any;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
@@ -26,10 +30,21 @@ export class ProductComponent implements OnInit {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.user = [];
+    this.selected = false;
+    this.amount = 1;
+    this.item = {};
   }
 
   updateProduct(product: any) {
     this.updateProductEvent.emit(product);
+  }
+
+  AddToCart(itemId: string, price: number) {
+    this.item.amount = this.amount;
+    this.item.id = itemId;
+    this.item.price = price;
+    this.AddItemsToCartEvent.emit(this.item);
+    this.selected = false;
   }
 
   async ngOnInit() {
@@ -37,7 +52,6 @@ export class ProductComponent implements OnInit {
       this.product?.image || this.basePath + this.product?.filename;
     const { data } = await getPayload();
     this.user = data;
-    console.log(this.user);
   }
 
   ngOnDestroy(): void {

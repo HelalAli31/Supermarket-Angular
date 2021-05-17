@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const procuctsRoute = require("./routes/product");
 const categoryRoute = require("./routes/category");
 const userRoute = require("./routes/auth");
+const cartRoute = require("./routes/cart");
 //Routes
 const app = express();
 
@@ -18,7 +19,7 @@ createConnection();
 
 app.use("/auth", userRoute);
 app.use("/products", procuctsRoute);
-
+app.use("/cart", cartRoute);
 app.use("/category", categoryRoute);
 
 app.listen(5000);
