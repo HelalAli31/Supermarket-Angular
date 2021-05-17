@@ -1,0 +1,14 @@
+<div>
+  <h2>Login:</h2>
+  <mat-form-field class="example-full-width">
+    <mat-label>email:</mat-label>
+    <input matInput placeholder="write your email" [(ngModel)]="email" />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>password:</mat-label>
+    <input matInput placeholder="write your password" [(ngModel)]="password" />
+  </mat-form-field>
+  <br />
+  <button mat-stroked-button (click)="login()">Login</button>
+  <button mat-button>sign up</button>
+</div>

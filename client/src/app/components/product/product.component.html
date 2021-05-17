@@ -1,27 +1,44 @@
-<div>
-  <div class="product col-3 productCard">
+<!-- <div>
+  <div class="product productCard">
     <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>{{ product.title | titlecase }}</mat-card-title>
-        <mat-card-subtitle>{{ product.category?.name }}</mat-card-subtitle>
-      </mat-card-header>
       <img
         mat-card-image
         [src]="imagePath"
-        style="height: 200px; width: 200px; margin-left: 10px"
+        style="height: 100px; width: 100px; margin-left: 10px"
       />
       <mat-card-content>
-        <p>
-          {{ product.price }}
-          {{ product.descrition }}
-        </p>
+        <mat-card-header>
+          <mat-card-title style="font-size: '12px'">{{
+            product.title | titlecase
+          }}</mat-card-title>
+          <mat-card-subtitle>{{ product.category?.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <p>{{ product.price }}₪</p>
+        <h5>
+          <p class="description">{{ product.description }}</p>
+        </h5>
       </mat-card-content>
       <mat-card-actions style="cursor: pointer">
-        <button mat-raised-button (click)="deleteProduct(product._id)">
-          DELETE
+        <button
+          *ngIf="user[0]?.role === 'admin'"
+          mat-raised-button
+          (click)="updateProduct(product)"
+        >
+          EDIT
         </button>
-        <button mat-raised-button (click)="updateProduct(product)">EDIT</button>
       </mat-card-actions>
     </mat-card>
+  </div>
+</div> -->
+
+<div class="CardName">
+  <img
+    mat-card-image
+    [src]="imagePath"
+    style="height: 100px; width: 100px; margin-left: 10px; border: none"
+  />
+  <div class="content">
+    <p class="price">** {{ product.price }}₪ **</p>
+    {{ product.description }}
   </div>
 </div>

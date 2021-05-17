@@ -2,7 +2,6 @@ const categoryModel = require("../models/categorySchema");
 async function getAllCategories() {
   try {
     const result = await categoryModel.find({}, { __v: false });
-
     return result;
   } catch (error) {
     console.log(error);

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProductsService } from 'src/app/service/products.service';
 import { FilterPipe } from '../../pipe/filter.pipe';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
+import getPayload from 'src/app/service/Payload/getPayload';
 
 @Component({
   selector: 'app-products',
@@ -10,6 +11,7 @@ import { ChangeDetectorRef, OnDestroy } from '@angular/core';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
+  @Output() updateProductEvent2 = new EventEmitter<any>();
   public products: any;
   public filterModel: string;
   public filterProducts: any;
@@ -19,6 +21,8 @@ export class ProductsComponent implements OnInit {
   public from: number;
   public limit: number;
   public actionTypeIsAdd: boolean;
+  public user: any;
+  public actionState: string;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -35,43 +39,41 @@ export class ProductsComponent implements OnInit {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.actionTypeIsAdd = false;
+    this.user = {};
+    this.actionState = '';
   }
 
   async ngOnInit() {
     await this.getProducts();
     console.log(this.products);
+    const { data } = await getPayload();
+    this.user = data;
   }
 
-  async getProducts() {
+  async getProducts(valueName?: any, keyName?: any) {
     this.products = await this.productsService.getProducts(
       this.from,
-      this.limit
+      this.limit,
+      valueName,
+      keyName
     );
     this.filterProducts = this.products;
   }
 
   async addNewProduct(product: any) {
-    await this.productsService.addProduct(product);
+    const result = await this.productsService.addProduct(product);
+    // this.actionState = this.actionState[0];
     await this.getProducts();
   }
-  async deleteProduct(id: any) {
-    await this.productsService.deleteProduct(id);
-    await this.getProducts();
-  }
+
   updateProduct(product: any) {
-    console.log('update', product);
     this.productToUpdate = product;
+    this.updateProductEvent2.emit(product);
   }
 
   async EditProduct(event: any) {
     await this.productsService.updateProduct(event);
     await this.getProducts();
-  }
-
-  filterPipe(value: any, key: any) {
-    console.log(value, key);
-    const newPipe = new FilterPipe();
-    this.filterProducts = newPipe.transform(this.products, key, value);
   }
 
   async prev() {

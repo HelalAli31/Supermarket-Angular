@@ -25,7 +25,6 @@ interface IProduct {
 })
 export class productActionsComponent implements OnInit, OnChanges {
   @Input() product: any;
-  @Input() actionTypeIsAdd: any;
   @Output() addNewProductEvent = new EventEmitter<IProduct>();
   @Output() updateProductEvent = new EventEmitter<IProduct>();
   public productForm: any;
@@ -90,7 +89,7 @@ export class productActionsComponent implements OnInit, OnChanges {
   }
   resetProduct() {
     this.productForm.reset();
-    this.product = [];
+    this.product = null;
     this.ActionName = 'Add';
   }
 

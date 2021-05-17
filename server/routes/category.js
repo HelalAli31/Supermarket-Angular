@@ -8,9 +8,7 @@ const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   const categories = await getAllCategories();
-
   if (categories) {
-    console.log(categories);
     return res.json(categories);
   }
 });

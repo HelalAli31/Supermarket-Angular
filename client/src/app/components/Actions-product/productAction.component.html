@@ -1,5 +1,13 @@
 <div class="formCss">
   <form [formGroup]="productForm">
+    <div class="AddIcon"> 
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        (click)="resetProduct()"
+        >add</mat-icon
+      >
+    </div>
     <div>
       <mat-form-field>
         <input
@@ -79,9 +87,6 @@
         {{ ActionName }} product
       </button>
       <br />
-      <button mat-raised-button color="primary" (click)="resetProduct()">
-        Reset
-      </button>
     </div>
   </form>
 </div>

@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { HomeComponent } from './components/home/home.component';
 import { FilterPipe } from './pipe/filter.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { FilterPipe } from './pipe/filter.pipe';
     CategoriesComponent,
     HomeComponent,
     FilterPipe,
+    LoginComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

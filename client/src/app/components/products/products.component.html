@@ -21,13 +21,20 @@
         fixedTopGap="56"
       >
         <mat-nav-list>
-          <app-productAction
-            [product]="productToUpdate"
-            [actionTypeIsAdd]="actionTypeIsAdd"
-            (updateProductEvent)="EditProduct($event)"
-            (addNewProductEvent)="addNewProduct($event)"
-          >
-          </app-productAction>
+          <div *ngIf="user[0]?.role === 'admin'">
+            <app-productAction
+              [product]="productToUpdate"
+              (updateProductEvent)="EditProduct($event)"
+              (addNewProductEvent)="addNewProduct($event)"
+            >
+            </app-productAction>
+            <h1>
+              {{ actionState }}
+            </h1>
+          </div>
+          <div *ngIf="user[0]?.role === 'user'">
+            <h1>cartaaaaaaaaaaaaa</h1>
+          </div>
         </mat-nav-list>
       </mat-sidenav>
 
@@ -41,7 +48,7 @@
               matInput
               placeholder="product name"
               [(ngModel)]="filterModel"
-              (keyup)="filterPipe(filterModel, 'title')"
+              (keyup)="getProducts(filterModel, 'title')"
             />
           </mat-form-field>
         </div>
@@ -49,7 +56,7 @@
           <div class="row">
             <a (click)="getProducts()" class="All col-1">All</a>
             <app-categories
-              (categoryIdEvent)="filterPipe($event, '_id')"
+              (categoryIdEvent)="getProducts($event, '_id')"
               class="col-5"
             ></app-categories>
           </div>
@@ -60,7 +67,6 @@
             <app-product
               *ngFor="let product of filterProducts"
               [product]="product"
-              (deleteProductEvent)="deleteProduct($event)"
               (updateProductEvent)="updateProduct($event)"
             ></app-product>
           </div>

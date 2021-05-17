@@ -1,13 +1,23 @@
 const productModel = require("../models/productSchema");
 const categoryModel = require("../models/categorySchema");
-async function getAllProducts(from, limit) {
+async function getAllProducts(from, limit, value, key) {
   try {
     const result = await productModel
       .find({}, { __v: false })
       .populate("category", "name", categoryModel)
       .limit(Number(limit))
       .skip(Number(from));
-    return result;
+    if (key && value) {
+      const result = await productModel
+        .find({}, { __v: false })
+        .populate("category", "name", categoryModel);
+
+      const filteredProducts = result.filter((item) => {
+        let filterBy = key == "_id" ? item["category"]._id : item[key];
+        return filterBy.toString().includes(value);
+      });
+      return filteredProducts;
+    } else return result;
   } catch (error) {
     console.log(error);
   }
@@ -37,13 +47,4 @@ async function updateProduct(product) {
   }
 }
 
-async function deleteProduct(id) {
-  try {
-    const result = await productModel.deleteOne({ _id: id });
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-module.exports = { getAllProducts, addProduct, deleteProduct, updateProduct };
+module.exports = { getAllProducts, addProduct, updateProduct };

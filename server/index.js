@@ -5,6 +5,7 @@ const createConnection = require("./connection/index");
 const bodyParser = require("body-parser");
 const procuctsRoute = require("./routes/product");
 const categoryRoute = require("./routes/category");
+const userRoute = require("./routes/auth");
 //Routes
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 
 createConnection();
 
+app.use("/auth", userRoute);
 app.use("/products", procuctsRoute);
 
 app.use("/category", categoryRoute);

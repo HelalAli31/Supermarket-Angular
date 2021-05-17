@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "winston": "^3.3.3",
     "axios": "^0.21.1",
-    "mongoose": "^5.12.6"
+    "mongoose": "^5.12.6",
+    "jsonwebtoken": "^8.5.1"
   }
 }
