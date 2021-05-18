@@ -5,14 +5,26 @@
 </h1> -->
 
 <div style="width: 300px">
-  <div *ngFor="let item of items">
-    -
-    {{ item.product_id.title }}: {{ item.full_price }}₪,
-    {{ item.amount }}
-    <img
-      src="{{ this.basePath }}/{{ item.product_id.filename }}"
-      style="width: 60px; height: 50px"
-    />
+  <div *ngFor="let item of items; index as pIndex">
+    <div class="row">
+      <div class="col-7" style="margin-left: 7px">
+        {{ pIndex + 1 }}. {{ item.product_id.title }}:
+        <div>
+          quantity: {{ item.amount }} , price: {{ item.product_id.price }}
+          ₪
+        </div>
+      </div>
+
+      <img
+        class="col-3"
+        src="{{ this.basePath }}/{{ item.product_id.filename }}"
+        style="width: 70px; height: 70px"
+      />
+      <p (click)="DeleteItemFromCart()">X</p>
+    </div>
+
+    <hr />
   </div>
-  <hr />
+
+  <h2>total price:{{ fullPrice }}₪</h2>
 </div>

@@ -11,7 +11,7 @@ createConnection();
 setTimeout(() => {
   // insertCategoryToDB();
   // insertProductsToDB();
-  // insertUsersToDB();
+  insertUsersToDB();
   // insertCartToDB();
-  insertCartItemsToDB();
+  // insertCartItemsToDB();
 }, 1000);

@@ -7,7 +7,7 @@
   >
     Resume Cart
   </a>
-  <a mat-raised-button *ngIf="!this.cart.length" routerLink="/products/none">
+  <a mat-raised-button *ngIf="!this.cart.length" (click)="OpenCart()">
     Start Cart
   </a>
 </div>

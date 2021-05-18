@@ -17,7 +17,19 @@ export class CartService {
     return result;
   }
 
+  addCart(userId: string) {
+    const ADD_CART_URL = `${CART_URL}/addCart`;
+    const result = this.httpService
+      .post(`${ADD_CART_URL}?userId=${userId}`, {
+        Authorization: localStorage.getItem('token'),
+      })
+      .toPromise();
+    return result;
+  }
+
   getCartItems(cartId: string) {
+    const token = localStorage.getItem('token');
+    if (!token) return;
     const result = this.httpService
       .post(`${CART_URL}/Items?cartId=${cartId}`, {
         Authorization: localStorage.getItem('token'),

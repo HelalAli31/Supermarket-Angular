@@ -7,10 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
   @Input() items: any;
+  @Input() fullPrice: any;
+
   public basePath: string;
   constructor() {
     this.basePath = '../../../assets/images/';
   }
-
-  ngOnInit(): void {}
+  DeleteItemFromCart() {
+    
+  }
+  async ngOnInit() {}
 }

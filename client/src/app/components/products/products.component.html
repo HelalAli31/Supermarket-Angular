@@ -32,8 +32,12 @@
               {{ actionState }}
             </h1>
           </div>
+
           <div *ngIf="user[0]?.role === 'user'">
-            <app-cart [items]="this.items"></app-cart>
+            <app-cart
+              [items]="this.items"
+              [fullPrice]="this.fullPrice"
+            ></app-cart>
           </div>
         </mat-nav-list>
       </mat-sidenav>

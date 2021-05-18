@@ -32,5 +32,17 @@ async function addItemsToCart(item) {
     console.log(error);
   }
 }
+async function addCart(userId) {
+  console.log("AddCart");
+  try {
+    const cart = {};
+    cart.user_id = userId;
+    const result = await cartModel.insertMany(cart);
+    console.log("re", result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-module.exports = { getCart, getCartItems, addItemsToCart };
+module.exports = { getCart, getCartItems, addItemsToCart, addCart };

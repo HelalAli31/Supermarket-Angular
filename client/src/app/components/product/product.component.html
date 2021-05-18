@@ -56,13 +56,17 @@
     SELECT
   </button>
   <div *ngIf="selected">
-    <input
-      matInput
-      type="text"
-      name="amount"
-      placeholder="amount"
-      [(ngModel)]="amount"
-    />
+    <div>
+      <label>quantity: </label>
+      <input
+        matInput
+        type="text"
+        name="amount"
+        placeholder="amount"
+        [(ngModel)]="amount"
+        style="border-bottom: 1px solid black; width: 50px; margin-bottom: 7px"
+      />
+    </div>
     <button mat-raised-button (click)="AddToCart(product._id, product.price)">
       Add
     </button>

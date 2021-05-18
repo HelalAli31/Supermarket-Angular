@@ -29,6 +29,7 @@ export class ProductsComponent implements OnInit {
   public cartId: string;
   public items: any;
   public item: any;
+  public fullPrice: number;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -52,10 +53,12 @@ export class ProductsComponent implements OnInit {
     this.cartId = '';
     this.items = [];
     this.item = {};
+    this.fullPrice = 0;
   }
 
   async ngOnInit() {
     await this.getProducts();
+    console.log('products');
     const { data } = await getPayload();
     this.user = data;
     this.subscriber = this.route.params.subscribe((params) => {
@@ -65,9 +68,15 @@ export class ProductsComponent implements OnInit {
   }
 
   async getCartItems() {
-    console.log('aa');
     this.items = await this.cartItemsService.getCartItems(this.cartId);
     console.log('items:', this.items);
+    if (!this.items.length) return;
+    if (this.items) this.fullPrice = 0;
+    this.items.map((item: any) => {
+      console.log(this.fullPrice, item.full_price);
+      this.fullPrice += item.full_price;
+    });
+    console.log(this.fullPrice);
   }
 
   async addItemsToCart(event: any) {
@@ -76,7 +85,6 @@ export class ProductsComponent implements OnInit {
     this.item.cart_id = this.cartId;
     this.item.full_price = event.price * event.amount;
     this.items = await this.cartItemsService.addItemsToCart(this.item);
-    console.log(this.items);
     await this.getCartItems();
   }
 

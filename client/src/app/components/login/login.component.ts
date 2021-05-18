@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   public email: string;
   public password: string;
   public token: any;
+  // public loginFailed: string;
 
   constructor(
     private userService: UserService,
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     this.email = '';
     this.password = '';
     this.token = {};
+    // this.loginFailed = '';
   }
   openBottomSheet(): void {
     this.bottomSheet.open(PopUpLoginComponent);
@@ -31,9 +33,12 @@ export class LoginComponent implements OnInit {
 
   async login() {
     this.token = await this.userService.LoginUser(this.email, this.password);
-    if (this.token)
+    console.log(this.token);
+    if (this.token.userToken) {
       localStorage.setItem('token', JSON.stringify(this.token['userToken']));
-    this.openBottomSheet();
+      this.openBottomSheet();
+    }
+    // else this.loginFailed = this.token;
   }
 
   ngOnInit(): void {}
