@@ -1,0 +1,26 @@
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Choose deleivery date</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="deliveryDate" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br />
+
+  <mat-form-field class="example-full-width col-6">
+    <mat-label>visa numbers..</mat-label>
+    <input matInput placeholder="last 4 visa number" [(ngModel)]="visaNumber" />
+  </mat-form-field>
+  <br />
+  <mat-form-field class="example-full-width col-6">
+    <mat-label>city</mat-label>
+    <input matInput placeholder="where you live" [(ngModel)]="city" />
+  </mat-form-field>
+  <br />
+  <mat-form-field class="example-full-width col-6">
+    <mat-label>street</mat-label>
+    <input matInput placeholder="street.." [(ngModel)]="street" />
+  </mat-form-field>
+  <br />
+  <button mat-raised-button (click)="onNoClick()">Order Now!</button>
+</div>

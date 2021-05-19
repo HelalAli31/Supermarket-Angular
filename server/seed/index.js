@@ -5,13 +5,15 @@ const { insertCategoryToDB } = require("./SeedController/category");
 const { insertUsersToDB } = require("./SeedController/users");
 const { insertCartToDB } = require("./SeedController/cart");
 const { insertCartItemsToDB } = require("./SeedController/cartItems");
+const { insertOrdersToDB } = require("./SeedController/orders");
 
 createConnection();
 
 setTimeout(() => {
   // insertCategoryToDB();
   // insertProductsToDB();
-  insertUsersToDB();
+  // insertUsersToDB();
   // insertCartToDB();
   // insertCartItemsToDB();
+  insertOrdersToDB();
 }, 1000);

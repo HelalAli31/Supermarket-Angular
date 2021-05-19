@@ -45,4 +45,21 @@ async function addCart(userId) {
   }
 }
 
-module.exports = { getCart, getCartItems, addItemsToCart, addCart };
+async function deleteItemFromCart(itemId) {
+  console.log(itemId);
+  try {
+    const result = await cartItemsModel.findOneAndDelete({ _id: itemId });
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = {
+  getCart,
+  getCartItems,
+  addItemsToCart,
+  addCart,
+  deleteItemFromCart,
+};

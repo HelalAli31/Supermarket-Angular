@@ -30,7 +30,6 @@ export class PopUpLoginComponent implements OnInit {
         this.router.navigate([`/products/${this.cart[0]._id}`]);
       }
     }
-    console.log('Oadpen');
   }
 
   async ngOnInit() {

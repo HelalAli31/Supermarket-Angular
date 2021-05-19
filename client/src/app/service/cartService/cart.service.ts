@@ -37,6 +37,25 @@ export class CartService {
       .toPromise();
     return result;
   }
+  deteleItemFromCart(itemId: string) {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    const result = this.httpService
+      .put(
+        `${CART_URL}/deleteItem?itemId=${itemId}`,
+        {
+          Authorization: localStorage.getItem('token'),
+        },
+        {
+          headers: new HttpHeaders({
+            Authorization: token,
+          }),
+          responseType: 'text',
+        }
+      )
+      .toPromise();
+    return result;
+  }
 
   addItemsToCart(item: any) {
     const token = localStorage.getItem('token');

@@ -24,7 +24,7 @@
           <div *ngIf="user[0]?.role === 'admin'">
             <app-productAction
               [product]="productToUpdate"
-              (updateProductEvent)="EditProduct($event)"
+              (updateProductEvent)="editProduct($event)"
               (addNewProductEvent)="addNewProduct($event)"
             >
             </app-productAction>
@@ -37,6 +37,9 @@
             <app-cart
               [items]="this.items"
               [fullPrice]="this.fullPrice"
+              [userId]="this.user[0]._id"
+              [cartId]="this.cartId"
+              (deleteCartItemEvent)="deleteCartItem($event)"
             ></app-cart>
           </div>
         </mat-nav-list>

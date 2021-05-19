@@ -21,6 +21,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PopUpLoginComponent } from './components/pop-up-login/pop-up-login.component';
 import { CartComponent } from './components/cart/cart.component';
+import { PopUpOrderDetailsComponent } from './components/pop-up-order-details/pop-up-order-details.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CartComponent } from './components/cart/cart.component';
     NotFoundComponent,
     PopUpLoginComponent,
     CartComponent,
+    PopUpOrderDetailsComponent,
   ],
   imports: [
     BrowserModule,

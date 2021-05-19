@@ -20,11 +20,13 @@
         src="{{ this.basePath }}/{{ item.product_id.filename }}"
         style="width: 70px; height: 70px"
       />
-      <p (click)="DeleteItemFromCart()">X</p>
+      <p (click)="DeleteItemFromCart(item._id)" style="cursor: pointer">X</p>
     </div>
 
     <hr />
   </div>
 
-  <h2>total price:{{ fullPrice }}₪</h2>
+  <h2>total price:{{ fullPrice | number: "1.2-2" }}₪</h2>
+  <br />
+  <button mat-raised-button (click)="openDialog()">Order details</button>
 </div>

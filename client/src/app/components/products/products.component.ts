@@ -61,6 +61,7 @@ export class ProductsComponent implements OnInit {
     console.log('products');
     const { data } = await getPayload();
     this.user = data;
+    console.log('user', this.user[0]._id);
     this.subscriber = this.route.params.subscribe((params) => {
       this.cartId = params['cartId'];
     });
@@ -70,10 +71,12 @@ export class ProductsComponent implements OnInit {
   async getCartItems() {
     this.items = await this.cartItemsService.getCartItems(this.cartId);
     console.log('items:', this.items);
-    if (!this.items.length) return;
+    if (!this.items.length) {
+      this.fullPrice = 0;
+      return;
+    }
     if (this.items) this.fullPrice = 0;
     this.items.map((item: any) => {
-      console.log(this.fullPrice, item.full_price);
       this.fullPrice += item.full_price;
     });
     console.log(this.fullPrice);
@@ -85,6 +88,11 @@ export class ProductsComponent implements OnInit {
     this.item.cart_id = this.cartId;
     this.item.full_price = event.price * event.amount;
     this.items = await this.cartItemsService.addItemsToCart(this.item);
+    await this.getCartItems();
+  }
+
+  async deleteCartItem(event: any) {
+    await this.cartItemsService.deteleItemFromCart(event);
     await this.getCartItems();
   }
 
@@ -109,7 +117,7 @@ export class ProductsComponent implements OnInit {
     this.updateProductEvent2.emit(product);
   }
 
-  async EditProduct(event: any) {
+  async editProduct(event: any) {
     await this.productsService.updateProduct(event);
     await this.getProducts();
   }

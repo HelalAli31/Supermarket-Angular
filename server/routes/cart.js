@@ -4,6 +4,7 @@ const {
   getCartItems,
   addItemsToCart,
   addCart,
+  deleteItemFromCart,
 } = require("../controller/cart/cartController");
 const router = express.Router();
 const { verifyJWT } = require("../controller/JWT/jwt");
@@ -15,7 +16,7 @@ router.use(async (req, res, next) => {
     const UpdateToken = clientJwt.replace(clientJwt[0], "");
     const lastToken = UpdateToken.replace(clientJwt[UpdateToken.length], "");
     const verify = await verifyJWT(lastToken);
-    if (verify.data[0].role) return next();
+    if (verify.data[0].role === "user") return next();
   } catch (error) {
     logger.error("er:", error);
     return next(error);
@@ -65,6 +66,20 @@ router.put("/AddItems", async (req, res, next) => {
     const cartItems = await addItemsToCart(item);
     if (cartItems) {
       return res.send("added!");
+    }
+  } catch (error) {
+    console.log(error);
+    return res.send("something went wrong");
+  }
+});
+
+router.put("/deleteItem", async (req, res, next) => {
+  try {
+    console.log("detele");
+    const { itemId } = req.query;
+    const cartItems = await deleteItemFromCart(itemId);
+    if (cartItems) {
+      return res.send("item deleted!");
     }
   } catch (error) {
     console.log(error);

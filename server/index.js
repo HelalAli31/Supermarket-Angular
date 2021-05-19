@@ -7,6 +7,7 @@ const procuctsRoute = require("./routes/product");
 const categoryRoute = require("./routes/category");
 const userRoute = require("./routes/auth");
 const cartRoute = require("./routes/cart");
+const orderRoute = require("./routes//orders");
 //Routes
 const app = express();
 
@@ -21,5 +22,6 @@ app.use("/auth", userRoute);
 app.use("/products", procuctsRoute);
 app.use("/cart", cartRoute);
 app.use("/category", categoryRoute);
+app.use("/orders", orderRoute);
 
 app.listen(5000);
