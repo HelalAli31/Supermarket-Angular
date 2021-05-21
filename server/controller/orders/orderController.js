@@ -10,6 +10,7 @@ async function getOrder(orderId) {
 
 async function addOrder(order) {
   try {
+    console.log("add order")
     if (!order) return;
     const result = await orderModel.insertMany([order]);
     return result;

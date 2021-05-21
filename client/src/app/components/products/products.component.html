@@ -60,8 +60,14 @@
           </mat-form-field>
         </div>
         <div>
-          <div class="row">
-            <a (click)="getProducts()" class="All col-1">All</a>
+          <div class="row" style="margin-left: 120px">
+            <a
+              (click)="getProducts()"
+              mat-flat-button
+              class="col-1"
+              style="color: rgb(89, 152, 194)"
+              >All</a
+            >
             <app-categories
               (categoryIdEvent)="getProducts($event, '_id')"
               class="col-5"

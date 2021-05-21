@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/userService/user.service';
 import getPayload from '../../service/Payload/getPayload';
+import getIsAdmin from '../../service/Payload/isAdmin';
 import { PopUpLoginComponent } from '../pop-up-login/pop-up-login.component';
 import {
   MatBottomSheet,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,16 +18,17 @@ export class LoginComponent implements OnInit {
   public email: string;
   public password: string;
   public token: any;
-  // public loginFailed: string;
+  public loginFailed: string;
 
   constructor(
     private userService: UserService,
-    private bottomSheet: MatBottomSheet
+    private bottomSheet: MatBottomSheet,
+    private router: Router
   ) {
     this.email = '';
     this.password = '';
     this.token = {};
-    // this.loginFailed = '';
+    this.loginFailed = '';
   }
   openBottomSheet(): void {
     this.bottomSheet.open(PopUpLoginComponent);
@@ -35,10 +38,15 @@ export class LoginComponent implements OnInit {
     this.token = await this.userService.LoginUser(this.email, this.password);
     console.log(this.token);
     if (this.token.userToken) {
+      const isAdmin = getIsAdmin();
+      if (isAdmin) {
+        this.router.navigate([`/products/admin`]);
+        localStorage.setItem('token', JSON.stringify(this.token['userToken']));
+        return;
+      }
       localStorage.setItem('token', JSON.stringify(this.token['userToken']));
       this.openBottomSheet();
-    }
-    // else this.loginFailed = this.token;
+    } else this.loginFailed = this.token;
   }
 
   ngOnInit(): void {}

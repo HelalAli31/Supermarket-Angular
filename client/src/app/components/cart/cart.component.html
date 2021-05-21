@@ -28,5 +28,8 @@
 
   <h2>total price:{{ fullPrice | number: "1.2-2" }}₪</h2>
   <br />
-  <button mat-raised-button (click)="openDialog()">Order details</button>
+  <button mat-raised-button (click)="openDialog()" *ngIf="!orderStatus.length">
+    Order details
+  </button>
+  <h1>{{ orderStatus }}</h1>
 </div>

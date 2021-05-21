@@ -1,5 +1,5 @@
 const express = require("express");
-const { getOrder, addOrder } = require("../controller/cart/cartController");
+const { getOrder, addOrder } = require("../controller/orders/orderController");
 const router = express.Router();
 const { verifyJWT } = require("../controller/JWT/jwt");
 const logger = require("../logger/index");
@@ -23,7 +23,7 @@ router.post("/", async (req, res, next) => {
     console.log(orderId);
     const order = await getOrder(orderId);
     if (order) {
-      return res.json(order);
+      return res.json({ order });
     }
   } catch (error) {
     console.log(error);
@@ -34,9 +34,9 @@ router.post("/", async (req, res, next) => {
 router.post("/addOrder", async (req, res, next) => {
   try {
     console.log(req.body.order);
-    const Order = await addOrder(req.body.order);
-    if (Order) {
-      return res.send(Order);
+    const order = await addOrder(req.body.order);
+    if (order) {
+      return res.json({ order: order, message: "order Successfully!" });
     }
   } catch (error) {
     console.log(error);
