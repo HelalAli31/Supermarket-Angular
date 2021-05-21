@@ -45,8 +45,18 @@ async function addCart(userId) {
   }
 }
 
+async function deleteCart(cartId) {
+  try {
+    console.log(cartId);
+    const result = await cartModel.findOneAndDelete({ _id: cartId });
+    console.log("re", result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function deleteItemFromCart(itemId) {
-  console.log(itemId);
   try {
     const result = await cartItemsModel.findOneAndDelete({ _id: itemId });
     console.log(result);
@@ -62,4 +72,5 @@ module.exports = {
   addItemsToCart,
   addCart,
   deleteItemFromCart,
+  deleteCart,
 };

@@ -32,6 +32,7 @@ router.post(
   //   getValidationFunction("register"),
   async (req, res, next) => {
     const { email } = req.body;
+    console.log(req.body, email);
     if (!email) throw new error("general error");
     try {
       const result = await isUserRegistered(email);
@@ -41,11 +42,11 @@ router.post(
       const create = await createUser(req.body);
       if (create) {
         logger.info(`${req.body.email} has just joined us `);
-        return res.json({ message: `Registration completed` });
+        return res.json(`Registration completed`);
       } else throw new Error("Registration Failed");
     } catch (ex) {
       logger.error(ex);
-      return res.send({ message: "this userName is already exists!" });
+      return res.json("this userName is already exists!");
     }
   }
 );

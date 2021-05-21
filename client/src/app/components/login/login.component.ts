@@ -36,16 +36,15 @@ export class LoginComponent implements OnInit {
 
   async login() {
     this.token = await this.userService.LoginUser(this.email, this.password);
-    console.log(this.token);
     if (this.token.userToken) {
+      localStorage.setItem('token', JSON.stringify(this.token['userToken']));
       const isAdmin = getIsAdmin();
       if (isAdmin) {
         this.router.navigate([`/products/admin`]);
+      } else {
         localStorage.setItem('token', JSON.stringify(this.token['userToken']));
-        return;
+        this.openBottomSheet();
       }
-      localStorage.setItem('token', JSON.stringify(this.token['userToken']));
-      this.openBottomSheet();
     } else this.loginFailed = this.token;
   }
 

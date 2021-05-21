@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
+import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
     canActivate: [AdminGuard],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'signUp', component: SingUpComponent },
   {
     path: 'products/:cartId',
     component: ProductsComponent,

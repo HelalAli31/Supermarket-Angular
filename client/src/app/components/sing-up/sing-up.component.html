@@ -1,0 +1,82 @@
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="SignUserFormFirst">
+    <form [formGroup]="SignUserFormFirst">
+      <ng-template matStepLabel>Fill out your user datails</ng-template>
+      <mat-form-field>
+        <mat-label>ID</mat-label>
+        <input matInput placeholder="id" formControlName="id" required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="should be like XX@XX.XX"
+          type="email"
+          formControlName="email"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          placeholder="password"
+          formControlName="password"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>ConfirmPassword</mat-label>
+        <input
+          matInput
+          placeholder="confirmPassword"
+          formControlName="confirmPassword"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="SignUserFormSecond" label="Fill out confirm details">
+    <form [formGroup]="SignUserFormSecond">
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city" placeholder="city" required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Street</mat-label>
+        <input
+          matInput
+          formControlName="street"
+          placeholder="street"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          formControlName="first_name"
+          placeholder="first name"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Lsat Name</mat-label>
+        <input
+          matInput
+          formControlName="last_name"
+          placeholder="last name"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="SignUp()">Done</button>
+      </div>
+      <h1>{{ resultStatus }}</h1>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>

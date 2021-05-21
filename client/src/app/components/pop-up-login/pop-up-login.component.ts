@@ -22,33 +22,42 @@ export class PopUpLoginComponent implements OnInit {
     this.cart = [];
   }
   NavigateClick() {
+    console.log(this.cart);
     this.router.navigate([`/products/${this.cart[0]._id}`]);
     this.bottomSheetRef.dismiss();
   }
   async OpenCart() {
-    console.log('Open');
     console.log(this.user);
     if (this.user) {
-      console.log('inside');
-      const newCart = await this.cartService.addCart(this.user.data[0]._id);
-      if (newCart) {
-        console.log(newCart);
-        this.cart = newCart;
-        this.router.navigate([`/products/${this.cart[0]._id}`]);
-        this.bottomSheetRef.dismiss();
-      } else {
-        console.log('123');
-      }
+      const newCart = await this.cartService
+        .addCart(this.user.data[0]._id)
+        .then(
+          (value: any) => {
+            console.log(value.data[0]._id);
+            this.cart = value.data[0]._id;
+            this.router.navigate([`/products/${this.cart}`]);
+            this.bottomSheetRef.dismiss();
+          },
+          (reason: any) => {
+            alert(reason);
+          }
+        );
     }
   }
 
   async ngOnInit() {
     this.user = await getPayload();
+    console.log(this.user.data[0].role);
     if (this.user) {
-      const result = await this.cartService.getCart(this.user.data[0]._id);
-      if (result) {
-        this.cart = result;
-      }
+      const result = await this.cartService.getCart(this.user.data[0]._id).then(
+        (value: any) => {
+          this.cart = value.cart;
+        },
+        (reason: any) => {
+          alert(reason);
+          this.cart = [];
+        }
+      );
     }
   }
 }

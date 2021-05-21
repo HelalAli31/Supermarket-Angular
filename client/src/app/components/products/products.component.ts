@@ -37,6 +37,7 @@ export class ProductsComponent implements OnInit {
     private productsService: ProductsService,
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
+    private router: Router,
     private route: ActivatedRoute,
     private cartItemsService: CartService
   ) {
@@ -63,12 +64,19 @@ export class ProductsComponent implements OnInit {
     this.user = data;
     console.log('user', this.user[0]._id);
     this.subscriber = this.route.params.subscribe((params) => {
+      console.log(params['cartId']);
       this.cartId = params['cartId'];
     });
     await this.getCartItems();
   }
 
+  SignOut() {
+    localStorage.clear();
+    this.router.navigate([`/`]);
+  }
+
   async getCartItems() {
+    console.log('getCartItems');
     this.items = await this.cartItemsService.getCartItems(this.cartId);
     console.log('items:', this.items);
     if (!this.items.length) {
@@ -83,6 +91,7 @@ export class ProductsComponent implements OnInit {
   }
 
   async addItemsToCart(event: any) {
+    console.log('addItemsToCart');
     this.item.product_id = event.id;
     this.item.amount = event.amount;
     this.item.cart_id = this.cartId;

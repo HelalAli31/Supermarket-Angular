@@ -13,4 +13,8 @@ export class UserService {
       .post(`${USER_URL}/login`, { email, password })
       .toPromise();
   }
+
+  SignUp(NewUser: any) {
+    return this.httpService.post(`${USER_URL}/register`, NewUser).toPromise();
+  }
 }

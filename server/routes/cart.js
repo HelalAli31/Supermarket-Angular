@@ -4,6 +4,7 @@ const {
   getCartItems,
   addItemsToCart,
   addCart,
+  deleteCart,
   deleteItemFromCart,
 } = require("../controller/cart/cartController");
 const router = express.Router();
@@ -29,35 +30,52 @@ router.post("/", async (req, res, next) => {
     console.log(userId);
     const cart = await getCart(userId);
     if (cart) {
-      return res.json(cart);
+      return res.json({ cart });
     }
   } catch (error) {
     console.log(error);
-    return res.send("something went wrong");
+    return res.json("something went wrong");
   }
 });
 
 router.post("/addCart", async (req, res, next) => {
-  console.log("adddddddddddddddddddddddddddd");
+  console.log("add cart");
   try {
     const { userId } = req.query;
     const cart = await addCart(userId);
     if (cart) {
-      return res.send("cart added!");
+      return res.json({ message: "cart added!", data: cart });
     }
   } catch (error) {
     console.log(error);
-    return res.send("something went wrong");
+    return res.json("something went wrong");
+  }
+});
+
+router.post("/deleteCart", async (req, res, next) => {
+  console.log("delete cart");
+  try {
+    const { cartId } = req.query;
+    if (!cartId) return send.json("error , cartId is not defind");
+    const cart = await deleteCart(cartId);
+    if (cart) {
+      return res.json({ message: "cart deleted!" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.json("something went wrong");
   }
 });
 
 router.post("/Items", async (req, res, next) => {
   const { cartId } = req.query;
+  console.log("cartID:", cartId);
+  if (!cartId) return res.json("error");
   const cartItems = await getCartItems(cartId);
   if (cartItems) {
     return res.json(cartItems);
   }
-  return res.send("something went wrong");
+  return res.json("something went wrong");
 });
 
 router.put("/AddItems", async (req, res, next) => {
@@ -65,11 +83,11 @@ router.put("/AddItems", async (req, res, next) => {
     const { item } = req.body;
     const cartItems = await addItemsToCart(item);
     if (cartItems) {
-      return res.send("added!");
+      return res.send("item added");
     }
   } catch (error) {
     console.log(error);
-    return res.send("something went wrong");
+    return res.json({ message: "something went wrong!!" });
   }
 });
 
@@ -79,11 +97,11 @@ router.put("/deleteItem", async (req, res, next) => {
     const { itemId } = req.query;
     const cartItems = await deleteItemFromCart(itemId);
     if (cartItems) {
-      return res.send("item deleted!");
+      return res.json("item deleted!");
     }
   } catch (error) {
     console.log(error);
-    return res.send("something went wrong");
+    return res.json("something went wrong");
   }
 });
 

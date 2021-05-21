@@ -14,3 +14,8 @@
 #sidenav {
   width: 250px;
 }
+
+.ExitButton {
+  position: absolute;
+  right: 10px;
+  }

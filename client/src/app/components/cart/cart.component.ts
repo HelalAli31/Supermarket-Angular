@@ -4,6 +4,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { CartService } from 'src/app/service/cartService/cart.service';
 import { OrdersService } from 'src/app/service/orderService/orders.service';
 import { PopUpOrderDetailsComponent } from '../pop-up-order-details/pop-up-order-details.component';
 
@@ -22,7 +23,11 @@ export class CartComponent implements OnInit {
   public order: any;
   public orderStatus: any;
 
-  constructor(private orderService: OrdersService, public dialog: MatDialog) {
+  constructor(
+    private orderService: OrdersService,
+    public dialog: MatDialog,
+    private cartService: CartService
+  ) {
     this.basePath = '../../../assets/images/';
     this.order = {};
     this.orderStatus = '';
@@ -54,10 +59,20 @@ export class CartComponent implements OnInit {
     this.order.street = result.street;
     console.log(this.order);
 
-    this.orderStatus = this.orderService.addOrder(this.order);
-    if (this.orderStatus) {
-      console.log(this.orderStatus);
-      this.orderStatus = 'order successfully!';
+    const resultStatus = this.orderService.addOrder(this.order);
+    if (resultStatus) {
+      resultStatus.then(
+        (value: any) => {
+          this.orderStatus = value.message;
+          const cartId = value.order[0].cart_id;
+          console.log(cartId);
+          console.log(value);
+          this.cartService.deleteCart(cartId);
+        },
+        (reason: any) => {
+          alert(reason);
+        }
+      );
     }
   }
   async ngOnInit() {}

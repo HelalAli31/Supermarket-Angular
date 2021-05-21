@@ -27,7 +27,18 @@ export class CartService {
     return result;
   }
 
+  deleteCart(cartId: string) {
+    const ADD_CART_URL = `${CART_URL}/deleteCart`;
+    const result = this.httpService
+      .post(`${ADD_CART_URL}?cartId=${cartId}`, {
+        Authorization: localStorage.getItem('token'),
+      })
+      .toPromise();
+    return result;
+  }
+
   getCartItems(cartId: string) {
+    console.log(cartId);
     const token = localStorage.getItem('token');
     if (!token) return;
     const result = this.httpService

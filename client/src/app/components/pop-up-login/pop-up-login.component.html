@@ -1,9 +1,9 @@
 <div>
   Hello
-  <a mat-raised-button *ngIf="this.cart.length" (click)="NavigateClick()">
+  <a mat-raised-button *ngIf="this.cart?.length" (click)="NavigateClick()">
     Resume Cart
   </a>
-  <a mat-raised-button *ngIf="!this.cart.length" (click)="OpenCart()">
+  <a mat-raised-button *ngIf="!this.cart?.length" (click)="OpenCart()">
     Start Cart
   </a>
 </div>
