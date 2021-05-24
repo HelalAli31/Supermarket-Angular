@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CartService } from 'src/app/service/cartService/cart.service';
 import getPayload from 'src/app/service/Payload/getPayload';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { OrdersService } from 'src/app/service/orderService/orders.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-pop-up-login',
@@ -10,52 +12,122 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
   styleUrls: ['./pop-up-login.component.css'],
 })
 export class PopUpLoginComponent implements OnInit {
-  public user: any;
+  public userId: any;
   public cart: any;
+  public cartIsOpen: Boolean;
+  public lastOrderDate: string;
+  public OpenedCartDetails: any;
+  public NewUser: string;
 
   constructor(
     private cartService: CartService,
+    private orderService: OrdersService,
     private router: Router,
+
     private bottomSheetRef: MatBottomSheetRef<PopUpLoginComponent>
   ) {
-    this.user = [];
+    this.userId = [];
     this.cart = [];
+    this.cartIsOpen = false;
+    this.lastOrderDate = '';
+    this.OpenedCartDetails = {};
+    this.NewUser = '';
   }
   NavigateClick() {
-    console.log(this.cart);
-    this.router.navigate([`/products/${this.cart[0]._id}`]);
+    this.router.navigate([`/products/${this.cart[this.cart.length - 1]._id}`]);
     this.bottomSheetRef.dismiss();
   }
-  async OpenCart() {
-    console.log(this.user);
-    if (this.user) {
-      const newCart = await this.cartService
-        .addCart(this.user.data[0]._id)
-        .then(
-          (value: any) => {
-            console.log(value.data[0]._id);
-            this.cart = value.data[0]._id;
-            this.router.navigate([`/products/${this.cart}`]);
-            this.bottomSheetRef.dismiss();
-          },
-          (reason: any) => {
-            alert(reason);
-          }
-        );
+  async openCart() {
+    if (this.userId) {
+      const cartAdded = await this.createCart();
+      if (cartAdded) {
+        this.router.navigate([`/products/${this.cart}`]);
+        this.bottomSheetRef.dismiss();
+      } else {
+        alert('something went wrong!sorry.');
+        return;
+      }
+    } else {
+      alert('user is not found!!');
+      return;
     }
   }
 
+  async createCart() {
+    let cartIsAdded = false;
+    const newCart = await this.cartService.addCart(this.userId).then(
+      (value: any) => {
+        if (value.data) {
+          this.cart = value.data[0]._id;
+          cartIsAdded = true;
+        }
+      },
+      (reason: any) => {
+        alert(reason);
+        cartIsAdded = false;
+      }
+    );
+    return cartIsAdded;
+  }
+
+  async getLastOrderDate(cartId: string) {
+    await this.orderService.getOrder(cartId).then(
+      (value: any) => {
+        this.lastOrderDate = moment(value.order[0].order_date).format(
+          'DD/MM/YYYY'
+        );
+      },
+      (reason: any) => {
+        alert(reason);
+      }
+    );
+  }
+  async getOpenedCartDetails(data: any) {
+    let totalCartPrice = 0;
+    await this.cartService.getCartItems(data._id)?.then(
+      (value: any) => {
+        value.map((item: any) => {
+          totalCartPrice += item.full_price;
+        });
+      },
+      (reason: any) => {
+        alert(reason);
+        return [];
+      }
+    );
+    this.OpenedCartDetails.totalPrice = totalCartPrice;
+    this.OpenedCartDetails.date = moment(data.date).format('DD/MM/YYYY');
+  }
+
   async ngOnInit() {
-    this.user = await getPayload();
-    console.log(this.user.data[0].role);
-    if (this.user) {
-      const result = await this.cartService.getCart(this.user.data[0]._id).then(
+    const userResult = await getPayload();
+    this.userId = userResult.data[0]._id;
+
+    if (this.userId) {
+      console.log('start');
+      const result = await this.cartService.getCart(this.userId).then(
         (value: any) => {
-          this.cart = value.cart;
+          const data = value.cart[value.cart.length - 1];
+          if (data) {
+            this.cartIsOpen = data.cartIsOpen;
+            this.cart = value.cart;
+            if (this.cartIsOpen === false) {
+              // should add LAST ORDER DATE
+              this.getLastOrderDate(data._id);
+              // return;
+            } else {
+              console.log(data);
+              this.getOpenedCartDetails(data);
+            }
+          } else {
+            // status welcome new user
+            this.NewUser = 'Welcome to our supermarket, THANK YOU.';
+            console.log('new user');
+          }
         },
         (reason: any) => {
           alert(reason);
-          this.cart = [];
+          console.log('end ');
         }
       );
     }

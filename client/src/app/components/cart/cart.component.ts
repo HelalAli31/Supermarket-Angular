@@ -4,6 +4,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/service/cartService/cart.service';
 import { OrdersService } from 'src/app/service/orderService/orders.service';
 import { PopUpOrderDetailsComponent } from '../pop-up-order-details/pop-up-order-details.component';
@@ -26,7 +27,8 @@ export class CartComponent implements OnInit {
   constructor(
     private orderService: OrdersService,
     public dialog: MatDialog,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {
     this.basePath = '../../../assets/images/';
     this.order = {};
@@ -65,9 +67,7 @@ export class CartComponent implements OnInit {
         (value: any) => {
           this.orderStatus = value.message;
           const cartId = value.order[0].cart_id;
-          console.log(cartId);
-          console.log(value);
-          this.cartService.deleteCart(cartId);
+          this.cartService.UpdateCartOpenState(cartId);
         },
         (reason: any) => {
           alert(reason);
@@ -75,5 +75,48 @@ export class CartComponent implements OnInit {
       );
     }
   }
-  async ngOnInit() {}
+
+  async newCart() {
+    const newCart = await this.cartService.addCart(this.userId).then(
+      (value: any) => {
+        if (value.data) {
+          const cart = value.data[0]._id;
+          this.orderStatus = '';
+          this.cartId = cart;
+          this.items = [];
+          this.fullPrice = 0;
+          this.router.navigate([`/products/${cart}`]);
+          console.log(this.cartId);
+        }
+      },
+      (reason: any) => {
+        alert(reason);
+      }
+    );
+  }
+
+  async ngOnChanges() {
+    console.log('AAAAAAA');
+    console.log(this.cartId);
+    const a = await this.orderService.getOrder(this.cartId).then(
+      (value: any) => {
+        if (value.order.length) {
+          console.log(value.order);
+          this.orderStatus = 'Order Already done get new cart please';
+        }
+      },
+      (reason) => {
+        alert(reason);
+      }
+    );
+  }
+
+  async ngOnInit() {
+    console.log(this.cartId);
+    console.log(this.cartId);
+    console.log(this.cartId);
+    console.log(this.cartId);
+    console.log(this.cartId);
+    console.log(this.cartId);
+  }
 }

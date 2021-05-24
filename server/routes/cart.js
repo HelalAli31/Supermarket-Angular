@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   getCart,
+  updateCartStatus,
   getCartItems,
   addItemsToCart,
   addCart,
@@ -29,6 +30,20 @@ router.post("/", async (req, res, next) => {
     const { userId } = req.query;
     console.log(userId);
     const cart = await getCart(userId);
+    if (cart) {
+      return res.json({ cart });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.json("something went wrong");
+  }
+});
+
+router.post("/updateOpenedCartStatus", async (req, res, next) => {
+  try {
+    const { cartId } = req.query;
+    console.log(cartId);
+    const cart = await updateCartStatus(cartId);
     if (cart) {
       return res.json({ cart });
     }

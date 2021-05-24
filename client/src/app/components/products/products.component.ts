@@ -59,12 +59,9 @@ export class ProductsComponent implements OnInit {
 
   async ngOnInit() {
     await this.getProducts();
-    console.log('products');
     const { data } = await getPayload();
     this.user = data;
-    console.log('user', this.user[0]._id);
     this.subscriber = this.route.params.subscribe((params) => {
-      console.log(params['cartId']);
       this.cartId = params['cartId'];
     });
     await this.getCartItems();
@@ -76,9 +73,7 @@ export class ProductsComponent implements OnInit {
   }
 
   async getCartItems() {
-    console.log('getCartItems');
     this.items = await this.cartItemsService.getCartItems(this.cartId);
-    console.log('items:', this.items);
     if (!this.items.length) {
       this.fullPrice = 0;
       return;
@@ -87,11 +82,9 @@ export class ProductsComponent implements OnInit {
     this.items.map((item: any) => {
       this.fullPrice += item.full_price;
     });
-    console.log(this.fullPrice);
   }
 
   async addItemsToCart(event: any) {
-    console.log('addItemsToCart');
     this.item.product_id = event.id;
     this.item.amount = event.amount;
     this.item.cart_id = this.cartId;

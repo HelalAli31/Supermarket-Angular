@@ -19,9 +19,9 @@ router.use(async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const { orderId } = req.query;
-    console.log(orderId);
-    const order = await getOrder(orderId);
+    const { cartId } = req.query;
+    console.log(cartId);
+    const order = await getOrder(cartId);
     if (order) {
       return res.json({ order });
     }

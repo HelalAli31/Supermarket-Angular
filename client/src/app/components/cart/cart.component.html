@@ -5,31 +5,35 @@
 </h1> -->
 
 <div style="width: 300px">
-  <div *ngFor="let item of items; index as pIndex">
-    <div class="row">
-      <div class="col-7" style="margin-left: 7px">
-        {{ pIndex + 1 }}. {{ item.product_id.title }}:
-        <div>
-          quantity: {{ item.amount }} , price: {{ item.product_id.price }}
-          ₪
+  <div *ngIf="!orderStatus.length">
+    <div *ngFor="let item of items; index as pIndex">
+      <div class="row">
+        <div class="col-7" style="margin-left: 7px">
+          {{ pIndex + 1 }}. {{ item.product_id.title }}:
+          <div>
+            quantity: {{ item.amount }} , price: {{ item.full_price }}
+            ₪
+          </div>
         </div>
+
+        <img
+          class="col-3"
+          src="{{ this.basePath }}/{{ item.product_id.filename }}"
+          style="width: 70px; height: 70px"
+        />
+        <p (click)="DeleteItemFromCart(item._id)" style="cursor: pointer">X</p>
       </div>
 
-      <img
-        class="col-3"
-        src="{{ this.basePath }}/{{ item.product_id.filename }}"
-        style="width: 70px; height: 70px"
-      />
-      <p (click)="DeleteItemFromCart(item._id)" style="cursor: pointer">X</p>
+      <hr />
     </div>
 
-    <hr />
+    <h2>total price:{{ fullPrice | number: "1.2-2" }}₪</h2>
+    <br />
+    <button mat-raised-button (click)="openDialog()">Order details</button>
   </div>
-
-  <h2>total price:{{ fullPrice | number: "1.2-2" }}₪</h2>
-  <br />
-  <button mat-raised-button (click)="openDialog()" *ngIf="!orderStatus.length">
-    Order details
-  </button>
   <h1>{{ orderStatus }}</h1>
+
+  <div *ngIf="orderStatus.length">
+    <button mat-raised-button (click)="newCart()">new cart</button>
+  </div>
 </div>

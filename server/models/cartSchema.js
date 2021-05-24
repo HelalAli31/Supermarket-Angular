@@ -10,6 +10,11 @@ const cartSchema = new mongoose.Schema({
     require: true,
     default: Date.now(),
   },
+  cartIsOpen: {
+    type: Boolean,
+    require: true,
+    default: true,
+  },
 });
 
 const CartModel = mongoose.model("cart", cartSchema);

@@ -13,11 +13,24 @@ async function getCart(userId) {
     console.log(error);
   }
 }
+async function updateCartStatus(cartId) {
+  try {
+    const result = await cartModel
+      .updateOne({ _id: cartId }, { cartIsOpen: false }, { __v: false })
+      .populate("user_id", "first_name", userModel);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function getCartItems(cartId) {
   try {
     const result = await cartItemsModel
       .find({ cart_id: cartId }, { __v: false })
       .populate("product_id", productModel);
+    console.log("getCartItems", result);
     return result;
   } catch (error) {
     console.log(error);
@@ -73,4 +86,5 @@ module.exports = {
   addCart,
   deleteItemFromCart,
   deleteCart,
+  updateCartStatus,
 };

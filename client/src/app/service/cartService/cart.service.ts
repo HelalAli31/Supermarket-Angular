@@ -8,9 +8,17 @@ const CART_URL = 'http://localhost:5000/cart';
 export class CartService {
   constructor(private httpService: HttpClient) {}
   getCart(userId: string) {
-    console.log(userId);
     const result = this.httpService
       .post(`${CART_URL}?userId=${userId}`, {
+        Authorization: localStorage.getItem('token'),
+      })
+      .toPromise();
+    return result;
+  }
+
+  UpdateCartOpenState(cartId: string) {
+    const result = this.httpService
+      .post(`${CART_URL}/updateOpenedCartStatus?cartId=${cartId}`, {
         Authorization: localStorage.getItem('token'),
       })
       .toPromise();
