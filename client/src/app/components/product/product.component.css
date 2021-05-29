@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Sumana:wght@700&display=swap");
+
 .productCard {
   /* display:; */
   width: 200px;
@@ -9,28 +11,126 @@
 .mat-card {
   flex-flow: row wrap;
 }
-.description {
-  overflow-y: scroll;
-  height: 40px;
-  max-width: 150px;
-  font-size: 12px;
-  position: relative;
-  margin-right: 10px;
-  /* left: -1px; */
+.AddInfo {
+  margin-left: 70px;
 }
 
-.CardName {
-  margin-top: 30px;
+.MainCard {
+  margin-top: 5px;
   margin-left: 30px;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+  width: 250px;
+  height: 280px;
 }
 .content {
-  overflow: inherit;
-  overflow-x: hidden;
   height: 70px;
   max-width: 150px;
   font-size: 12px;
   margin-right: 10px;
 }
 .price {
-  margin-left: 30px;
+  margin-left: 60px;
+}
+
+.amount {
+  border: 1px solid grey;
+  width: 40px;
+  margin-bottom: 18px;
+  text-align: center;
+  height: 20px;
+}
+
+.amount::-webkit-outer-spin-button,
+.amount::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.amount[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.IconCircle {
+  cursor: pointer;
+  color: grey;
+}
+
+.IconCircle:hover {
+  color: rgb(228, 55, 78);
+}
+
+.AddButton {
+  margin-left: 10px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+body {
+  align-items: center;
+  background-color: #f2f2f2;
+  display: flex;
+  font-family: "Merriweather", serif;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+.product {
+  align-items: center;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}
+.container {
+  border-radius: 50%;
+  height: 100px;
+  -webkit-tap-highlight-color: transparent;
+  transform: scale(0.48);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 400px;
+}
+.container:after {
+  background-color: #f2f2f2;
+  content: "";
+  height: 10px;
+  position: absolute;
+  top: 390px;
+  width: 100%;
+}
+.container:hover {
+  transform: scale(0.54);
+}
+.container-inner {
+  clip-path: path(
+    "M 390,400 C 390,504.9341 304.9341,590 200,590 95.065898,590 10,504.9341 10,400 V 10 H 200 390 Z"
+  );
+  position: relative;
+  transform-origin: 50%;
+  top: -200px;
+  padding-left: 50px;
+  padding-top: 50px;
+}
+.circle {
+  background-color: #fee7d3;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 380px;
+  left: 10px;
+  pointer-events: none;
+  position: absolute;
+  top: 210px;
+  width: 380px;
+}
+.img {
+  pointer-events: none;
+  position: relative;
+  transform: translateY(20px) scale(1.15);
+  transform-origin: 50% bottom;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.container:hover .img {
+  transform: translateY(0) scale(1.2);
 }

@@ -5,9 +5,12 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
 } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/service/categoryService/category.service';
+import { Subscription } from 'rxjs';
+import { ProductsService } from 'src/app/service/productService/products.service';
 
 interface IProduct {
   _id?: string;
@@ -23,7 +26,7 @@ interface IProduct {
   templateUrl: './productAction.component.html',
   styleUrls: ['./productAction.component.css'],
 })
-export class productActionsComponent implements OnInit, OnChanges {
+export class productActionsComponent implements OnInit, OnChanges, OnDestroy {
   @Input() product: any;
   @Output() addNewProductEvent = new EventEmitter<IProduct>();
   @Output() updateProductEvent = new EventEmitter<IProduct>();
@@ -32,10 +35,25 @@ export class productActionsComponent implements OnInit, OnChanges {
   public categoryArray: any;
   public ActionName: string;
   public SelectedCategory: any;
+  public subscription: Subscription;
+  public resultStatus: string = '';
+
   constructor(
     private formBuilder: FormBuilder,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private productService: ProductsService
   ) {
+    this.subscription = this.productService
+      .getProductActionResult()
+      .subscribe((value: any) => {
+        this.resultStatus = value;
+        setTimeout(() => {
+          this.subscription.unsubscribe();
+          console.log('Unsubsicribe');
+          this.resultStatus = '';
+        }, 2000);
+      });
+
     this.categoryArray = [];
     this.ActionName = 'Add';
     this.mealNameErrors = [];
@@ -106,5 +124,17 @@ export class productActionsComponent implements OnInit, OnChanges {
         productImage: this.product['filename'],
       });
     }
+    this.subscription = this.productService
+      .getProductActionResult()
+      .subscribe((value: any) => {
+        this.resultStatus = value;
+        setTimeout(() => {
+          this.subscription.unsubscribe();
+          this.resultStatus = '';
+        }, 2000);
+      });
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

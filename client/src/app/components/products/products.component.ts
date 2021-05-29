@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ProductsService } from 'src/app/service/products.service';
 import { FilterPipe } from '../../pipe/filter.pipe';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
@@ -7,12 +6,14 @@ import getPayload from 'src/app/service/Payload/getPayload';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/service/cartService/cart.service';
 
+import { ProductsService } from 'src/app/service/productService/products.service';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   @Output() updateProductEvent2 = new EventEmitter<any>();
   public products: any;
   public filterModel: string;
@@ -30,7 +31,7 @@ export class ProductsComponent implements OnInit {
   public items: any;
   public item: any;
   public fullPrice: number;
-
+  public ProductActionResult: String;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   constructor(
@@ -43,7 +44,7 @@ export class ProductsComponent implements OnInit {
   ) {
     this.products = [];
     this.filterModel = '';
-    this.limit = 12;
+    this.limit = 8;
     this.from = 0;
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -55,6 +56,7 @@ export class ProductsComponent implements OnInit {
     this.items = [];
     this.item = {};
     this.fullPrice = 0;
+    this.ProductActionResult = '';
   }
 
   async ngOnInit() {
@@ -110,11 +112,12 @@ export class ProductsComponent implements OnInit {
 
   async addNewProduct(product: any) {
     const result = await this.productsService.addProduct(product);
+
     // this.actionState = this.actionState[0];
     await this.getProducts();
   }
 
-  updateProduct(product: any) {
+  getProductDetails(product: any) {
     this.productToUpdate = product;
     this.updateProductEvent2.emit(product);
   }

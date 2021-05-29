@@ -1,39 +1,60 @@
-<!-- <p>cart works!</p>
-
-<h1>
-  {{ items[0]?.product_id.title }}
-</h1> -->
-
-<div style="width: 300px">
-  <div *ngIf="!orderStatus.length">
-    <div *ngFor="let item of items; index as pIndex">
-      <div class="row">
-        <div class="col-7" style="margin-left: 7px">
-          {{ pIndex + 1 }}. {{ item.product_id.title }}:
-          <div>
-            quantity: {{ item.amount }} , price: {{ item.full_price }}
-            ₪
-          </div>
+<div class="MainDiv">
+  <div style="width: 280px">
+    <mat-icon class="col-6 ShoppingCart" style="font-size: 50px"
+      >shopping_cart
+    </mat-icon>
+    <p class="NItems">{{ items.length }}</p>
+    <!-- <div class="cartItems">
+      <app-cart-items
+        *ngFor="let item of items; index as pIndex"
+        class="FixedDiv"
+        [item]="item"
+      ></app-cart-items>
+    </div> -->
+    <div *ngFor="let item of items; index as pIndex" class="FixedDiv">
+      <div class="row item">
+        <div class="col-4">
+          <img
+            src="{{ this.basePath }}/{{ item.product_id.filename }}"
+            class="Image"
+          />
         </div>
+        <!-- <h1 class="col-1">
+        | <br />
+        | | <br />
+      </h1> -->
 
-        <img
-          class="col-3"
-          src="{{ this.basePath }}/{{ item.product_id.filename }}"
-          style="width: 70px; height: 70px"
-        />
-        <p (click)="DeleteItemFromCart(item._id)" style="cursor: pointer">X</p>
+        <div class="col-5">
+          <h4 style="font-family: 'Kalam', cursive">
+            {{ item.product_id.title }}
+          </h4>
+          <h4 style="font-family: 'Kalam', cursive">
+            {{ item.amount }} | {{ item.full_price }}₪
+          </h4>
+        </div>
+        <div class="col-2">
+          <mat-icon
+            (click)="DeleteItemFromCart(item._id)"
+            style="cursor: pointer; color: white"
+            class="Delete"
+            >delete_forever</mat-icon
+          >
+          <br />
+          <h5 style="margin: 20px 10px"><mat-icon>edit</mat-icon></h5>
+        </div>
       </div>
-
-      <hr />
+    </div>
+  </div>
+  <div>
+    <div class="OrderDiv">
+      <button class="button" (click)="openDialog()" *ngIf="!orderStatus.length">
+        <span> Order now </span>
+      </button>
+      <h1>{{ orderStatus }}</h1>
     </div>
 
-    <h2>total price:{{ fullPrice | number: "1.2-2" }}₪</h2>
-    <br />
-    <button mat-raised-button (click)="openDialog()">Order details</button>
-  </div>
-  <h1>{{ orderStatus }}</h1>
-
-  <div *ngIf="orderStatus.length">
-    <button mat-raised-button (click)="newCart()">new cart</button>
+    <div *ngIf="orderStatus.length">
+      <button mat-raised-button (click)="newCart()">new cart</button>
+    </div>
   </div>
 </div>

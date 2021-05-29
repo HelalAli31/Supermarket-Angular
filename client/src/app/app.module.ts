@@ -23,6 +23,7 @@ import { PopUpLoginComponent } from './components/pop-up-login/pop-up-login.comp
 import { CartComponent } from './components/cart/cart.component';
 import { PopUpOrderDetailsComponent } from './components/pop-up-order-details/pop-up-order-details.component';
 import { SingUpComponent } from './components/sing-up/sing-up.component';
+import { CartItemsComponent } from './components/cart-items/cart-items.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SingUpComponent } from './components/sing-up/sing-up.component';
     CartComponent,
     PopUpOrderDetailsComponent,
     SingUpComponent,
+    CartItemsComponent,
   ],
   imports: [
     BrowserModule,

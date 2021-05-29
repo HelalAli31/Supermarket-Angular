@@ -31,7 +31,8 @@
   </div>
 </div> -->
 
-<div class="CardName">
+<!-- 
+<div class="MainCard">
   <img
     mat-card-image
     [src]="imagePath"
@@ -48,27 +49,87 @@
   >
     EDIT
   </button>
-  <button
-    *ngIf="user[0]?.role === 'user'"
-    mat-raised-button
-    (click)="selected = !selected"
-  >
-    SELECT
-  </button>
-  <div *ngIf="selected">
-    <div>
-      <label>quantity: </label>
+  <div class="row"> -->
+<!-- <button
+      class="col-4"
+      *ngIf="user[0]?.role === 'user'"
+      mat-raised-button
+      (click)="selected = !selected"
+    >
+      SELECT
+    </button> -->
+<!-- <div class="AddInfo" *ngIf="user[0]?.role === 'user'">
+      <div class="col">
+        <mat-icon
+          *ngIf="amount > 1"
+          (click)="amount = amount - 1"
+          class="IconCircle"
+          >remove_circle_outline</mat-icon
+        >
+        <input
+          matInput
+          type="number"
+          name="amount"
+          min="1"
+          [(ngModel)]="amount"
+          class="amount"
+        />
+        <mat-icon (click)="amount = amount + 1" class="IconCircle"
+          >add_circle_outline</mat-icon
+        >
+        <button
+          mat-raised-button
+          class="AddButton"
+          (click)="AddToCart(product._id, product.price)"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="product">
+  <div class="container">
+    <div class="container-inner">
+      <img
+        class="img img1"
+        style="width: 220px; height: 200px"
+        [src]="imagePath"
+      />
+    </div>
+  </div>
+  <div>
+    <p class="price">{{ product.price }}₪</p>
+    <p style="margin-left: 60px">{{ product.title }}</p>
+  </div>
+  <div class="AddInfo" *ngIf="user[0]?.role === 'user'">
+    <div class="col">
+      <mat-icon
+        *ngIf="amount > 1"
+        (click)="amount = amount - 1"
+        class="IconCircle"
+        >remove_circle_outline</mat-icon
+      >
       <input
         matInput
         type="number"
         name="amount"
         min="1"
         [(ngModel)]="amount"
-        style="border-bottom: 1px solid black; width: 50px; margin-bottom: 7px"
+        class="amount"
       />
+      <mat-icon (click)="amount = amount + 1" class="IconCircle"
+        >add_circle_outline</mat-icon
+      >
+      <button
+        mat-raised-button
+        class="AddButton"
+        (click)="AddToCart(product._id, product.price)"
+      >
+        Add
+      </button>
     </div>
-    <button mat-raised-button (click)="AddToCart(product._id, product.price)">
-      Add
-    </button>
   </div>
+
 </div>

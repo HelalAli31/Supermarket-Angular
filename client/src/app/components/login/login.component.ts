@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
+    this.loginFailed = '';
     this.token = await this.userService.LoginUser(this.email, this.password);
     if (this.token.userToken) {
       localStorage.setItem('token', JSON.stringify(this.token['userToken']));

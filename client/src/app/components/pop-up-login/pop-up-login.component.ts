@@ -104,7 +104,6 @@ export class PopUpLoginComponent implements OnInit {
     this.userId = userResult.data[0]._id;
 
     if (this.userId) {
-      console.log('start');
       const result = await this.cartService.getCart(this.userId).then(
         (value: any) => {
           const data = value.cart[value.cart.length - 1];
@@ -112,22 +111,18 @@ export class PopUpLoginComponent implements OnInit {
             this.cartIsOpen = data.cartIsOpen;
             this.cart = value.cart;
             if (this.cartIsOpen === false) {
-              // should add LAST ORDER DATE
               this.getLastOrderDate(data._id);
-              // return;
             } else {
               console.log(data);
               this.getOpenedCartDetails(data);
             }
           } else {
-            // status welcome new user
-            this.NewUser = 'Welcome to our supermarket, THANK YOU.';
+            this.NewUser = 'Welcome to our supermarket.';
             console.log('new user');
           }
         },
         (reason: any) => {
           alert(reason);
-          console.log('end ');
         }
       );
     }

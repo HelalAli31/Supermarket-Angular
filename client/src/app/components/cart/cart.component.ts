@@ -23,6 +23,7 @@ export class CartComponent implements OnInit {
   public basePath: string;
   public order: any;
   public orderStatus: any;
+  public amount: number;
 
   constructor(
     private orderService: OrdersService,
@@ -33,12 +34,12 @@ export class CartComponent implements OnInit {
     this.basePath = '../../../assets/images/';
     this.order = {};
     this.orderStatus = '';
+    this.amount = 1;
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopUpOrderDetailsComponent);
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
       this.AddOrder(result);
     });
   }
@@ -51,16 +52,7 @@ export class CartComponent implements OnInit {
   async AddOrder(result: any) {
     if (!this.items?.length || !result) return;
     console.log(this.userId, this.cartId, this.fullPrice, result);
-    this.order.user_id = this.userId;
-    this.order.cart_id = this.cartId;
-    this.order.order_delivery_date = result.deliveryDate;
-    this.order.order_date = new Date(Date.now()).toString();
-    this.order.last_visa_number = result?.visaNumber;
-    this.order.total_price = this.fullPrice;
-    this.order.city = result.city;
-    this.order.street = result.street;
-    console.log(this.order);
-
+    this.createOrderDetails(result);
     const resultStatus = this.orderService.addOrder(this.order);
     if (resultStatus) {
       resultStatus.then(
@@ -76,6 +68,17 @@ export class CartComponent implements OnInit {
     }
   }
 
+  createOrderDetails(result: any) {
+    this.order.user_id = this.userId;
+    this.order.cart_id = this.cartId;
+    this.order.order_delivery_date = result.deliveryDate;
+    this.order.order_date = new Date(Date.now()).toString();
+    this.order.last_visa_number = result?.visaNumber;
+    this.order.total_price = this.fullPrice;
+    this.order.city = result.city;
+    this.order.street = result.street;
+  }
+
   async newCart() {
     const newCart = await this.cartService.addCart(this.userId).then(
       (value: any) => {
@@ -86,7 +89,6 @@ export class CartComponent implements OnInit {
           this.items = [];
           this.fullPrice = 0;
           this.router.navigate([`/products/${cart}`]);
-          console.log(this.cartId);
         }
       },
       (reason: any) => {
@@ -95,9 +97,12 @@ export class CartComponent implements OnInit {
     );
   }
 
+  EditItemAmount(event: any, itemId: string) {
+    console.log(event.target.value);
+    console.log(itemId);
+  }
+
   async ngOnChanges() {
-    console.log('AAAAAAA');
-    console.log(this.cartId);
     const a = await this.orderService.getOrder(this.cartId).then(
       (value: any) => {
         if (value.order.length) {
@@ -111,12 +116,5 @@ export class CartComponent implements OnInit {
     );
   }
 
-  async ngOnInit() {
-    console.log(this.cartId);
-    console.log(this.cartId);
-    console.log(this.cartId);
-    console.log(this.cartId);
-    console.log(this.cartId);
-    console.log(this.cartId);
-  }
+  async ngOnInit() {}
 }

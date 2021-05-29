@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { ProductsService } from 'src/app/service/products.service';
+import { ProductsService } from 'src/app/service/productService/products.service';
 
 @Component({
   selector: 'app-home',
