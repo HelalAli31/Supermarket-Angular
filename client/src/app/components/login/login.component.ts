@@ -3,10 +3,7 @@ import { UserService } from 'src/app/service/userService/user.service';
 import getPayload from '../../service/Payload/getPayload';
 import getIsAdmin from '../../service/Payload/isAdmin';
 import { PopUpLoginComponent } from '../pop-up-login/pop-up-login.component';
-import {
-  MatBottomSheet,
-  MatBottomSheetRef,
-} from '@angular/material/bottom-sheet';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
 
 @Component({

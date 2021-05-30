@@ -1,9 +1,24 @@
 html,
 body {
-  height: 100%;
+  /* height: 100%; */
+}
+.LoginCard {
+  color: white;
+  background-color: black;
+  opacity: 0.5;
+  width: 400px;
+  height: 400px;
+  margin-left: 500px;
+  margin-top: 100px;
+  font-size: 50px;
+}
+.loginName {
+  font-size: 40px;
+  margin-left: 60px;
+  padding-bottom: 20px;
 }
 body {
-  display: grid; 
+  display: grid;
   font-family: Avenir;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -15,19 +30,22 @@ body {
 .inp {
   position: relative;
   margin: auto;
-  width: 100%;
-  max-width: 280px;
+  /* width: 100%; */
+  /* max-width: 280px; */
   height: 53px;
+  width: 300px;
 }
 .inp .border {
   position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 18px;
+  left: 10;
+  bottom: 20;
+  margin-top: 10px;
   fill: none;
+  width: 0px;
+  height: 0px;
 }
 .inp .border path {
-  stroke: #c8ccd4;
+  stroke: white;
   stroke-width: 2;
 }
 .inp .border path d {
@@ -43,7 +61,7 @@ body {
   transition-delay: 0.15s;
 }
 .inp .check path {
-  stroke: #07f;
+  stroke: white;
   stroke-width: 2;
 }
 .inp input {
@@ -57,14 +75,15 @@ body {
   font-weight: 500;
   background: none;
   border-radius: 0;
-  color: #223254;
+  color: white;
   transition: all 0.15s ease;
+  border-bottom: 1px solid white;
 }
 .inp input:focus {
   outline: none;
 }
 .inp input:focus + .border path {
-  stroke: #07f;
+  stroke: red;
 }
 .inp input:valid + .border path {
   animation: elasticInput 0.8s ease forwards;
@@ -73,7 +92,7 @@ body {
   transform: translate(0, 0) scale(1);
 }
 ::placeholder {
-  color: #9098a9;
+  color: white;
 }
 @-moz-keyframes elasticInput {
   33% {

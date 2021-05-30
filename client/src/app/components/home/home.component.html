@@ -1,16 +1,22 @@
 <div class="productsCard">
-  <mat-toolbar>
-    <span>My SuperMarket</span>
-    <span class="example-spacer"></span>
-  </mat-toolbar>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-3 HomePageCard">
-        <app-login></app-login>
+  <div class="HomePageCard">
+    <mat-toolbar style="background-color: black; color: white; opacity: 0.5">
+      <span>My SuperMarket</span>
+    </mat-toolbar>
+    <app-login></app-login>
+    <div>
+      <div class="CircleDetails C1">
+        {{ ordersNumber }}
+        <br />
+        <h3>Orders!</h3>
       </div>
-      <div class="col-3 HomePageCard"></div>
-      <div class="col-3 HomePageCard"></div>
+    </div>
+    <div>
+      <div class="CircleDetails C2">
+        {{ productsNumber }}
+        <br />
+        <h3> products!</h3>
+      </div>
     </div>
   </div>
 </div>

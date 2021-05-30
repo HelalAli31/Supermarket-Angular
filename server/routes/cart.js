@@ -5,12 +5,13 @@ const {
   getCartItems,
   addItemsToCart,
   addCart,
-  deleteCart,
   deleteItemFromCart,
+  editAmount,
 } = require("../controller/cart/cartController");
 const router = express.Router();
 const { verifyJWT } = require("../controller/JWT/jwt");
 const logger = require("../logger/index");
+const getValidationFunction = require("../validations/cart.validation");
 
 router.use(async (req, res, next) => {
   try {
@@ -25,98 +26,108 @@ router.use(async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", getValidationFunction("getCart"), async (req, res, next) => {
   try {
     const { userId } = req.query;
     console.log(userId);
+    if (!userId) throw new Error();
     const cart = await getCart(userId);
-    if (cart) {
-      return res.json({ cart });
-    }
+    if (!cart) throw new Error();
+    return res.json({ cart });
   } catch (error) {
     console.log(error);
-    return res.json("something went wrong");
+    return next({ message: "GENERAL ERROR", status: 400 });
   }
 });
 
-router.post("/updateOpenedCartStatus", async (req, res, next) => {
-  try {
-    const { cartId } = req.query;
-    console.log(cartId);
-    const cart = await updateCartStatus(cartId);
-    if (cart) {
+router.post(
+  "/updateOpenedCartStatus",
+  getValidationFunction("updateStatus"),
+  async (req, res, next) => {
+    try {
+      const { cartId } = req.query;
+      if (!cartId) throw new Error();
+      const cart = await updateCartStatus(cartId);
+      if (!cart) return res.json({});
       return res.json({ cart });
+    } catch (error) {
+      return next({ message: "GENERAL ERROR", status: 400 });
     }
-  } catch (error) {
-    console.log(error);
-    return res.json("something went wrong");
   }
-});
+);
 
-router.post("/addCart", async (req, res, next) => {
-  console.log("add cart");
-  try {
-    const { userId } = req.query;
-    const cart = await addCart(userId);
-    if (cart) {
+router.post(
+  "/addCart",
+  getValidationFunction("addCart"),
+  async (req, res, next) => {
+    try {
+      const { userId } = req.query;
+      if (!userId) return res.json("something went wrong");
+      const cart = await addCart(userId);
+      if (!cart) throw new Error();
       return res.json({ message: "cart added!", data: cart });
+    } catch (error) {
+      console.log(error);
+      return next({ message: "GENERAL ERROR", status: 400 });
     }
-  } catch (error) {
-    console.log(error);
-    return res.json("something went wrong");
   }
-});
+);
 
-router.post("/deleteCart", async (req, res, next) => {
-  console.log("delete cart");
-  try {
+router.post(
+  "/getItems",
+  getValidationFunction("getItems"),
+  async (req, res, next) => {
     const { cartId } = req.query;
-    if (!cartId) return send.json("error , cartId is not defind");
-    const cart = await deleteCart(cartId);
-    if (cart) {
-      return res.json({ message: "cart deleted!" });
-    }
-  } catch (error) {
-    console.log(error);
-    return res.json("something went wrong");
-  }
-});
-
-router.post("/Items", async (req, res, next) => {
-  const { cartId } = req.query;
-  console.log("cartID:", cartId);
-  if (!cartId) return res.json("error");
-  const cartItems = await getCartItems(cartId);
-  if (cartItems) {
+    if (!cartId) return res.json("error");
+    const cartItems = await getCartItems(cartId);
+    if (!cartItems) throw new Error();
     return res.json(cartItems);
   }
-  return res.json("something went wrong");
-});
+);
 
-router.put("/AddItems", async (req, res, next) => {
-  try {
-    const { item } = req.body;
-    const cartItems = await addItemsToCart(item);
-    if (cartItems) {
-      return res.send("item added");
+router.put(
+  "/AddItems",
+  getValidationFunction("AddItems"),
+  async (req, res, next) => {
+    try {
+      const { item } = req.body;
+      const cartItems = await addItemsToCart(item);
+      if (!cartItems) throw new Error();
+      return res.json("item added");
+    } catch (error) {
+      console.log(error);
+      return next({ message: "GENERAL ERROR", status: 400 });
     }
-  } catch (error) {
-    console.log(error);
-    return res.json({ message: "something went wrong!!" });
   }
-});
+);
 
-router.put("/deleteItem", async (req, res, next) => {
-  try {
-    console.log("detele");
-    const { itemId } = req.query;
-    const cartItems = await deleteItemFromCart(itemId);
-    if (cartItems) {
+router.put(
+  "/deleteItem",
+  getValidationFunction("deleteItem"),
+  async (req, res, next) => {
+    try {
+      console.log("detele");
+      const { itemId } = req.query;
+      if (!itemId) throw new Error();
+      const cartItems = await deleteItemFromCart(itemId);
+      if (!cartItems) throw new Error();
       return res.json("item deleted!");
+    } catch (error) {
+      console.log(error);
+      return next({ message: "GENERAL ERROR", status: 400 });
     }
+  }
+);
+router.post("/editItemAmount", async (req, res, next) => {
+  try {
+    const { fullPrice, amount, itemId } = req.body.data;
+    if (!itemId || !fullPrice || !amount) throw new error();
+    const cartItem = await editAmount(itemId, amount, fullPrice);
+    if (!cartItem) throw new Error();
+    return res.json("item edited!");
   } catch (error) {
     console.log(error);
-    return res.json("something went wrong");
+    return next({ message: "GENERAL ERROR", status: 400 });
   }
 });
 

@@ -20,4 +20,13 @@ async function addOrder(order) {
   }
 }
 
-module.exports = { getOrder, addOrder };
+async function getOrdersNumber() {
+  try {
+    const result = await orderModel.countDocuments();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = { getOrder, addOrder, getOrdersNumber };

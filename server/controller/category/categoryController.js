@@ -1,4 +1,4 @@
-const categoryModel = require("../models/categorySchema");
+const categoryModel = require("../../models/categorySchema");
 async function getAllCategories() {
   try {
     const result = await categoryModel.find({}, { __v: false });

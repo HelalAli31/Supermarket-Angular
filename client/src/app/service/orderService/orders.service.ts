@@ -26,4 +26,9 @@ export class OrdersService {
       .toPromise();
     return result;
   }
+  getOrdersNumber() {
+    const ALL_ORDERS_URL = `${ORDER_URL}/getOrdersNumber`;
+    const result = this.httpService.get(`${ALL_ORDERS_URL}`).toPromise();
+    return result;
+  }
 }

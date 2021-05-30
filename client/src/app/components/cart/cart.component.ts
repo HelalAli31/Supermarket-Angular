@@ -5,8 +5,10 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/service/cartService/cart.service';
 import { OrdersService } from 'src/app/service/orderService/orders.service';
+import { PopUpEditItemComponent } from '../pop-up-edit-item/pop-up-edit-item.component';
 import { PopUpOrderDetailsComponent } from '../pop-up-order-details/pop-up-order-details.component';
 
 @Component({
@@ -15,16 +17,16 @@ import { PopUpOrderDetailsComponent } from '../pop-up-order-details/pop-up-order
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  @Input() items: any;
-  @Input() fullPrice: any;
   @Input() cartId: any;
   @Input() userId: any;
-  @Output() deleteCartItemEvent = new EventEmitter<any>();
+  public fullPrice: number;
+  public items: any;
   public basePath: string;
   public order: any;
   public orderStatus: any;
   public amount: number;
-
+  public item: any;
+  public subscription: Subscription;
   constructor(
     private orderService: OrdersService,
     public dialog: MatDialog,
@@ -33,8 +35,16 @@ export class CartComponent implements OnInit {
   ) {
     this.basePath = '../../../assets/images/';
     this.order = {};
+    this.item = {};
     this.orderStatus = '';
     this.amount = 1;
+    this.fullPrice = 0;
+    this.items = [];
+    this.subscription = this.cartService
+      .getAddingToCart()
+      .subscribe(async () => {
+        await this.getCartItems();
+      });
   }
 
   openDialog(): void {
@@ -44,14 +54,8 @@ export class CartComponent implements OnInit {
     });
   }
 
-  DeleteItemFromCart(event: string) {
-    console.log(event);
-    this.deleteCartItemEvent.emit(event);
-  }
-
   async AddOrder(result: any) {
     if (!this.items?.length || !result) return;
-    console.log(this.userId, this.cartId, this.fullPrice, result);
     this.createOrderDetails(result);
     const resultStatus = this.orderService.addOrder(this.order);
     if (resultStatus) {
@@ -97,9 +101,29 @@ export class CartComponent implements OnInit {
     );
   }
 
-  EditItemAmount(event: any, itemId: string) {
-    console.log(event.target.value);
-    console.log(itemId);
+  EditItemAmount(item: any) {
+    const dialogRef = this.dialog.open(PopUpEditItemComponent, {
+      data: { item },
+    });
+    dialogRef.afterClosed().subscribe(async (result: any) => {
+      if (result.amount === item.amount) return;
+      if (!result.amount || result.amount < 0) return;
+      const fullPrice = result.amount * item.product_id.price;
+      await this.cartService.editItemAmount(item._id, result.amount, fullPrice);
+      await this.getCartItems();
+    });
+  }
+  async getCartItems() {
+    this.items = await this.cartService.getCartItems(this.cartId);
+    if (!this.items.length) {
+      this.fullPrice = 0;
+      return;
+    }
+    if (this.items) this.fullPrice = 0;
+    this.items.map((item: any) => {
+      this.fullPrice += item.full_price;
+      console.log(this.fullPrice);
+    });
   }
 
   async ngOnChanges() {
@@ -114,7 +138,18 @@ export class CartComponent implements OnInit {
         alert(reason);
       }
     );
+    this.getCartItems();
   }
 
-  async ngOnInit() {}
+  async DeleteItemFromCart(event: any) {
+    await this.cartService.deteleItemFromCart(event);
+    await this.getCartItems();
+  }
+
+  ngOnInit() {
+    this.getCartItems();
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

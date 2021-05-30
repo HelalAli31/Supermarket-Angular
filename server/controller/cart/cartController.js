@@ -30,7 +30,6 @@ async function getCartItems(cartId) {
     const result = await cartItemsModel
       .find({ cart_id: cartId }, { __v: false })
       .populate("product_id", productModel);
-    console.log("getCartItems", result);
     return result;
   } catch (error) {
     console.log(error);
@@ -51,18 +50,6 @@ async function addCart(userId) {
     const cart = {};
     cart.user_id = userId;
     const result = await cartModel.insertMany(cart);
-    console.log("re", result);
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function deleteCart(cartId) {
-  try {
-    console.log(cartId);
-    const result = await cartModel.findOneAndDelete({ _id: cartId });
-    console.log("re", result);
     return result;
   } catch (error) {
     console.log(error);
@@ -72,7 +59,17 @@ async function deleteCart(cartId) {
 async function deleteItemFromCart(itemId) {
   try {
     const result = await cartItemsModel.findOneAndDelete({ _id: itemId });
-    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function editAmount(itemId, amount, fullPrice) {
+  try {
+    const result = await cartItemsModel.updateOne(
+      { _id: itemId },
+      { amount: amount, full_price: fullPrice }
+    );
     return result;
   } catch (error) {
     console.log(error);
@@ -85,6 +82,6 @@ module.exports = {
   addItemsToCart,
   addCart,
   deleteItemFromCart,
-  deleteCart,
   updateCartStatus,
+  editAmount,
 };

@@ -24,9 +24,63 @@
   right: 0;
 }
 
+.HomePage {
+  width: 100%;
+  color: black;
+  height: 0px;
+  background-repeat: no-repeat;
+  position: relative;
+  /* background-size: cover; */
+  /* background-size: cover; */
+  /* justify-content: center; */
+  /* display: flex; */
+  /* justify-items: center; */
+  /* background-position: center; */
+  /* background-origin: content-box; */
+  /* -webkit-background-size: cover; */
+  /* -o-background-size: cover; */
+  /* position: relative; */
+  /* opacity: 5; */
+}
 .HomePageCard {
-  border: 1px solid grey;
-  margin-left: 10px;
-  margin-top: 20px;
-  height: 300px;
+  height: 750px;
+  width: 100%;
+  background: url("https://thumbs.dreamstime.com/b/e-commerce-add-to-cart-online-shopping-business-technology-internet-concept-e-commerce-add-to-cart-online-shopping-business-151533406.jpg")
+    no-repeat;
+  background-size: cover;
+
+  background-attachment: fixed;
+  background-position: center;
+
+  opacity: 1;
+}
+.CircleDetails {
+  width: 200px;
+  height: 200px;
+  background-color: rgb(182, 58, 58);
+  opacity: 0.5;
+  border-radius: 50%;
+  color: white;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  justify-items: center;
+  font-size: 30px;
+}
+.C1 {
+  top: 30%;
+  right: 10%;
+}
+.C2 {
+  top: 30%;
+  right: 22%;
+}
+
+.AA {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  opacity: 1;
 }

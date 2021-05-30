@@ -29,6 +29,8 @@
   border-radius: 100%;
   width: 25px;
   text-align: center;
+  vertical-align: middle;
+  display: table-cell;
   padding-left: 2px;
   height: 20px;
 }
@@ -143,9 +145,8 @@
 }
 .item {
   border-top: 1px solid black;
-  animation: 3s infinite alternate slidein; 
+  animation: 3s infinite alternate slidein;
 }
-
 
 .MainDiv:hover .ShoppingCart {
   padding-left: 83%;
@@ -154,11 +155,11 @@
   margin-left: 72%;
 }
 
-/* .MainDiv:hover .cartItems {
-  position: absolute;
-  margin-top: 100px;
+.MainDiv:hover .cartItems {
+  /* position: absolute;
+  margin-top: 100px; */
   /* bottom: 30%; */
-/* }  */
+}
 
 .OrderDiv {
   position: fixed;

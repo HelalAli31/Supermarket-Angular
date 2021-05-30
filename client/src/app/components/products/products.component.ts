@@ -28,9 +28,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public actionState: string;
   public subscriber: any;
   public cartId: string;
-  public items: any;
   public item: any;
-  public fullPrice: number;
   public ProductActionResult: String;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -53,9 +51,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.user = {};
     this.actionState = '';
     this.cartId = '';
-    this.items = [];
     this.item = {};
-    this.fullPrice = 0;
     this.ProductActionResult = '';
   }
 
@@ -66,7 +62,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.subscriber = this.route.params.subscribe((params) => {
       this.cartId = params['cartId'];
     });
-    await this.getCartItems();
   }
 
   SignOut() {
@@ -74,30 +69,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.router.navigate([`/`]);
   }
 
-  async getCartItems() {
-    this.items = await this.cartItemsService.getCartItems(this.cartId);
-    if (!this.items.length) {
-      this.fullPrice = 0;
-      return;
-    }
-    if (this.items) this.fullPrice = 0;
-    this.items.map((item: any) => {
-      this.fullPrice += item.full_price;
-    });
-  }
-
   async addItemsToCart(event: any) {
     this.item.product_id = event.id;
     this.item.amount = event.amount;
     this.item.cart_id = this.cartId;
     this.item.full_price = event.price * event.amount;
-    this.items = await this.cartItemsService.addItemsToCart(this.item);
-    await this.getCartItems();
-  }
-
-  async deleteCartItem(event: any) {
-    await this.cartItemsService.deteleItemFromCart(event);
-    await this.getCartItems();
+    await this.cartItemsService.addItemsToCart(this.item);
   }
 
   async getProducts(valueName?: any, keyName?: any) {
@@ -112,8 +89,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   async addNewProduct(product: any) {
     const result = await this.productsService.addProduct(product);
-
-    // this.actionState = this.actionState[0];
     await this.getProducts();
   }
 

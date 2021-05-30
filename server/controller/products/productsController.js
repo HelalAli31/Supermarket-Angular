@@ -1,5 +1,5 @@
-const productModel = require("../models/productSchema");
-const categoryModel = require("../models/categorySchema");
+const productModel = require("../../models/productSchema");
+const categoryModel = require("../../models/categorySchema");
 async function getAllProducts(from, limit, value, key) {
   try {
     const result = await productModel
@@ -46,5 +46,13 @@ async function updateProduct(product) {
     console.log(error);
   }
 }
+async function productsNumber(product) {
+  try {
+    const result = await productModel.countDocuments();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-module.exports = { getAllProducts, addProduct, updateProduct };
+module.exports = { getAllProducts, addProduct, updateProduct, productsNumber };

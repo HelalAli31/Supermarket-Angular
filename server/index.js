@@ -24,4 +24,9 @@ app.use("/cart", cartRoute);
 app.use("/category", categoryRoute);
 app.use("/orders", orderRoute);
 
+app.use((error, req, res, next) => {
+  console.log("in error handler...");
+  res.send("Something went wrong");
+});
+
 app.listen(5000);

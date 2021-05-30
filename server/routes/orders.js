@@ -1,8 +1,23 @@
 const express = require("express");
-const { getOrder, addOrder } = require("../controller/orders/orderController");
+const {
+  getOrder,
+  addOrder,
+  getOrdersNumber,
+} = require("../controller/orders/orderController");
 const router = express.Router();
 const { verifyJWT } = require("../controller/JWT/jwt");
 const logger = require("../logger/index");
+
+router.get("/getOrdersNumber", async (req, res, next) => {
+  try {
+    const order = await getOrdersNumber(req.body.order);
+    if (!order) throw new Error();
+    return res.json(order);
+  } catch (error) {
+    console.log(error);
+    return next({ message: "GENERAL ERROR", status: 400 });
+  }
+});
 
 router.use(async (req, res, next) => {
   try {
@@ -20,27 +35,23 @@ router.use(async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const { cartId } = req.query;
-    console.log(cartId);
     const order = await getOrder(cartId);
-    if (order) {
-      return res.json({ order });
-    }
+    if (!order) throw new Error();
+    return res.json({ order });
   } catch (error) {
     console.log(error);
-    return res.send("something went wrong");
+    return next({ message: "GENERAL ERROR", status: 400 });
   }
 });
 
 router.post("/addOrder", async (req, res, next) => {
   try {
-    console.log(req.body.order);
     const order = await addOrder(req.body.order);
-    if (order) {
-      return res.json({ order: order, message: "order Successfully!" });
-    }
+    if (!order) throw new Error();
+    return res.json({ order: order, message: "order Successfully!" });
   } catch (error) {
     console.log(error);
-    return res.send("something went wrong");
+    return next({ message: "GENERAL ERROR", status: 400 });
   }
 });
 

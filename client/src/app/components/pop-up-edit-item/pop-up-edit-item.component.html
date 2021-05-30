@@ -1,0 +1,24 @@
+<div class="row MainDiv">
+  <img
+    src="{{ this.basePath }}/{{ data.item.product_id.filename }}"
+    class="Image row-4"
+    style="width: 70px; height: 70px"
+  />
+
+  <div class="col-5">
+    <h4 style="font-family: 'Kalam', cursive; margin-top: 20px">
+      {{ data.item.product_id.title }}
+    </h4>
+  </div>
+  <input
+    style="border-bottom: 1px solid grey; width: 70px"
+    matInput
+    type="number"
+    min="1"
+    [(ngModel)]="amount"
+    placeholder="amount"
+  />
+  <button class="SaveButton" mat-raised-button (click)="SaveAmount()">
+    Save
+  </button>
+</div>

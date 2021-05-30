@@ -1,5 +1,5 @@
 <div class="MainDiv">
-  <div style="width: 280px">
+  <div style="width: 280px" *ngIf="!orderStatus.length">
     <mat-icon class="col-6 ShoppingCart" style="font-size: 50px"
       >shopping_cart
     </mat-icon>
@@ -19,17 +19,12 @@
             class="Image"
           />
         </div>
-        <!-- <h1 class="col-1">
-        | <br />
-        | | <br />
-      </h1> -->
-
         <div class="col-5">
           <h4 style="font-family: 'Kalam', cursive">
             {{ item.product_id.title }}
           </h4>
           <h4 style="font-family: 'Kalam', cursive">
-            {{ item.amount }} | {{ item.full_price }}₪
+            {{ item.amount }} | {{ item.full_price | number: "1.2-2" }}₪
           </h4>
         </div>
         <div class="col-2">
@@ -40,16 +35,29 @@
             >delete_forever</mat-icon
           >
           <br />
-          <h5 style="margin: 20px 10px"><mat-icon>edit</mat-icon></h5>
+          <h5
+            style="margin: 20px 10px; cursor: pointer"
+            (click)="EditItemAmount(item)"
+          >
+            <mat-icon>edit</mat-icon>
+          </h5>
         </div>
       </div>
     </div>
   </div>
   <div>
-    <div class="OrderDiv">
-      <button class="button" (click)="openDialog()" *ngIf="!orderStatus.length">
+    <div class="OrderDiv row">
+      <button
+        class="button col-8"
+        (click)="openDialog()"
+        *ngIf="!orderStatus.length"
+      >
         <span> Order now </span>
       </button>
+      <h3 class="col-3" style="margin-top: 25px">
+        {{ fullPrice | number: "1.2-2" }}₪
+      </h3>
+
       <h1>{{ orderStatus }}</h1>
     </div>
 

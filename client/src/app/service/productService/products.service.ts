@@ -46,6 +46,12 @@ export class ProductsService {
     return result;
   }
 
+  getProductsNumber() {
+    const PRODUCTS_NUMBER_URL = `${PRODUCTS_URL}/productsNumber`;
+    const result = this.httpService.get(PRODUCTS_NUMBER_URL).toPromise();
+    return result;
+  }
+
   updateProduct(product: any) {
     console.log(product);
     const UPDATE_URL = `${PRODUCTS_URL}/updateProduct`;

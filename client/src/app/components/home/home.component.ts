@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { ProductsService } from 'src/app/service/productService/products.service';
+import { OrdersService } from 'src/app/service/orderService/orders.service';
 
 @Component({
   selector: 'app-home',
@@ -10,18 +11,22 @@ import { ProductsService } from 'src/app/service/productService/products.service
 })
 export class HomeComponent implements OnInit {
   mobileQuery: MediaQueryList;
-
+  public ordersNumber: any;
+  public productsNumber: any;
   private _mobileQueryListener: () => void;
   public productToUpdate: any;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
+    private ordersService: OrdersService,
     private productsService: ProductsService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.ordersNumber;
+    this.productsNumber;
   }
 
   updateProduct(product: any) {
@@ -31,6 +36,30 @@ export class HomeComponent implements OnInit {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-
-  ngOnInit() {}
+  async getOrdersNumber() {
+    await this.ordersService.getOrdersNumber().then(
+      (result) => {
+        console.log(result);
+        this.ordersNumber = result;
+      },
+      (reason: any) => {
+        console.log(reason);
+      }
+    );
+  }
+  async getProductsNumber() {
+    await this.productsService.getProductsNumber().then(
+      (result) => {
+        console.log(result);
+        this.productsNumber = result;
+      },
+      (reason: any) => {
+        console.log(reason);
+      }
+    );
+  }
+  ngOnInit() {
+    this.getOrdersNumber();
+    this.getProductsNumber();
+  }
 }

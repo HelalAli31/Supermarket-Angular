@@ -103,6 +103,15 @@
     <p class="price">{{ product.price }}₪</p>
     <p style="margin-left: 60px">{{ product.title }}</p>
   </div>
+  <div>
+    <button
+      *ngIf="user[0]?.role === 'admin'"
+      mat-raised-button
+      (click)="updateProduct(product)"
+    >
+      EDIT
+    </button>
+  </div>
   <div class="AddInfo" *ngIf="user[0]?.role === 'user'">
     <div class="col">
       <mat-icon
@@ -131,5 +140,4 @@
       </button>
     </div>
   </div>
-
 </div>
