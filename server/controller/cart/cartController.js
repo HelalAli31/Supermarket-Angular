@@ -30,6 +30,7 @@ async function getCartItems(cartId) {
     const result = await cartItemsModel
       .find({ cart_id: cartId }, { __v: false })
       .populate("product_id", productModel);
+    console.log(result);
     return result;
   } catch (error) {
     console.log(error);

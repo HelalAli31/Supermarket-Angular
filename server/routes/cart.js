@@ -121,7 +121,8 @@ router.put(
 router.post("/editItemAmount", async (req, res, next) => {
   try {
     const { fullPrice, amount, itemId } = req.body.data;
-    if (!itemId || !fullPrice || !amount) throw new error();
+    console.log(fullPrice, amount, itemId);
+    if (!itemId || !fullPrice || !amount) throw new Error();
     const cartItem = await editAmount(itemId, amount, fullPrice);
     if (!cartItem) throw new Error();
     return res.json("item edited!");
