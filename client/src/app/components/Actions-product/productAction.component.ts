@@ -63,10 +63,10 @@ export class productActionsComponent implements OnInit, OnChanges, OnDestroy {
         Validators.maxLength(15),
         Validators.minLength(1),
       ]),
-      productImage: new FormControl('', [Validators.required]),
+      productImage: new FormControl(''),
       productPrice: new FormControl(0, [Validators.required]),
       category: new FormControl('', [Validators.required]),
-      productDescription: new FormControl('', [Validators.required]),
+      productDescription: new FormControl(''),
     });
   }
 

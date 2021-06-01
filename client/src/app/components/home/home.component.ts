@@ -15,7 +15,20 @@ export class HomeComponent implements OnInit {
   public productsNumber: any;
   private _mobileQueryListener: () => void;
   public productToUpdate: any;
-
+  public nOrders = 0;
+  public nProducts = 0;
+  public StopOrdersCount = setInterval(() => {
+    this.nOrders++;
+    if (this.nOrders === this.ordersNumber) {
+      clearInterval(this.StopOrdersCount);
+    }
+  }, 100);
+  public StopProductsCount = setInterval(() => {
+    this.nProducts++;
+    if (this.nProducts === this.productsNumber) {
+      clearInterval(this.StopProductsCount);
+    }
+  }, 100);
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
@@ -61,5 +74,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getOrdersNumber();
     this.getProductsNumber();
+    for (let index = 0; index < this.productsNumber; index++) {
+      setTimeout(() => {
+        this.productsNumber = index;
+      }, 1000);
+    }
   }
 }

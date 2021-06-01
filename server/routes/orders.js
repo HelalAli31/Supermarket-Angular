@@ -7,6 +7,7 @@ const {
 const router = express.Router();
 const { verifyJWT } = require("../controller/JWT/jwt");
 const logger = require("../logger/index");
+const getValidationFunction = require("../validations/orderValidation");
 
 router.get("/getOrdersNumber", async (req, res, next) => {
   try {
@@ -32,7 +33,7 @@ router.use(async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", getValidationFunction("getOrder"), async (req, res, next) => {
   try {
     const { cartId } = req.query;
     const order = await getOrder(cartId);
@@ -44,15 +45,19 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.post("/addOrder", async (req, res, next) => {
-  try {
-    const order = await addOrder(req.body.order);
-    if (!order) throw new Error();
-    return res.json({ order: order, message: "order Successfully!" });
-  } catch (error) {
-    console.log(error);
-    return next({ message: "GENERAL ERROR", status: 400 });
+router.post(
+  "/addOrder",
+  getValidationFunction("addOrder"),
+  async (req, res, next) => {
+    try {
+      const order = await addOrder(req.body.order);
+      if (!order) throw new Error();
+      return res.json({ order: order, message: "order Successfully!" });
+    } catch (error) {
+      console.log(error);
+      return next({ message: "GENERAL ERROR", status: 400 });
+    }
   }
-});
+);
 
 module.exports = router;

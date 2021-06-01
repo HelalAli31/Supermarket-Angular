@@ -42,7 +42,9 @@ export class CartComponent implements OnInit {
     this.items = [];
     this.subscription = this.cartService
       .getAddingToCart()
-      .subscribe(async () => {
+      .subscribe(async (messageObj) => {
+        console.log(messageObj);
+        console.log('messageObj');
         await this.getCartItems();
       });
   }

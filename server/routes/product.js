@@ -9,6 +9,7 @@ const axios = require("axios");
 const router = express.Router();
 const logger = require("../logger");
 const { verifyJWT } = require("../controller/JWT/jwt");
+const getValidationFunction = require("../validations/productValidation");
 
 router.get("/productsNumber", async (req, res, next) => {
   const result = await productsNumber();
@@ -33,6 +34,7 @@ router.post("/", async (req, res, next) => {
   try {
     const { from, limit } = req.query;
     const { keyName, valueName } = req.body;
+    console.log(from, limit, keyName, valueName);
     const result = await getAllProducts(from, limit, valueName, keyName);
     if (!result) throw new Error();
     return res.json(result);
@@ -55,27 +57,37 @@ router.use(async (req, res, next) => {
   }
 });
 
-router.post("/addProduct", async (req, res, next) => {
-  try {
-    if (!req.body.product) return;
-    const result = await addProduct(req.body.product);
-    if (!result) throw new Error();
-    return res.json("product has been added!");
-  } catch (error) {
-    console.log(error);
-    return next({ message: "GENERAL ERROR", status: 400 });
+router.post(
+  "/addProduct",
+  getValidationFunction("ProductAction"),
+  async (req, res, next) => {
+    try {
+      if (!req.body.product) return;
+      console.log(req.body.product);
+      const result = await addProduct(req.body.product);
+      if (!result) throw new Error();
+      return res.json("product has been added!");
+    } catch (error) {
+      console.log(error);
+      return next({ message: "GENERAL ERROR", status: 400 });
+    }
   }
-});
+);
 
-router.put("/updateProduct", async (req, res, next) => {
-  try {
-    if (!req.body.product) return;
-    const result = await updateProduct(req.body.product);
-    if (!result) throw new Error();
-    return res.json("product has been updated!");
-  } catch (error) {
-    console.log(error);
-    return next({ message: "GENERAL ERROR", status: 400 });
+router.put(
+  "/updateProduct",
+  getValidationFunction("ProductAction"),
+  async (req, res, next) => {
+    try {
+      if (!req.body.product) return;
+      console.log(req.body.product);
+      const result = await updateProduct(req.body.product);
+      if (!result) throw new Error();
+      return res.json("product has been updated!");
+    } catch (error) {
+      console.log(error);
+      return next({ message: "GENERAL ERROR", status: 400 });
+    }
   }
-});
+);
 module.exports = router;

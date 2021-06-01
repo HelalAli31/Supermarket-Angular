@@ -37,10 +37,11 @@ export class ProductsService {
       .toPromise();
     result.then(
       (value) => {
-        console.log(value);
+        this.subject.next(value);
       },
       (reason) => {
         console.log(reason);
+        this.subject.next('something went wrong');
       }
     );
     return result;
@@ -67,6 +68,7 @@ export class ProductsService {
       },
       (reason) => {
         console.log(reason);
+        this.subject.next('something went wrong');
       }
     );
     return result;

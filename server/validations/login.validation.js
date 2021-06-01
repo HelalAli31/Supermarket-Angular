@@ -6,8 +6,8 @@ const registerSchema = Joi.object().keys({
   last_name: Joi.string().required(),
   password: Joi.string().required(),
   personal_id: Joi.number().required(),
-  city: Joi.string().optional(),
-  street: Joi.string().optional(),
+  city: Joi.string().allow(null, "").optional(),
+  street: Joi.string().allow(null, "").optional(),
   role: Joi.string().optional(),
 });
 

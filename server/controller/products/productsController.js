@@ -2,11 +2,7 @@ const productModel = require("../../models/productSchema");
 const categoryModel = require("../../models/categorySchema");
 async function getAllProducts(from, limit, value, key) {
   try {
-    const result = await productModel
-      .find({}, { __v: false })
-      .populate("category", "name", categoryModel)
-      .limit(Number(limit))
-      .skip(Number(from));
+    if (value === "All") from = 0;
     if (key && value) {
       const result = await productModel
         .find({}, { __v: false })
@@ -16,8 +12,15 @@ async function getAllProducts(from, limit, value, key) {
         let filterBy = key == "_id" ? item["category"]._id : item[key];
         return filterBy.toString().includes(value);
       });
-      return filteredProducts.slice(from, limit);
-    } else return result;
+      return filteredProducts.slice(0, limit);
+    }
+    const result = await productModel
+      .find({}, { __v: false })
+      .populate("category", "name", categoryModel)
+      .limit(Number(limit))
+      .skip(Number(from));
+
+    return result;
   } catch (error) {
     console.log(error);
   }

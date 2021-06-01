@@ -19,7 +19,7 @@ router.post("/addCategory", async (req, res, next) => {
   try {
     const category = await addCategory(req.body.product);
     if (!category) throw new Error();
-    return res.send("product has been added!");
+    return res.send("category has been added!");
   } catch (error) {}
   return next({ message: "GENERAL ERROR", status: 400 });
 });
