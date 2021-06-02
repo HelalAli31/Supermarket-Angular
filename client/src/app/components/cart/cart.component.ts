@@ -52,6 +52,7 @@ export class CartComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(PopUpOrderDetailsComponent);
     dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
       this.AddOrder(result);
     });
   }

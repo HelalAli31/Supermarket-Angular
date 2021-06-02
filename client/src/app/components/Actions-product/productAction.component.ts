@@ -13,6 +13,8 @@ import { Subscription } from 'rxjs';
 import { ProductsService } from 'src/app/service/productService/products.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../PopUpComponents/dialog/dialog.component';
+import { CategoryPopUpComponent } from '../PopUpComponents/category_dialog/category-pop-up/category-pop-up.component';
+import { CategoryFormComponent } from '../PopUpComponents/category_dialog/category-form/category-form.component';
 
 interface IProduct {
   _id?: string;
@@ -56,6 +58,14 @@ export class productActionsComponent implements OnInit, OnChanges, OnDestroy {
         console.log('Unsubsicribe');
         this.resultStatus = '';
       });
+    this.subscription = this.categoryService
+      .UpdateObservable()
+      .subscribe((value: any) => {
+        const dialogRef = this.dialog.open(DialogComponent, {
+          data: { value },
+        });
+        this.subscription.unsubscribe();
+      });
 
     this.categoryArray = [];
     this.ActionName = 'Add';
@@ -70,6 +80,18 @@ export class productActionsComponent implements OnInit, OnChanges, OnDestroy {
       category: new FormControl('', [Validators.required]),
       productDescription: new FormControl(''),
     });
+  }
+
+  async categoryForm() {
+    const category = this.categoryArray;
+    const dialogRef = this.dialog.open(CategoryFormComponent, {
+      data: { category },
+    });
+    // dialogRef.afterClosed().subscribe(async (result) => {
+    //   if (!result) return;
+    //   await this.categoryService.addCategory(result.category);
+    //   await this.getCategories();
+    // });
   }
 
   ActionProduct() {

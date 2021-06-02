@@ -27,6 +27,8 @@ import { CartItemsComponent } from './components/cart-items/cart-items.component
 import { PopUpEditItemComponent } from './components/PopUpComponents/pop-up-edit-item/pop-up-edit-item.component';
 import { DialogComponent } from './components/PopUpComponents/dialog/dialog.component';
 import { PopUpOrderDoneComponent } from './components/PopUpComponents/pop-up-order-done/pop-up-order-done.component';
+import { CategoryPopUpComponent } from './components/PopUpComponents/category_dialog/category-pop-up/category-pop-up.component';
+import { CategoryFormComponent } from './components/PopUpComponents/category_dialog/category-form/category-form.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { PopUpOrderDoneComponent } from './components/PopUpComponents/pop-up-ord
     PopUpEditItemComponent,
     DialogComponent,
     PopUpOrderDoneComponent,
+    CategoryPopUpComponent,
+    CategoryFormComponent,
   ],
   imports: [
     BrowserModule,

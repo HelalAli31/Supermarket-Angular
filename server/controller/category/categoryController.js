@@ -8,13 +8,26 @@ async function getAllCategories() {
   }
 }
 
-async function addCategory(category) {
+async function addCategory(categoryName) {
   try {
-    const result = await categoryModel.insertMany([category]);
+    console.log(categoryName);
+    const result = await categoryModel.insertMany([{ name: categoryName }]);
     return result;
   } catch (error) {
     console.log(error);
   }
 }
 
-module.exports = { getAllCategories, addCategory };
+async function editCategory(category) {
+  try {
+    const result = await categoryModel.updateOne(
+      { _id: category._id },
+      { name: category.name }
+    );
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = { getAllCategories, addCategory, editCategory };

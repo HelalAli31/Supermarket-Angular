@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/service/cartService/cart.service';
 
 import { ProductsService } from 'src/app/service/productService/products.service';
+import { CategoryService } from 'src/app/service/categoryService/category.service';
 
 @Component({
   selector: 'app-products',
@@ -38,7 +39,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     media: MediaMatcher,
     private router: Router,
     private route: ActivatedRoute,
-    private cartItemsService: CartService
+    private cartItemsService: CartService,
+    private categoryService: CategoryService
   ) {
     this.products = [];
     this.filterModel = '';
