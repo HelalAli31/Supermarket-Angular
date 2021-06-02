@@ -1,0 +1,10 @@
+<h1 *ngIf="statusResult.length" class="Main">
+  {{ statusResult }}
+  <br />
+  <mat-icon class="Icon">check_circle</mat-icon>
+</h1>
+<h1 *ngIf="!statusResult">
+  something went wwrong
+  <br />
+  <mat-icon>error</mat-icon>
+</h1>

@@ -3,7 +3,7 @@ const {
   getCart,
   updateCartStatus,
   getCartItems,
-  addItemsToCart,
+  addItemToCart,
   addCart,
   deleteItemFromCart,
   editAmount,
@@ -91,9 +91,9 @@ router.put(
   async (req, res, next) => {
     try {
       const { item } = req.body;
-      const cartItems = await addItemsToCart(item);
-      if (!cartItems) throw new Error();
-      return res.json("item added");
+      const cartItem = await addItemToCart(item);
+      if (!cartItem) throw new Error();
+      return res.json(`item added`);
     } catch (error) {
       console.log(error);
       return next({ message: "GENERAL ERROR", status: 400 });
@@ -121,11 +121,10 @@ router.put(
 router.post("/editItemAmount", async (req, res, next) => {
   try {
     const { fullPrice, amount, itemId } = req.body.data;
-    console.log(fullPrice, amount, itemId);
     if (!itemId || !fullPrice || !amount) throw new Error();
     const cartItem = await editAmount(itemId, amount, fullPrice);
     if (!cartItem) throw new Error();
-    return res.json("item edited!");
+    return res.json("item edited");
   } catch (error) {
     console.log(error);
     return next({ message: "GENERAL ERROR", status: 400 });

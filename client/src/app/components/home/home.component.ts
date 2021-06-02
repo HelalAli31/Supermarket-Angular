@@ -52,7 +52,6 @@ export class HomeComponent implements OnInit {
   async getOrdersNumber() {
     await this.ordersService.getOrdersNumber().then(
       (result) => {
-        console.log(result);
         this.ordersNumber = result;
       },
       (reason: any) => {
@@ -63,7 +62,6 @@ export class HomeComponent implements OnInit {
   async getProductsNumber() {
     await this.productsService.getProductsNumber().then(
       (result) => {
-        console.log(result);
         this.productsNumber = result;
       },
       (reason: any) => {

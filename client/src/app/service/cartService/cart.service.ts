@@ -34,11 +34,11 @@ export class CartService {
         Authorization: localStorage.getItem('token'),
       })
       .toPromise();
+
     return result;
   }
 
   getCartItems(cartId: string) {
-    console.log(cartId);
     const token = localStorage.getItem('token');
     if (!token) return;
     const result = this.httpService
@@ -63,6 +63,15 @@ export class CartService {
         },
       })
       .toPromise();
+    result.then(
+      (value) => {
+        console.log(value);
+        this.subject.next(value);
+      },
+      (reason) => {
+        console.log(reason);
+      }
+    );
     return result;
   }
   deteleItemFromCart(itemId: string) {

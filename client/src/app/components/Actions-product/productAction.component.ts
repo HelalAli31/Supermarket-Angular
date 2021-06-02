@@ -11,6 +11,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/service/categoryService/category.service';
 import { Subscription } from 'rxjs';
 import { ProductsService } from 'src/app/service/productService/products.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../PopUpComponents/dialog/dialog.component';
 
 interface IProduct {
   _id?: string;
@@ -41,17 +43,18 @@ export class productActionsComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
-    private productService: ProductsService
+    private productService: ProductsService,
+    public dialog: MatDialog
   ) {
     this.subscription = this.productService
       .getProductActionResult()
       .subscribe((value: any) => {
-        this.resultStatus = value;
-        setTimeout(() => {
-          this.subscription.unsubscribe();
-          console.log('Unsubsicribe');
-          this.resultStatus = '';
-        }, 2000);
+        const dialogRef = this.dialog.open(DialogComponent, {
+          data: { value },
+        });
+        this.subscription.unsubscribe();
+        console.log('Unsubsicribe');
+        this.resultStatus = '';
       });
 
     this.categoryArray = [];
@@ -60,7 +63,6 @@ export class productActionsComponent implements OnInit, OnChanges, OnDestroy {
     this.productForm = this.formBuilder.group({
       productName: new FormControl('', [
         Validators.required,
-        Validators.maxLength(15),
         Validators.minLength(1),
       ]),
       productImage: new FormControl(''),

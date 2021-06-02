@@ -70,11 +70,50 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   async addItemsToCart(event: any) {
-    this.item.product_id = event.id;
-    this.item.amount = event.amount;
-    this.item.cart_id = this.cartId;
-    this.item.full_price = event.price * event.amount;
-    await this.cartItemsService.addItemsToCart(this.item);
+    let isItemToADD = await this.checkItem(event);
+    if (isItemToADD) {
+      this.item.product_id = event.id;
+      this.item.amount = event.amount;
+      this.item.cart_id = this.cartId;
+      this.item.full_price = event.price * event.amount;
+      await this.cartItemsService.addItemsToCart(this.item);
+    } else return;
+  }
+
+  async checkItem(event: any) {
+    let Additem = true;
+    await this.cartItemsService.getCartItems(this.cartId)?.then(
+      async (result: any) => {
+        let itemFound = this.findItem(result, event);
+        if (itemFound?.length) {
+          Additem = false;
+          this.ItemFound_UpdateDetails(itemFound[0], event);
+        }
+      },
+      (reason) => {
+        console.log(reason);
+      }
+    );
+    return Additem;
+  }
+
+  findItem(result: any, newDetails: any) {
+    if (!Array.isArray(result)) return;
+    let found = result.filter((product) => {
+      return product['product_id']['_id'] === newDetails.id;
+    });
+    return found;
+  }
+
+  async ItemFound_UpdateDetails(item: any, event: any) {
+    if (!event.amount || event.amount < 0) return;
+    const NewAmount = event.amount;
+    const NewfullPrice = NewAmount * item.product_id.price;
+    await this.cartItemsService.editItemAmount(
+      item._id,
+      NewAmount,
+      NewfullPrice
+    );
   }
 
   async getProducts(valueName?: any, keyName?: any) {

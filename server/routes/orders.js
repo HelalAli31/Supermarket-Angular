@@ -50,6 +50,7 @@ router.post(
   getValidationFunction("addOrder"),
   async (req, res, next) => {
     try {
+      console.log(req.body.order);
       const order = await addOrder(req.body.order);
       if (!order) throw new Error();
       return res.json({ order: order, message: "order Successfully!" });

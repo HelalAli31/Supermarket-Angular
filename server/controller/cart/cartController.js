@@ -37,7 +37,7 @@ async function getCartItems(cartId) {
   }
 }
 
-async function addItemsToCart(item) {
+async function addItemToCart(item) {
   try {
     const result = await cartItemsModel.insertMany([item]);
     return result;
@@ -80,7 +80,7 @@ async function editAmount(itemId, amount, fullPrice) {
 module.exports = {
   getCart,
   getCartItems,
-  addItemsToCart,
+  addItemToCart,
   addCart,
   deleteItemFromCart,
   updateCartStatus,

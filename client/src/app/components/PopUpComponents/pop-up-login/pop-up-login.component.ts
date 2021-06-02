@@ -18,6 +18,7 @@ export class PopUpLoginComponent implements OnInit {
   public lastOrderDate: string;
   public OpenedCartDetails: any;
   public NewUser: string;
+  public userName: any;
 
   constructor(
     private cartService: CartService,
@@ -32,6 +33,7 @@ export class PopUpLoginComponent implements OnInit {
     this.lastOrderDate = '';
     this.OpenedCartDetails = {};
     this.NewUser = '';
+    this.userName = {};
   }
   NavigateClick() {
     this.router.navigate([`/products/${this.cart[this.cart.length - 1]._id}`]);
@@ -92,7 +94,7 @@ export class PopUpLoginComponent implements OnInit {
       },
       (reason: any) => {
         alert(reason);
-        return [];
+        return;
       }
     );
     this.OpenedCartDetails.totalPrice = totalCartPrice;
@@ -102,29 +104,28 @@ export class PopUpLoginComponent implements OnInit {
   async ngOnInit() {
     const userResult = await getPayload();
     this.userId = userResult.data[0]._id;
-
-    if (this.userId) {
-      const result = await this.cartService.getCart(this.userId).then(
-        (value: any) => {
-          const data = value.cart[value.cart.length - 1];
-          if (data) {
-            this.cartIsOpen = data.cartIsOpen;
-            this.cart = value.cart;
-            if (this.cartIsOpen === false) {
-              this.getLastOrderDate(data._id);
-            } else {
-              console.log(data);
-              this.getOpenedCartDetails(data);
-            }
+    this.userName.firstName = userResult.data[0].first_name;
+    this.userName.lastName = userResult.data[0].last_name;
+    if (!this.userId) return;
+    const result = await this.cartService.getCart(this.userId).then(
+      (value: any) => {
+        const data = value.cart[value.cart.length - 1];
+        if (data) {
+          this.cartIsOpen = data.cartIsOpen;
+          this.cart = value.cart;
+          if (this.cartIsOpen === false) {
+            this.getLastOrderDate(data._id);
           } else {
-            this.NewUser = 'Welcome to our supermarket.';
-            console.log('new user');
+            this.getOpenedCartDetails(data);
           }
-        },
-        (reason: any) => {
-          alert(reason);
+        } else {
+          this.NewUser = 'Welcome to our supermarket.';
         }
-      );
-    }
+      },
+      (reason: any) => {
+        alert(reason);
+      }
+    );
+    console.log('done');
   }
 }

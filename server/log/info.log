@@ -569,3 +569,123 @@
 {"message":"alaa@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-01T14:52:43.610Z"}
 {"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-01T14:53:26.296Z"}
 {"message":"alaa@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-01T14:53:50.237Z"}
+{"message":"helal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-01T17:45:42.053Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-01T18:17:10.347Z"}
+{"message":"helal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-01T19:23:28.981Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-01T19:24:09.600Z"}
+{"message":"helal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-01T21:19:34.265Z"}
+{"name":"TokenExpiredError","message":"jwt expired","expiredAt":"2021-06-02T05:19:34.000Z","level":"error","timestamp":"2021-06-02T06:13:25.906Z"}
+{"name":"TokenExpiredError","message":"er: jwt expired","expiredAt":"2021-06-02T05:19:34.000Z","level":"error","timestamp":"2021-06-02T06:13:25.906Z","stack":"TokenExpiredError: jwt expired\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\jsonwebtoken\\verify.js:152:21\n    at getSecret (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\jsonwebtoken\\verify.js:90:14)\n    at Object.module.exports [as verify] (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\jsonwebtoken\\verify.js:94:10)\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\controller\\JWT\\jwt.js:24:9\n    at new Promise (<anonymous>)\n    at verifyJWT (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\controller\\JWT\\jwt.js:23:10)\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\routes\\product.js:25:26\n    at Layer.handle [as handle_request] (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at Function.handle (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:47:12)\n    at Layer.handle [as handle_request] (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:317:13)"}
+{"name":"TokenExpiredError","message":"jwt expired","expiredAt":"2021-06-02T05:19:34.000Z","level":"error","timestamp":"2021-06-02T06:18:27.159Z"}
+{"name":"TokenExpiredError","message":"er: jwt expired","expiredAt":"2021-06-02T05:19:34.000Z","level":"error","timestamp":"2021-06-02T06:18:27.159Z","stack":"TokenExpiredError: jwt expired\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\jsonwebtoken\\verify.js:152:21\n    at getSecret (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\jsonwebtoken\\verify.js:90:14)\n    at Object.module.exports [as verify] (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\jsonwebtoken\\verify.js:94:10)\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\controller\\JWT\\jwt.js:24:9\n    at new Promise (<anonymous>)\n    at verifyJWT (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\controller\\JWT\\jwt.js:23:10)\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\routes\\product.js:25:26\n    at Layer.handle [as handle_request] (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at Function.handle (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:47:12)\n    at Layer.handle [as handle_request] (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:317:13)"}
+{"name":"TokenExpiredError","message":"jwt expired","expiredAt":"2021-06-02T05:19:34.000Z","level":"error","timestamp":"2021-06-02T06:18:33.870Z"}
+{"name":"TokenExpiredError","message":"er: jwt expired","expiredAt":"2021-06-02T05:19:34.000Z","level":"error","timestamp":"2021-06-02T06:18:33.870Z","stack":"TokenExpiredError: jwt expired\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\jsonwebtoken\\verify.js:152:21\n    at getSecret (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\jsonwebtoken\\verify.js:90:14)\n    at Object.module.exports [as verify] (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\jsonwebtoken\\verify.js:94:10)\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\controller\\JWT\\jwt.js:24:9\n    at new Promise (<anonymous>)\n    at verifyJWT (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\controller\\JWT\\jwt.js:23:10)\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\routes\\product.js:25:26\n    at Layer.handle [as handle_request] (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:317:13)\n    at C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:284:7\n    at Function.process_params (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:335:12)\n    at next (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:275:10)\n    at Function.handle (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:174:3)\n    at router (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:47:12)\n    at Layer.handle [as handle_request] (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\Helal\\Desktop\\PROJECTS\\SuperMarket_Project\\server\\node_modules\\express\\lib\\router\\index.js:317:13)"}
+{"message":"a@.gmail.com has just joined us ","level":"info","timestamp":"2021-06-02T06:55:28.605Z"}
+{"message":"a@.gmail.com has just joined us ","level":"info","timestamp":"2021-06-02T07:00:46.239Z"}
+{"message":"a@.gmail.com has just joined us ","level":"info","timestamp":"2021-06-02T07:11:36.437Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:11:36.471Z"}
+{"message":"alaa@.hotmail.com has just joined us ","level":"info","timestamp":"2021-06-02T07:12:39.429Z"}
+{"message":"alaa@.hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:12:39.444Z"}
+{"message":"alaa@.hotmail.com has just joined us ","level":"info","timestamp":"2021-06-02T07:12:56.382Z"}
+{"message":"alaa@.hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:12:56.400Z"}
+{"level":"error","timestamp":"2021-06-02T07:13:56.238Z"}
+{"message":"alaa@.hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:13:56.256Z"}
+{"level":"error","timestamp":"2021-06-02T07:18:26.511Z"}
+{"level":"error","timestamp":"2021-06-02T07:18:26.517Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:18:26.547Z"}
+{"level":"error","timestamp":"2021-06-02T07:18:26.548Z"}
+{"level":"error","timestamp":"2021-06-02T07:18:52.645Z"}
+{"level":"error","timestamp":"2021-06-02T07:18:52.646Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:18:52.661Z"}
+{"level":"error","timestamp":"2021-06-02T07:18:52.662Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:19:14.484Z"}
+{"level":"error","timestamp":"2021-06-02T07:19:14.487Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:19:14.495Z"}
+{"level":"error","timestamp":"2021-06-02T07:19:14.496Z"}
+{"level":"error","timestamp":"2021-06-02T07:19:20.118Z"}
+{"message":"a@.gmail.com has just joined us ","level":"info","timestamp":"2021-06-02T07:19:20.144Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:19:20.160Z"}
+{"level":"error","timestamp":"2021-06-02T07:19:20.162Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:19:26.124Z"}
+{"level":"error","timestamp":"2021-06-02T07:19:26.126Z"}
+{"level":"error","timestamp":"2021-06-02T07:19:30.118Z"}
+{"level":"error","timestamp":"2021-06-02T07:19:30.120Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:19:30.137Z"}
+{"level":"error","timestamp":"2021-06-02T07:19:30.138Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:19:53.611Z"}
+{"level":"error","timestamp":"2021-06-02T07:19:53.614Z"}
+{"level":"error","timestamp":"2021-06-02T07:20:03.705Z"}
+{"level":"error","timestamp":"2021-06-02T07:20:03.711Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:20:03.732Z"}
+{"level":"error","timestamp":"2021-06-02T07:20:03.734Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:21:06.959Z"}
+{"level":"error","timestamp":"2021-06-02T07:21:06.964Z"}
+{"message":"login failed by user:a@.gmail.com and password:123","level":"error","timestamp":"2021-06-02T07:21:06.966Z"}
+{"level":"error","timestamp":"2021-06-02T07:21:13.406Z"}
+{"level":"error","timestamp":"2021-06-02T07:21:13.411Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:21:13.427Z"}
+{"level":"error","timestamp":"2021-06-02T07:21:13.428Z"}
+{"message":"login failed by user:a@.gmail.com and password:123","level":"error","timestamp":"2021-06-02T07:21:13.430Z"}
+{"level":"error","timestamp":"2021-06-02T07:22:47.626Z"}
+{"level":"error","timestamp":"2021-06-02T07:22:47.628Z"}
+{"level":"error","timestamp":"2021-06-02T07:23:34.252Z"}
+{"message":"a@.gmail.com has just joined us ","level":"info","timestamp":"2021-06-02T07:23:34.278Z"}
+{"level":"error","timestamp":"2021-06-02T07:24:20.805Z"}
+{"message":"a@.gmail.com has just joined us ","level":"info","timestamp":"2021-06-02T07:24:20.827Z"}
+{"level":"error","timestamp":"2021-06-02T07:24:28.388Z"}
+{"level":"error","timestamp":"2021-06-02T07:24:28.392Z"}
+{"level":"error","timestamp":"2021-06-02T07:25:34.312Z"}
+{"level":"error","timestamp":"2021-06-02T07:25:34.315Z"}
+{"level":"error","timestamp":"2021-06-02T07:27:38.113Z"}
+{"level":"error","timestamp":"2021-06-02T07:27:38.115Z"}
+{"message":"error","level":"error","timestamp":"2021-06-02T07:28:02.759Z"}
+{"level":"error","timestamp":"2021-06-02T07:28:02.764Z"}
+{"level":"error","timestamp":"2021-06-02T07:28:22.876Z"}
+{"level":"error","timestamp":"2021-06-02T07:28:42.543Z"}
+{"message":"userName is already exists","level":"error","timestamp":"2021-06-02T07:29:26.278Z"}
+{"message":"userName is already exists","level":"error","timestamp":"2021-06-02T07:30:18.704Z"}
+{"message":"a@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:30:18.732Z"}
+{"message":"userName is already exists","level":"error","timestamp":"2021-06-02T07:36:11.820Z"}
+{"message":"userName is already exists","level":"error","timestamp":"2021-06-02T07:36:39.699Z"}
+{"message":"userName is already exists","level":"error","timestamp":"2021-06-02T07:37:09.859Z"}
+{"message":"a1@.gmail.com has just joined us ","level":"info","timestamp":"2021-06-02T07:37:17.266Z"}
+{"message":"a1@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:37:17.290Z"}
+{"message":"userName is already exists","level":"error","timestamp":"2021-06-02T07:37:53.846Z"}
+{"message":"userName is already exists","level":"error","timestamp":"2021-06-02T07:38:01.339Z"}
+{"message":"userName is already exists","level":"error","timestamp":"2021-06-02T07:38:03.767Z"}
+{"message":"a12@.gmail.com has just joined us ","level":"info","timestamp":"2021-06-02T07:38:12.497Z"}
+{"message":"a12@.gmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T07:38:12.527Z"}
+{"message":"n@hotmail.com has just joined us ","level":"info","timestamp":"2021-06-02T08:19:11.907Z"}
+{"message":"n@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:19:11.975Z"}
+{"message":"as@hotmail.com has just joined us ","level":"info","timestamp":"2021-06-02T08:20:56.758Z"}
+{"message":"as@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:20:56.787Z"}
+{"message":"asss@hotmail.com has just joined us ","level":"info","timestamp":"2021-06-02T08:22:05.672Z"}
+{"message":"asss@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:22:05.712Z"}
+{"message":"as2@hotmail.com has just joined us ","level":"info","timestamp":"2021-06-02T08:22:56.960Z"}
+{"message":"as2@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:22:57.008Z"}
+{"message":"as2@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:23:18.015Z"}
+{"message":"as2@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:24:38.159Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:24:56.524Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:25:24.021Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:25:34.656Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:27:16.435Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:27:23.672Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:27:38.247Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:29:45.641Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:30:18.616Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:30:36.162Z"}
+{"message":"22@hotmail.com has just joined us ","level":"info","timestamp":"2021-06-02T08:30:59.680Z"}
+{"message":"22@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:30:59.703Z"}
+{"message":"22@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:31:21.628Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:41:56.874Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:42:38.080Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:42:58.078Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:43:54.018Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T08:58:54.470Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T09:23:16.758Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T09:23:51.406Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T09:24:18.371Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T09:24:45.384Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T09:25:34.513Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T09:28:32.686Z"}
+{"message":"gal@hotmail.com is trying to loggin","level":"info","timestamp":"2021-06-02T09:30:19.593Z"}

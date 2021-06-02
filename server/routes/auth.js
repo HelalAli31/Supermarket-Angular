@@ -12,8 +12,9 @@ router.post(
     const { email, password } = req.body;
     if (!email || !password) res.send("error");
     logger.info(`${email} is trying to loggin`);
+
     const result = await isUserRegistered(email, password);
-    if (result.length) {
+    if (result?.length) {
       {
         const userToken = await signJWT(result);
         return res.json({
@@ -32,12 +33,13 @@ router.post(
   getValidationFunction("register"),
   async (req, res, next) => {
     const { email } = req.body;
-    console.log(req.body, email);
+    console.log(email);
     if (!email) throw new Error("general error");
     try {
       const result = await isUserRegistered(email);
-      if (result.length) {
-        throw new Error(`User ${result.email} is already exist`);
+      if (result[0]) {
+        console.log("found");
+        throw new Error(`User ${email} is already exist`);
       }
       const create = await createUser(req.body);
       if (create) {
@@ -45,8 +47,11 @@ router.post(
         return res.json(`Registration completed`);
       } else throw new Error("Registration Failed");
     } catch (ex) {
-      logger.error(ex);
-      return res.json("this userName is already exists!");
+      logger.error("userName is already exists");
+      return res.json({
+        message: "this userName is already exists!",
+        data: email,
+      });
     }
   }
 );

@@ -1,5 +1,5 @@
 <div class="MainDiv">
-  <div style="width: 280px" *ngIf="!orderStatus.length">
+  <div style="width: 280px">
     <mat-icon class="col-6 ShoppingCart" style="font-size: 50px"
       >shopping_cart
     </mat-icon>
@@ -57,12 +57,6 @@
       <h3 class="col-3" style="margin-top: 25px">
         {{ fullPrice | number: "1.2-2" }}₪
       </h3>
-
-      <h1>{{ orderStatus }}</h1>
-    </div>
-
-    <div *ngIf="orderStatus.length">
-      <button mat-raised-button (click)="newCart()">new cart</button>
     </div>
   </div>
 </div>

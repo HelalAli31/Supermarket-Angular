@@ -40,10 +40,7 @@ async function updateProduct(product) {
   console.log(product);
 
   try {
-    const result = await productModel.findOneAndUpdate(
-      { _id: product._id },
-      product
-    );
+    const result = await productModel.updateOne({ _id: product._id }, product);
     return result;
   } catch (error) {
     console.log(error);

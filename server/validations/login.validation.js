@@ -1,10 +1,11 @@
 const Joi = require("@hapi/joi");
 
 const registerSchema = Joi.object().keys({
-  email: Joi.string().min(1).max(50).required().email(),
+  email: Joi.string().min(1).max(50).required(),
   first_name: Joi.string().required(),
   last_name: Joi.string().required(),
   password: Joi.string().required(),
+  confirmPassword: Joi.string().required(),
   personal_id: Joi.number().required(),
   city: Joi.string().allow(null, "").optional(),
   street: Joi.string().allow(null, "").optional(),

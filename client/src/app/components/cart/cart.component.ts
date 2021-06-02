@@ -8,8 +8,10 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/service/cartService/cart.service';
 import { OrdersService } from 'src/app/service/orderService/orders.service';
-import { PopUpEditItemComponent } from '../pop-up-edit-item/pop-up-edit-item.component';
-import { PopUpOrderDetailsComponent } from '../pop-up-order-details/pop-up-order-details.component';
+import { DialogComponent } from '../PopUpComponents/dialog/dialog.component';
+import { PopUpEditItemComponent } from '../PopUpComponents/pop-up-edit-item/pop-up-edit-item.component';
+import { PopUpOrderDetailsComponent } from '../PopUpComponents/pop-up-order-details/pop-up-order-details.component';
+import { PopUpOrderDoneComponent } from '../PopUpComponents/pop-up-order-done/pop-up-order-done.component';
 
 @Component({
   selector: 'app-cart',
@@ -43,8 +45,6 @@ export class CartComponent implements OnInit {
     this.subscription = this.cartService
       .getAddingToCart()
       .subscribe(async (messageObj) => {
-        console.log(messageObj);
-        console.log('messageObj');
         await this.getCartItems();
       });
   }
@@ -62,10 +62,27 @@ export class CartComponent implements OnInit {
     const resultStatus = this.orderService.addOrder(this.order);
     if (resultStatus) {
       resultStatus.then(
-        (value: any) => {
-          this.orderStatus = value.message;
-          const cartId = value.order[0].cart_id;
+        (result: any) => {
+          const value = result.message;
+          this.orderStatus = result.message;
+          console.log(result.message, value);
+          const dialogRef = this.dialog.open(DialogComponent, {
+            data: { value },
+          });
+          const cartId = result.order[0].cart_id;
           this.cartService.UpdateCartOpenState(cartId);
+          this.fullPrice = 0;
+          setTimeout(() => {
+            const dialogRef2 = this.dialog.open(PopUpOrderDoneComponent);
+            dialogRef2.afterClosed().subscribe((result: any) => {
+              if (result == 'true') {
+                this.newCart();
+              } else {
+                localStorage.clear();
+                this.router.navigate(['/']);
+              }
+            });
+          }, 3000);
         },
         (reason: any) => {
           alert(reason);
@@ -108,11 +125,10 @@ export class CartComponent implements OnInit {
       data: { item },
     });
     dialogRef.afterClosed().subscribe(async (result: any) => {
-      if (result.amount === item.amount) return;
+      if (result?.amount === item?.amount) return;
       if (!result.amount || result.amount < 0) return;
       const fullPrice = result.amount * item.product_id.price;
       await this.cartService.editItemAmount(item._id, result.amount, fullPrice);
-      await this.getCartItems();
     });
   }
   async getCartItems() {
@@ -124,16 +140,23 @@ export class CartComponent implements OnInit {
     if (this.items) this.fullPrice = 0;
     this.items.map((item: any) => {
       this.fullPrice += item.full_price;
-      console.log(this.fullPrice);
     });
   }
 
   async ngOnChanges() {
     const a = await this.orderService.getOrder(this.cartId).then(
       (value: any) => {
+        console.log(value);
         if (value.order.length) {
-          console.log(value.order);
-          this.orderStatus = 'Order Already done get new cart please';
+          const dialogRef = this.dialog.open(PopUpOrderDoneComponent);
+          dialogRef.afterClosed().subscribe((result: any) => {
+            if (result == 'true') {
+              this.newCart();
+            } else {
+              localStorage.clear();
+              this.router.navigate(['/']);
+            }
+          });
         }
       },
       (reason) => {

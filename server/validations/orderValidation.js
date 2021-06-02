@@ -12,11 +12,12 @@ const AddOrderSchema = Joi.object().keys({
   city: Joi.string().required(),
   street: Joi.string().required(),
   total_price: Joi.number().required(),
+  last_visa_number: Joi.number().required(),
 });
 
 const validationsObj = {
   addOrder: (req, res, next) => {
-    const { error } = AddOrderSchema.validate(req.body);
+    const { error } = AddOrderSchema.validate(req.body.order);
     if (error) {
       console.log(error.details);
       return next(error.details);
