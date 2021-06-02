@@ -154,17 +154,4 @@
 .MainDiv:hover .NItems {
   margin-left: 72%;
 }
-
-.MainDiv:hover .cartItems {
-  /* position: absolute;
-  margin-top: 100px; */
-  /* bottom: 30%; */
-}
-
-.OrderDiv {
-  position: fixed;
-  bottom: 0px;
-  width: 300px;
-  background-color: black;
-  color: white;
-}
+  

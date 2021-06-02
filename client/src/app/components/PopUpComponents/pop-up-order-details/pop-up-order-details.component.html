@@ -1,36 +1,67 @@
-<div>
-  <mat-form-field appearance="fill">
-    <mat-label>Choose deleivery date</mat-label>
+<div class="MainDiv row">
+  <div class="col-6 Items">
     <input
       matInput
-      [matDatepicker]="picker"
-      [min]="minDate"
-      [(ngModel)]="deliveryDate"
+      placeholder="search"
+      [(ngModel)]="filterModel"
+      (keyup)="filterOperation()"
+      class="mb-5"
+      style="border-bottom: 1px solid grey; width: 200px"
     />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <br />
+    <div class="row">
+      <h3 class="col-5">name</h3>
+      <h3 class="col-2 ml-4">amount</h3>
+      <h3 class="col-3 ml-3">price</h3>
+    </div>
+    <hr />
 
-  <mat-form-field class="example-full-width col-6">
-    <mat-label>visa numbers..</mat-label>
-    <input
-      matInput
-      placeholder="last 4 visa number"
-      type="number"
-      [(ngModel)]="visaNumber"
-    />
-  </mat-form-field>
-  <br />
-  <mat-form-field class="example-full-width col-6">
-    <mat-label>city</mat-label>
-    <input matInput placeholder="where you live" [(ngModel)]="city" />
-  </mat-form-field>
-  <br />
-  <mat-form-field class="example-full-width col-6">
-    <mat-label>street</mat-label>
-    <input matInput placeholder="street.." [(ngModel)]="street" />
-  </mat-form-field>
-  <br />
-  <button mat-raised-button (click)="onNoClick()">Buy Now!</button>
+    <div *ngFor="let item of filteredItems; index as pIndex">
+      <div class="row">
+        <div class="col-6">{{ pIndex }} . {{ item.product_id.title }}</div>
+        <div class="col-2">
+          {{ item.amount }}
+        </div>
+        <div class="col-4">{{ item.full_price | number: "1.2-2" }}₪</div>
+      </div>
+      <br />
+    </div>
+  </div>
+  <div class="col-6 DetailsDiv">
+    <mat-form-field>
+      <input
+        matInput
+        [min]="minDate"
+        [(ngModel)]="deliveryDate"
+        [matDatepicker]="picker"
+        [matDatepickerFilter]="InvalidDatesFilter"
+        placeholder="Choose a date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field class="example-full-width">
+      <mat-label>visa numbers..</mat-label>
+      <input
+        matInput
+        placeholder="only last 4 visa number"
+        type="number"
+        [(ngModel)]="visaNumber"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>city</mat-label>
+      <input matInput placeholder="where you live" [(ngModel)]="city" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>street</mat-label>
+      <input matInput placeholder="street.." [(ngModel)]="street" />
+    </mat-form-field>
+    <br />
+    <button mat-raised-button (click)="onNoClick()">Buy Now!</button>
+    <button class="ml-2" mat-button mat-dialog-close>back</button>
+  </div>
 </div>

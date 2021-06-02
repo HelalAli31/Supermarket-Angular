@@ -23,11 +23,11 @@ const usersSchema = new mongoose.Schema({
   },
   city: {
     type: String,
-    require: false,
+    require: true,
   },
   street: {
     type: String,
-    require: false,
+    require: true,
   },
   role: {
     type: String,

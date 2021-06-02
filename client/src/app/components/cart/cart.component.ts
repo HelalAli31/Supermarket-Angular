@@ -50,7 +50,9 @@ export class CartComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(PopUpOrderDetailsComponent);
+    const dialogRef = this.dialog.open(PopUpOrderDetailsComponent, {
+      data: { items: this.items },
+    });
     dialogRef.afterClosed().subscribe((result) => {
       if (!result) return;
       this.AddOrder(result);
@@ -65,14 +67,13 @@ export class CartComponent implements OnInit {
       resultStatus.then(
         (result: any) => {
           const value = result.message;
-          this.orderStatus = result.message;
-          console.log(result.message, value);
           const dialogRef = this.dialog.open(DialogComponent, {
             data: { value },
           });
           const cartId = result.order[0].cart_id;
           this.cartService.UpdateCartOpenState(cartId);
           this.fullPrice = 0;
+          this.items = [];
           setTimeout(() => {
             const dialogRef2 = this.dialog.open(PopUpOrderDoneComponent);
             dialogRef2.afterClosed().subscribe((result: any) => {
@@ -149,6 +150,8 @@ export class CartComponent implements OnInit {
       (value: any) => {
         console.log(value);
         if (value.order.length) {
+          this.items = [];
+          this.fullPrice = 0;
           const dialogRef = this.dialog.open(PopUpOrderDoneComponent);
           dialogRef.afterClosed().subscribe((result: any) => {
             if (result == 'true') {

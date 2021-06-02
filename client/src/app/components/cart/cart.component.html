@@ -45,18 +45,12 @@
       </div>
     </div>
   </div>
-  <div>
-    <div class="OrderDiv row">
-      <button
-        class="button col-8"
-        (click)="openDialog()"
-        *ngIf="!orderStatus.length"
-      >
-        <span> Order now </span>
-      </button>
-      <h3 class="col-3" style="margin-top: 25px">
-        {{ fullPrice | number: "1.2-2" }}₪
-      </h3>
-    </div>
+  <div class="OrderDiv row mt-5">
+    <button class="button col-8" (click)="openDialog()">
+      <span> Order now </span>
+    </button>
+    <h3 class="col-3" style="margin-top: 25px">
+      {{ fullPrice | number: "1.2-2" }}₪
+    </h3>
   </div>
 </div>

@@ -9,6 +9,7 @@ const ORDER_URL = 'http://localhost:5000/orders';
 export class OrdersService {
   public subject = new Subject<any>();
   constructor(private httpService: HttpClient) {}
+
   getOrder(cartId: string) {
     const result = this.httpService
       .post(`${ORDER_URL}?cartId=${cartId}`, {
@@ -17,7 +18,14 @@ export class OrdersService {
       .toPromise();
     return result;
   }
-
+  getAllOrders() {
+    const result = this.httpService
+      .post(`${ORDER_URL}/All`, {
+        Authorization: localStorage.getItem('token'),
+      })
+      .toPromise();
+    return result;
+  }
   addOrder(order: string) {
     console.log(order);
     const ADD_CART_URL = `${ORDER_URL}/addOrder`;

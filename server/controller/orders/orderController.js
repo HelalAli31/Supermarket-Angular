@@ -2,7 +2,15 @@ const orderModel = require("../../models/orderSchema");
 async function getOrder(cartId) {
   try {
     const result = await orderModel.find({ cart_id: cartId }, { __v: false });
-    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function getAllOrders(cartId) {
+  try {
+    const result = await orderModel.find({});
     return result;
   } catch (error) {
     console.log(error);
@@ -11,7 +19,6 @@ async function getOrder(cartId) {
 
 async function addOrder(order) {
   try {
-    console.log("add order");
     if (!order) return;
     const result = await orderModel.insertMany([order]);
     return result;
@@ -29,4 +36,4 @@ async function getOrdersNumber() {
   }
 }
 
-module.exports = { getOrder, addOrder, getOrdersNumber };
+module.exports = { getOrder, addOrder, getOrdersNumber, getAllOrders };

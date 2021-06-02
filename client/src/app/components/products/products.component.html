@@ -17,11 +17,12 @@
     </mat-toolbar>
 
     <mat-sidenav-container
-      class="example-sidenav-container"
+      class="example-sidenav-container ContainerMat"
       [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
       autosize
     >
       <mat-sidenav
+        class="Side"
         #snav
         opened
         [mode]="mobileQuery.matches ? 'over' : 'side'"
@@ -50,7 +51,7 @@
         </mat-nav-list>
       </mat-sidenav>
 
-      <mat-sidenav-content style="overflow-x: hidden; position: ">
+      <mat-sidenav-content style="overflow-x: hidden">
         <img
           src="https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/cmscontent/h73/h4b/9879930339358/super_May-5_1.jpg"
           style="width: 100%; height: 600px"
@@ -74,8 +75,8 @@
             <a
               (click)="getProducts('All')"
               mat-flat-button
-              class="col-1"
-              style="color: rgb(89, 152, 194)"
+              class="col-1 mt-2"
+              style="color: rgb(89, 152, 194); height: 100%"
               >All</a
             >
             <app-categories

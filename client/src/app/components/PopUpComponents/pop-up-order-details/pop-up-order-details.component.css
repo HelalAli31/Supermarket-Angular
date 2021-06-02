@@ -1,0 +1,13 @@
+.MainDiv {
+  width: 1000px;
+  height: 100%;
+}
+.Items {
+  height: 600px;
+  overflow-y: scroll;
+}
+.DetailsDiv {
+  width: 100%;
+  height: 100%;
+  margin-top: 50px;
+}

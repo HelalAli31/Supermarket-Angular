@@ -1,4 +1,3 @@
-
 .productsCard {
   margin-left: 20px;
 }
@@ -19,4 +18,12 @@
 .ExitButton {
   position: absolute;
   right: 10px;
+}
+
+.ContainerMat {
+  position: relative;
+  /* height: 1000px; */
+}
+.Side {
+  position: fixed;
 }

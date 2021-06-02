@@ -1,14 +1,16 @@
-<div class="container">
+<div class="container" style="width: 800px">
   <span>
-    <section class="row">
-      <div *ngFor="let cat of categories">
-        <a
-          (click)="getCategoryId(cat._id)"
-          mat-flat-button
-          style="width: 80px; margin-left: 10px"
-          class="col-11 cateLink"
-          >{{ cat.name }}</a
-        >
+    <section>
+      <div class="row">
+        <div *ngFor="let cat of categories">
+          <a
+            (click)="getCategoryId(cat._id)"
+            mat-flat-button
+            style="width: 170px; margin: 10px 10px"
+            class="col-6 cateLink"
+            >{{ cat.name }}</a
+          >
+        </div>
       </div>
     </section>
   </span>

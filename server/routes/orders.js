@@ -3,6 +3,7 @@ const {
   getOrder,
   addOrder,
   getOrdersNumber,
+  getAllOrders,
 } = require("../controller/orders/orderController");
 const router = express.Router();
 const { verifyJWT } = require("../controller/JWT/jwt");
@@ -37,6 +38,16 @@ router.post("/", getValidationFunction("getOrder"), async (req, res, next) => {
   try {
     const { cartId } = req.query;
     const order = await getOrder(cartId);
+    if (!order) throw new Error();
+    return res.json({ order });
+  } catch (error) {
+    console.log(error);
+    return next({ message: "GENERAL ERROR", status: 400 });
+  }
+});
+router.post("/All", async (req, res, next) => {
+  try {
+    const order = await getAllOrders();
     if (!order) throw new Error();
     return res.json({ order });
   } catch (error) {
