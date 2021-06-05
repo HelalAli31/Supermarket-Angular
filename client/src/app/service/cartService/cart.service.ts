@@ -91,6 +91,14 @@ export class CartService {
         }
       )
       .toPromise();
+    result.then(
+      (value) => {
+        this.subject.next(value);
+      },
+      (reason) => {
+        console.log(reason);
+      }
+    );
     return result;
   }
 
@@ -122,7 +130,7 @@ export class CartService {
     );
     return result;
   }
-  getAddingToCart() {
+  getChangesToCart() {
     return this.subject.asObservable();
   }
 }

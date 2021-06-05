@@ -29,6 +29,7 @@ import { DialogComponent } from './components/PopUpComponents/dialog/dialog.comp
 import { PopUpOrderDoneComponent } from './components/PopUpComponents/pop-up-order-done/pop-up-order-done.component';
 import { CategoryPopUpComponent } from './components/PopUpComponents/category_dialog/category-pop-up/category-pop-up.component';
 import { CategoryFormComponent } from './components/PopUpComponents/category_dialog/category-form/category-form.component';
+import { SlideImagesComponent } from './components/slide-images/slide-images.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CategoryFormComponent } from './components/PopUpComponents/category_dia
     PopUpOrderDoneComponent,
     CategoryPopUpComponent,
     CategoryFormComponent,
+    SlideImagesComponent,
   ],
   imports: [
     BrowserModule,

@@ -29,6 +29,7 @@ export class CartComponent implements OnInit {
   public amount: number;
   public item: any;
   public subscription: Subscription;
+
   constructor(
     private orderService: OrdersService,
     public dialog: MatDialog,
@@ -43,13 +44,14 @@ export class CartComponent implements OnInit {
     this.fullPrice = 0;
     this.items = [];
     this.subscription = this.cartService
-      .getAddingToCart()
+      .getChangesToCart()
       .subscribe(async (messageObj) => {
         await this.getCartItems();
       });
   }
 
   openDialog(): void {
+    if (!this.items || !this.items.length) return;
     const dialogRef = this.dialog.open(PopUpOrderDetailsComponent, {
       data: { items: this.items },
     });

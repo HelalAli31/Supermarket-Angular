@@ -12,16 +12,28 @@
   flex-flow: row wrap;
 }
 .AddInfo {
-  margin-left: 70px;
+  margin-left: 80px;
+}
+
+.AddIcon {
+  position: absolute;
+  top: -2px;
+  right: 52px;
+}
+.RemoveIcon {
+  position: absolute;
+  top: -2px;
+  left: -7px;
 }
 
 .MainCard {
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   margin-left: 30px;
   border-right: 1px solid grey;
   border-bottom: 1px solid grey;
   width: 250px;
-  height: 280px;
+  height: 350px;
 }
 .content {
   height: 70px;
@@ -39,8 +51,19 @@
   margin-bottom: 18px;
   text-align: center;
   height: 20px;
+  border-radius: 30%;
 }
-
+.PriceDiv {
+  position: relative;
+  font-weight: bolder;
+  margin-top: 20px;
+}
+.secondPrice {
+  position: absolute;
+  top: -5px;
+  font-size: 11px;
+  margin-left: 90px;
+}
 .amount::-webkit-outer-spin-button,
 .amount::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -54,17 +77,25 @@
 
 .IconCircle {
   cursor: pointer;
-  color: grey;
+  /* color: grey; */
+  margin-bottom: 17px;
 }
 
 .IconCircle:hover {
   color: rgb(228, 55, 78);
 }
+.Name {
+  /* justify-content: center; */
+}
 
 .AddButton {
-  margin-left: 10px;
+  /* margin-left: 30px; */
   height: 30px;
+  width: 100px;
   margin-bottom: 10px;
+  position: absolute;
+  left: 35%;
+  bottom: -50px;
 }
 
 body {
@@ -82,7 +113,6 @@ body {
   margin-top: 100px;
   display: flex;
   flex-direction: column;
-  width: 280px;
 }
 .container {
   border-radius: 50%;
@@ -130,6 +160,7 @@ body {
   transform: translateY(20px) scale(1.15);
   transform-origin: 50% bottom;
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin-right: 30px;
 }
 .container:hover .img {
   transform: translateY(0) scale(1.2);

@@ -4,10 +4,10 @@
     [class.example-is-mobile]="mobileQuery.matches"
   >
     <mat-toolbar
-      style="background-color: black; color: white"
+      style="background-color: white; color: grey"
       class="example-toolbar"
     >
-      <button mat-icon-button (click)="snav.toggle()">
+      <button mat-icon-button (click)="snav.toggle(); showCartIcon = false">
         <mat-icon>menu</mat-icon>
       </button>
       <h1 class="example-app-name">Supermarket App</h1>
@@ -43,6 +43,13 @@
           </div>
 
           <div *ngIf="user[0]?.role === 'user'">
+            <button
+              class="cancelButton"
+              mat-icon-button
+              (click)="snav.toggle(); showCartIcon = true"
+            >
+              <mat-icon>cancel</mat-icon>
+            </button>
             <app-cart
               [userId]="this.user[0]._id"
               [cartId]="this.cartId"
@@ -52,15 +59,22 @@
       </mat-sidenav>
 
       <mat-sidenav-content style="overflow-x: hidden">
-        <img
-          src="https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/cmscontent/h73/h4b/9879930339358/super_May-5_1.jpg"
-          style="width: 100%; height: 600px"
-        />
+        <div *ngIf="showCartIcon === true" class="SideButton2">
+          <mat-icon
+            (click)="snav.toggle(); showCartIcon = false"
+            class="CartIcon"
+            >shopping_cart</mat-icon
+          >
+        </div>
 
-        <div style="margin-left: 50px" class="row">
-          <h2 style="margin-left: 5px" class="col-1">Menu:</h2>
+        <app-slide-images></app-slide-images>
 
-          <mat-form-field class="example-full-width col-2">
+        <div style="margin-left: 300px" class="row">
+          <h2 class="col-1 mt-3">
+            <mat-icon>search</mat-icon>
+          </h2>
+
+          <mat-form-field class="example-full-width col-5 mr-5">
             <mat-label>search</mat-label>
             <input
               matInput
@@ -71,7 +85,7 @@
           </mat-form-field>
         </div>
         <div>
-          <div class="row" style="margin-left: 120px">
+          <div class="row" style="margin-left: 220px">
             <a
               (click)="getProducts('All')"
               mat-flat-button
@@ -89,17 +103,21 @@
         <div class="container">
           <div class="row">
             <app-product
+              class="col-4 mt-5"
               *ngFor="let product of filterProducts"
               [product]="product"
+              [cartId]="cartId"
               (updateProductEvent)="getProductDetails($event)"
               (AddItemsToCartEvent)="addItemsToCart($event)"
             ></app-product>
           </div>
 
           <div style="margin-top: 50px">
-            <button (click)="prev()" mat-button>Prev</button>
+            <button (click)="prev()" mat-button>
+              <mat-icon>navigate_before</mat-icon>Prev
+            </button>
             <button (click)="next()" style="float: right" mat-button>
-              Next
+              Next <mat-icon>navigate_next</mat-icon>
             </button>
           </div>
         </div>

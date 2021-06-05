@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="col-6 DetailsDiv">
-    <mat-form-field>
+    <mat-form-field style="width: 300px !important">
       <input
         matInput
         [min]="minDate"
@@ -41,7 +41,7 @@
     </mat-form-field>
     <br />
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field style="width: 300px">
       <mat-label>visa numbers..</mat-label>
       <input
         matInput
@@ -51,17 +51,19 @@
       />
     </mat-form-field>
     <br />
-    <mat-form-field class="example-full-width">
+    <mat-form-field style="width: 300px">
       <mat-label>city</mat-label>
       <input matInput placeholder="where you live" [(ngModel)]="city" />
     </mat-form-field>
     <br />
-    <mat-form-field class="example-full-width">
+    <mat-form-field style="width: 300px">
       <mat-label>street</mat-label>
       <input matInput placeholder="street.." [(ngModel)]="street" />
     </mat-form-field>
     <br />
-    <button mat-raised-button (click)="onNoClick()">Buy Now!</button>
+    <button mat-raised-button (click)="onNoClick()" class="mt-5">
+      Buy Now!
+    </button>
     <button class="ml-2" mat-button mat-dialog-close>back</button>
   </div>
 </div>

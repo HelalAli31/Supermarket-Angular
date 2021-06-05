@@ -2,6 +2,22 @@
   margin-left: 20px;
 }
 
+.Menu {
+  /* position: absolute;
+  right: 0%;
+  top: 0px;
+  background-color: black;
+  max-width: 1250px; */
+  max-width: 100%;
+  width: 1400px;
+  /* position: fixed; */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-left: 300px; */
+}
+
 .All {
   color: rgb(89, 152, 194);
   margin-left: 300px;
@@ -26,4 +42,31 @@
 }
 .Side {
   position: fixed;
+  height: 100%;
+}
+.SideButton {
+  position: absolute;
+  left: 260px;
+  /* background-color: chartreuse; */
+  color: grey;
+}
+.SideButton2 {
+  position: fixed;
+  cursor: pointer;
+  color: grey;
+
+  /* margin-left: 100px; */
+}
+.cancelButton {
+  margin-left: 260px;
+  color: grey;
+  height: 30px;
+}
+.CartIcon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  justify-content: center;
+  font-size: 50px;
+  margin-left: 10px;
 }

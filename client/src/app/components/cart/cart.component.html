@@ -1,18 +1,15 @@
-<div class="MainDiv">
-  <div style="width: 280px">
-    <mat-icon class="col-6 ShoppingCart" style="font-size: 50px"
+<div class="m">
+  <div class="c">
+    <mat-icon class="col-6 ShoppingCart" style="font-size: 40px"
       >shopping_cart
     </mat-icon>
-    <p class="NItems">{{ items.length }}</p>
-    <!-- <div class="cartItems">
-      <app-cart-items
-        *ngFor="let item of items; index as pIndex"
-        class="FixedDiv"
-        [item]="item"
-      ></app-cart-items>
-    </div> -->
+  </div>
+  <p class="NItems">{{ items.length }}</p>
+  <div class="items">
     <div *ngFor="let item of items; index as pIndex" class="FixedDiv">
-      <div class="row item">
+      <hr />
+
+      <div class="row item" style="height: 100%">
         <div class="col-4">
           <img
             src="{{ this.basePath }}/{{ item.product_id.filename }}"
@@ -30,7 +27,7 @@
         <div class="col-2">
           <mat-icon
             (click)="DeleteItemFromCart(item._id)"
-            style="cursor: pointer; color: white"
+            style="cursor: pointer; color: grey"
             class="Delete"
             >delete_forever</mat-icon
           >
@@ -45,12 +42,12 @@
       </div>
     </div>
   </div>
-  <div class="OrderDiv row mt-5">
-    <button class="button col-8" (click)="openDialog()">
-      <span> Order now </span>
-    </button>
-    <h3 class="col-3" style="margin-top: 25px">
-      {{ fullPrice | number: "1.2-2" }}₪
-    </h3>
+  <div class="b">
+    <div class="OrderDiv row">
+      <button class="button col-8" (click)="openDialog()">
+        <span> Order now </span>
+      </button>
+      <h3 class="col-3 fullPrice">{{ fullPrice | number: "1.2-2" }}₪</h3>
+    </div>
   </div>
 </div>

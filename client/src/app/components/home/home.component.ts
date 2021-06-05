@@ -22,13 +22,13 @@ export class HomeComponent implements OnInit {
     if (this.nOrders === this.ordersNumber) {
       clearInterval(this.StopOrdersCount);
     }
-  }, 100);
+  }, 50);
   public StopProductsCount = setInterval(() => {
     this.nProducts++;
     if (this.nProducts === this.productsNumber) {
       clearInterval(this.StopProductsCount);
     }
-  }, 100);
+  }, 50);
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,

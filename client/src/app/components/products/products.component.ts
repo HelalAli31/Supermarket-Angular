@@ -31,6 +31,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public cartId: string;
   public item: any;
   public ProductActionResult: String;
+  public showCartIcon: boolean = false;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   constructor(
@@ -44,7 +45,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ) {
     this.products = [];
     this.filterModel = '';
-    this.limit = 8;
+    this.limit = 6;
     this.from = 0;
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -119,6 +120,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   async getProducts(valueName?: any, keyName?: any) {
+    console.log('valueName', valueName);
     this.products = await this.productsService.getProducts(
       this.from,
       this.limit,
