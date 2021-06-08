@@ -34,7 +34,6 @@ router.post("/", async (req, res, next) => {
   try {
     const { from, limit } = req.query;
     const { keyName, valueName } = req.body;
-    console.log(from, limit, keyName, valueName);
     const result = await getAllProducts(from, limit, valueName, keyName);
     if (!result) throw new Error();
     return res.json(result);
@@ -62,8 +61,6 @@ router.post(
   getValidationFunction("ProductAction"),
   async (req, res, next) => {
     try {
-      if (!req.body.product) return;
-      console.log(req.body.product);
       const result = await addProduct(req.body.product);
       if (!result) throw new Error();
       return res.json("product has been added!");
@@ -79,8 +76,6 @@ router.put(
   getValidationFunction("ProductAction"),
   async (req, res, next) => {
     try {
-      if (!req.body.product) return;
-      console.log(req.body.product);
       const result = await updateProduct(req.body.product);
       if (!result) throw new Error();
       return res.json("product has been updated!");

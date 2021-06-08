@@ -3,7 +3,6 @@ const logger = require("../../logger");
 async function isUserRegistered(email) {
   try {
     const result = await usersModel.find({ email: email }, { __v: false });
-    console.log(result);
     return result;
   } catch (error) {
     logger.error("error");

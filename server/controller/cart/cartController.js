@@ -18,7 +18,6 @@ async function updateCartStatus(cartId) {
     const result = await cartModel
       .updateOne({ _id: cartId }, { cartIsOpen: false }, { __v: false })
       .populate("user_id", "first_name", userModel);
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
@@ -30,7 +29,6 @@ async function getCartItems(cartId) {
     const result = await cartItemsModel
       .find({ cart_id: cartId }, { __v: false })
       .populate("product_id", productModel);
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);

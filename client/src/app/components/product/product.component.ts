@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/service/cartService/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OrdersService } from 'src/app/service/orderService/orders.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpEditItemComponent } from '../PopUpComponents/pop-up-edit-item/pop-up-edit-item.component';
 
 @Component({
   selector: 'app-product',
@@ -35,7 +37,8 @@ export class ProductComponent implements OnInit {
     media: MediaMatcher,
     private cartService: CartService,
     private orderService: OrdersService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {
     this.basePath = '../../../assets/images/';
     this.imagePath = '';
@@ -72,12 +75,22 @@ export class ProductComponent implements OnInit {
   }
 
   AddToCart(itemId: string, price: number) {
-    this.item.amount = this.amount;
-    this.item.id = itemId;
-    this.item.price = price;
-    this.AddItemsToCartEvent.emit(this.item);
-    this.amount = 1;
-    this.ActionName = 'Edit';
+    const item = this.product;
+    console.log(item);
+    const dialogRef = this.dialog.open(PopUpEditItemComponent, {
+      data: { image: item.filename, amount: this.amount, title: item.title },
+    });
+    dialogRef.afterClosed().subscribe(async (result: any) => {
+      console.log(result);
+      if (result?.amount === item?.amount) return;
+      if (!result || !result.amount || result.amount < 0) return;
+      const fullPrice = result.amount * item.price;
+      this.item.amount = result.amount;
+      this.item.id = itemId;
+      this.item.price = price;
+      this.AddItemsToCartEvent.emit(this.item);
+      this.ActionName = 'Edit';
+    });
   }
 
   async UpdateAction() {
@@ -95,7 +108,10 @@ export class ProductComponent implements OnInit {
     if (!result.length) this.ActionName = 'Add';
     this.ActionName = 'Add';
     result.map((p: any) => {
-      if (p.product_id._id == this.product._id) this.ActionName = 'Edit';
+      if (p.product_id._id == this.product._id) {
+        this.ActionName = 'Edit';
+        this.amount = p.amount;
+      }
     });
   }
 

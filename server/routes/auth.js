@@ -33,7 +33,6 @@ router.post(
   getValidationFunction("register"),
   async (req, res, next) => {
     const { email } = req.body;
-    console.log(email);
     if (!email) throw new Error("general error");
     try {
       const result = await isUserRegistered(email);

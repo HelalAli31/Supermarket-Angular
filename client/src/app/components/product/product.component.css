@@ -1,167 +1,116 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Sumana:wght@700&display=swap");
+.product:hover .title {
+  animation: fadeIn 3s;
+}
 
-.productCard {
-  /* display:; */
-  width: 200px;
-  height: 200px;
-  /* min-height: 250px; */
-  margin-bottom: 80px;
+.Image {
+  width: 170px;
+  height: 170px;
   margin-left: 10px;
-}
-.mat-card {
-  flex-flow: row wrap;
-}
-.AddInfo {
-  margin-left: 80px;
-}
-
-.AddIcon {
-  position: absolute;
-  top: -2px;
-  right: 52px;
-}
-.RemoveIcon {
-  position: absolute;
-  top: -2px;
-  left: -7px;
-}
-
-.MainCard {
   margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 30px;
-  border-right: 1px solid grey;
-  border-bottom: 1px solid grey;
-  width: 250px;
-  height: 350px;
 }
-.content {
-  height: 70px;
-  max-width: 150px;
-  font-size: 12px;
+.Main {
+  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  width: 200px;
+}
+
+.SecondPrice2 {
+  position: absolute;
+  bottom: 60px;
+  margin-left: 45px;
+}
+
+.mat-slider-thumb {
+  color: tomato;
+}
+
+.ActionButton {
+  width: 100%;
+  padding: 0px 10px;
+}
+
+.Title {
+  color: black;
+  position: absolute;
+  left: 0px;
+  max-width: 200px;
+  font-weight: bolder;
+}
+.Price {
+  position: relative;
+}
+.SecondPrice {
+  position: absolute;
+  top: 0px;
+  margin-left: 40px;
+  /* margin-bottom: 30px; */
+}
+.SlideIcon {
+  font-size: 4px;
+  width: 5px;
+  cursor: pointer;
+  height: 5px;
+}
+.ProductCard {
+  border-radius: 20px;
+  width: 100%;
+  animation: FadeIn 4s;
+  background: white;
+  background: linear-gradient(
+    rgba(225, 225, 225, 0.7),
+    rgba(225, 225, 225, 0.3)
+  );
+  backdrop-filter: blur(2rem);
+}
+.ProductCard:hover img {
+  animation: ImageEffect 2s;
+}
+img {
+  border-radius: 10px;
+  width: 60%;
+  height: 150px;
+  margin-left: 6px;
+}
+.Arrow {
+  width: 5px;
+  height: 5px;
+  /* margin-bottom: 10px; */
+  cursor: pointer;
+}
+.ArrowDown {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+}
+.amount {
+  margin-top: 10px;
+}
+
+.ArrowDiv {
+  position: relative;
   margin-right: 10px;
 }
-.price {
-  margin-left: 60px;
+.ProductCard:hover img {
+  animation: ImageEffect 3s;
 }
 
-.amount {
-  border: 1px solid grey;
-  width: 40px;
-  margin-bottom: 18px;
-  text-align: center;
-  height: 20px;
-  border-radius: 30%;
-}
-.PriceDiv {
-  position: relative;
-  font-weight: bolder;
-  margin-top: 20px;
-}
-.secondPrice {
-  position: absolute;
-  top: -5px;
-  font-size: 11px;
-  margin-left: 90px;
-}
-.amount::-webkit-outer-spin-button,
-.amount::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+@keyframes ImageEffect {
+  from {
+  }
+  to {
+    /* width: 300px;
+     */
+    padding: 20px;
+  }
 }
 
-/* Firefox */
-.amount[type="number"] {
-  -moz-appearance: textfield;
-}
-
-.IconCircle {
-  cursor: pointer;
-  /* color: grey; */
-  margin-bottom: 17px;
-}
-
-.IconCircle:hover {
-  color: rgb(228, 55, 78);
-}
-.Name {
-  /* justify-content: center; */
-}
-
-.AddButton {
-  /* margin-left: 30px; */
-  height: 30px;
-  width: 100px;
-  margin-bottom: 10px;
-  position: absolute;
-  left: 35%;
-  bottom: -50px;
-}
-
-body {
-  align-items: center;
-  background-color: #f2f2f2;
-  display: flex;
-  font-family: "Merriweather", serif;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
-}
-.product {
-  align-items: center;
-  margin-top: 100px;
-  display: flex;
-  flex-direction: column;
-}
-.container {
-  border-radius: 50%;
-  height: 100px;
-  -webkit-tap-highlight-color: transparent;
-  transform: scale(0.48);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  width: 400px;
-}
-.container:after {
-  background-color: #f2f2f2;
-  content: "";
-  height: 10px;
-  position: absolute;
-  top: 390px;
-  width: 100%;
-}
-.container:hover {
-  transform: scale(0.54);
-}
-.container-inner {
-  clip-path: path(
-    "M 390,400 C 390,504.9341 304.9341,590 200,590 95.065898,590 10,504.9341 10,400 V 10 H 200 390 Z"
-  );
-  position: relative;
-  transform-origin: 50%;
-  top: -200px;
-  padding-left: 50px;
-  padding-top: 50px;
-}
-.circle {
-  background-color: #fee7d3;
-  border-radius: 50%;
-  cursor: pointer;
-  height: 380px;
-  left: 10px;
-  pointer-events: none;
-  position: absolute;
-  top: 210px;
-  width: 380px;
-}
-.img {
-  pointer-events: none;
-  position: relative;
-  transform: translateY(20px) scale(1.15);
-  transform-origin: 50% bottom;
-  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  margin-right: 30px;
-}
-.container:hover .img {
-  transform: translateY(0) scale(1.2);
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

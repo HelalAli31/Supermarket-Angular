@@ -88,7 +88,7 @@
     </div>
   </div>
 </div> -->
-
+<!-- 
 <div class="product" *ngIf="userRole === 'user'">
   <div class="container">
     <div class="container-inner">
@@ -160,4 +160,45 @@
   <div>
     <button mat-raised-button (click)="updateProduct(product)">EDIT</button>
   </div>
-</div>
+</div> -->
+
+<mat-card class="ProductCard">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <div class="row TitleDiv">
+      <mat-card-subtitle class="Title col-9">{{
+        product.title | titlecase
+      }}</mat-card-subtitle>
+    </div>
+  </mat-card-header>
+  <div class="">
+    <img class="" [src]="imagePath" />
+  </div>
+  <mat-card-content>
+    <div *ngIf="this.userRole === 'user'">
+     
+      <div class="Price mt-3">
+        <h2>₪{{ Price.first }}</h2>
+        <p class="SecondPrice">{{ Price.second }}</p>
+      </div>
+      <div>
+        <button
+          mat-raised-button
+          class="ActionButton"
+          (click)="AddToCart(product._id, product.price)"
+        >
+          {{ ActionName }}
+        </button>
+      </div>
+    </div>
+    <div *ngIf="this.userRole === 'admin'">
+      <button
+        class="ActionButton"
+        mat-raised-button
+        (click)="updateProduct(product)"
+      >
+        EDIT
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

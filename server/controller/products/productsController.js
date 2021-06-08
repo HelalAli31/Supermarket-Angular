@@ -29,16 +29,13 @@ async function getAllProducts(from, limit, value, key) {
 async function addProduct(product) {
   try {
     const result = await productModel.insertMany([product]);
-    if (result) console.log(result);
-    return result;
+    if (result) return result;
   } catch (error) {
     console.log(error);
   }
 }
 
 async function updateProduct(product) {
-  console.log(product);
-
   try {
     const result = await productModel.updateOne({ _id: product._id }, product);
     return result;

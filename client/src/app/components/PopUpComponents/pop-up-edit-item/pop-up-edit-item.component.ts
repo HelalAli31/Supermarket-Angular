@@ -11,11 +11,12 @@ export class PopUpEditItemComponent implements OnInit {
   public basePath: string;
   public amount: number;
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { item: any },
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<PopUpEditItemComponent>
   ) {
     this.basePath = '../../../assets/images/';
-    this.amount = data.item.amount;
+    this.amount = data?.amount;
+    console.log(data);
   }
 
   SaveAmount() {

@@ -29,7 +29,6 @@ router.use(async (req, res, next) => {
 router.post("/", getValidationFunction("getCart"), async (req, res, next) => {
   try {
     const { userId } = req.query;
-    console.log(userId);
     if (!userId) throw new Error();
     const cart = await getCart(userId);
     if (!cart) throw new Error();
@@ -106,9 +105,7 @@ router.put(
   getValidationFunction("deleteItem"),
   async (req, res, next) => {
     try {
-      console.log("detele");
       const { itemId } = req.query;
-      if (!itemId) throw new Error();
       const cartItems = await deleteItemFromCart(itemId);
       if (!cartItems) throw new Error();
       return res.json("item deleted!");
@@ -118,17 +115,20 @@ router.put(
     }
   }
 );
-router.post("/editItemAmount", async (req, res, next) => {
-  try {
-    const { fullPrice, amount, itemId } = req.body.data;
-    if (!itemId || !fullPrice || !amount) throw new Error();
-    const cartItem = await editAmount(itemId, amount, fullPrice);
-    if (!cartItem) throw new Error();
-    return res.json("item edited");
-  } catch (error) {
-    console.log(error);
-    return next({ message: "GENERAL ERROR", status: 400 });
+router.post(
+  "/editItemAmount",
+  getValidationFunction("editItemAmount"),
+  async (req, res, next) => {
+    try {
+      const { fullPrice, amount, itemId } = req.body.data;
+      const cartItem = await editAmount(itemId, amount, fullPrice);
+      if (!cartItem) throw new Error();
+      return res.json("item edited");
+    } catch (error) {
+      console.log(error);
+      return next({ message: "GENERAL ERROR", status: 400 });
+    }
   }
-});
+);
 
 module.exports = router;

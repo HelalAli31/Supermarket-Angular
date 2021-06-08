@@ -39,10 +39,18 @@
 .ContainerMat {
   position: relative;
   /* height: 1000px; */
+  display: inline;
 }
 .Side {
   position: fixed;
   height: 100%;
+}
+
+@media only screen and (max-width: 598px) {
+  .Side {
+    position: relative;
+    height: 100%;
+  }
 }
 .SideButton {
   position: absolute;
@@ -59,8 +67,9 @@
 }
 .cancelButton {
   margin-left: 260px;
-  color: grey;
+  color: black;
   height: 30px;
+  color: rgba(161, 156, 156, 0.836);
 }
 .CartIcon {
   background-repeat: no-repeat;
@@ -69,4 +78,14 @@
   justify-content: center;
   font-size: 50px;
   margin-left: 10px;
+  color: black;
+}
+.NextAndPref {
+  font-size: 20px;
+  background-color: none;
+  background: none;
+}
+
+.mat-button-focus-overlay {
+  background: none;
 }

@@ -10,7 +10,6 @@ async function getAllCategories() {
 
 async function addCategory(categoryName) {
   try {
-    console.log(categoryName);
     const result = await categoryModel.insertMany([{ name: categoryName }]);
     return result;
   } catch (error) {

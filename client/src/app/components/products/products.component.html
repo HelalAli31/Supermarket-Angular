@@ -4,13 +4,13 @@
     [class.example-is-mobile]="mobileQuery.matches"
   >
     <mat-toolbar
-      style="background-color: white; color: grey"
+      style="background-color: white; color: black"
       class="example-toolbar"
     >
       <button mat-icon-button (click)="snav.toggle(); showCartIcon = false">
         <mat-icon>menu</mat-icon>
       </button>
-      <h1 class="example-app-name">Supermarket App</h1>
+      <h1 class="example-app-name">HouseMarket</h1>
       <button mat-icon-button class="ExitButton" (click)="SignOut()">
         <mat-icon>exit_to_app</mat-icon>
       </button>
@@ -30,7 +30,14 @@
         fixedTopGap="56"
       >
         <mat-nav-list style="padding-top: 0px">
-          <div *ngIf="user[0]?.role === 'admin'">
+          <div *ngIf="user[0]?.role === 'admin'" class="Cart">
+            <button
+              class="cancelButton"
+              mat-icon-button
+              (click)="snav.toggle(); showCartIcon = true"
+            >
+              <mat-icon>cancel</mat-icon>
+            </button>
             <app-productAction
               [product]="productToUpdate"
               (updateProductEvent)="editProduct($event)"
@@ -61,20 +68,27 @@
       <mat-sidenav-content style="overflow-x: hidden">
         <div *ngIf="showCartIcon === true" class="SideButton2">
           <mat-icon
+            *ngIf="user[0]?.role === 'user'"
             (click)="snav.toggle(); showCartIcon = false"
             class="CartIcon"
             >shopping_cart</mat-icon
+          >
+          <mat-icon
+            class="CartIcon"
+            *ngIf="user[0]?.role === 'admin'"
+            (click)="snav.toggle(); showCartIcon = false"
+            >chrome_reader_mode</mat-icon
           >
         </div>
 
         <app-slide-images></app-slide-images>
 
-        <div style="margin-left: 300px" class="row">
-          <h2 class="col-1 mt-3">
+        <div style="margin-left: 15%" class="row mt-2">
+          <h2 class="col-1 col-sm-1 mt-3">
             <mat-icon>search</mat-icon>
           </h2>
 
-          <mat-form-field class="example-full-width col-5 mr-5">
+          <mat-form-field class="example-full-width col-9 col-sm-3 mr-5">
             <mat-label>search</mat-label>
             <input
               matInput
@@ -85,17 +99,17 @@
           </mat-form-field>
         </div>
         <div>
-          <div class="row" style="margin-left: 220px">
+          <div class="row mt-2" style="margin-left: 10%">
             <a
               (click)="getProducts('All')"
               mat-flat-button
-              class="col-1 mt-2"
-              style="color: rgb(89, 152, 194); height: 100%"
+              class="col-4 col-md-1"
+              style="color: black; height: 100%; margin-top: 30px"
               >All</a
             >
             <app-categories
+              class="col-12 col-md-8"
               (categoryIdEvent)="getProducts($event, '_id')"
-              class="col-5"
             ></app-categories>
           </div>
         </div>
@@ -103,7 +117,7 @@
         <div class="container">
           <div class="row">
             <app-product
-              class="col-4 mt-5"
+              class="col-md-3 col-sm-6 col-12 mt-5"
               *ngFor="let product of filterProducts"
               [product]="product"
               [cartId]="cartId"
@@ -111,15 +125,19 @@
               (AddItemsToCartEvent)="addItemsToCart($event)"
             ></app-product>
           </div>
-
-          <div style="margin-top: 50px">
-            <button (click)="prev()" mat-button>
-              <mat-icon>navigate_before</mat-icon>Prev
-            </button>
-            <button (click)="next()" style="float: right" mat-button>
-              Next <mat-icon>navigate_next</mat-icon>
-            </button>
-          </div>
+        </div>
+        <div style="margin-top: 50px">
+          <button class="NextAndPref" (click)="prev()" mat-button>
+            <mat-icon>navigate_before</mat-icon>Prev
+          </button>
+          <button
+            class="NextAndPref"
+            (click)="next()"
+            style="float: right"
+            mat-button
+          >
+            Next <mat-icon>navigate_next</mat-icon>
+          </button>
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>

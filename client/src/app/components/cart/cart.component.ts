@@ -126,11 +126,15 @@ export class CartComponent implements OnInit {
 
   EditItemAmount(item: any) {
     const dialogRef = this.dialog.open(PopUpEditItemComponent, {
-      data: { item },
+      data: {
+        title: item.product_id.title,
+        image: item.product_id.filename,
+        amount: item.amount,
+      },
     });
     dialogRef.afterClosed().subscribe(async (result: any) => {
       if (result?.amount === item?.amount) return;
-      if (!result.amount || result.amount < 0) return;
+      if (!result || !result.amount || result.amount < 0) return;
       const fullPrice = result.amount * item.product_id.price;
       await this.cartService.editItemAmount(item._id, result.amount, fullPrice);
     });

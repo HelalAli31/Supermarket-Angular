@@ -27,7 +27,6 @@ async function verifyJWT(token) {
         logger.error(err);
         reject(err);
       }
-      console.log("decoded", decoded.data);
       resolve(decoded);
     });
   });
