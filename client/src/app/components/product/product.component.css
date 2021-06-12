@@ -1,6 +1,13 @@
 .product:hover .title {
   animation: fadeIn 3s;
 }
+.titleDiv {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: space-around;
+  padding-bottom: 11px;
+}
 
 .Image {
   width: 170px;
@@ -16,10 +23,18 @@
   width: 200px;
 }
 
-.SecondPrice2 {
+.SecondPrice {
   position: absolute;
-  bottom: 60px;
-  margin-left: 45px;
+  top: -10px;
+  right: 100px;
+}
+.priceContainer {
+  position: relative;
+}
+.priceF {
+  width: 100%;
+  height: auto;
+  background-color: violet;
 }
 
 .mat-slider-thumb {
@@ -27,8 +42,14 @@
 }
 
 .ActionButton {
-  width: 100%;
   padding: 0px 10px;
+  color: black;
+  align-items: center;
+  border-bottom: solid 1px #f85f73;
+  border-radius: 5px;
+}
+.ActionButton:hover {
+  background-color: #f85f73;
 }
 
 .Title {
@@ -40,11 +61,13 @@
 }
 .Price {
   position: relative;
+  margin-left: 20%;
 }
 .SecondPrice {
-  position: absolute;
+  /* position: absolute;
   top: 0px;
-  margin-left: 40px;
+  left: 40px; */
+  /* margin-left: 40px; */
   /* margin-bottom: 30px; */
 }
 .SlideIcon {
@@ -54,23 +77,32 @@
   height: 5px;
 }
 .ProductCard {
-  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: space-around;
+  padding-bottom: 11px;
   width: 100%;
-  animation: FadeIn 4s;
-  background: white;
+}
+
+/* animation: FadeIn 4s;
+   background: white;
   background: linear-gradient(
     rgba(225, 225, 225, 0.7),
     rgba(225, 225, 225, 0.3)
   );
-  backdrop-filter: blur(2rem);
-}
-.ProductCard:hover img {
+  backdrop-filter: blur(2rem); */
+.ProductCard1:hover img {
   animation: ImageEffect 2s;
+}
+
+.ProductCard:hover {
+  border: 1px solid black;
 }
 img {
   border-radius: 10px;
   width: 70%;
-  height: 150px;
+  height: 200px;
   margin-left: 6px;
 }
 .Arrow {
@@ -92,7 +124,7 @@ img {
   position: relative;
   margin-right: 10px;
 }
-.ProductCard:hover img {
+.ProductCard3:hover img {
   animation: ImageEffect 0.2s;
 }
 
@@ -113,4 +145,53 @@ img {
   to {
     opacity: 1;
   }
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: space-around;
+  padding-bottom: 11px;
+}
+
+::ng-deep .mat-card-header-text {
+  margin: 0 auto !important;
+}
+
+.description {
+  display: block;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+mat-card-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+::ng-deep .mat-card {
+  border: none;
+}
+.mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
+}
+.mat-card:hover:not([class*="mat-elevation-z"]) {
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 50%);
+}
+
+.MainContent {
+  border: 1px solid transparent;
+  border-right-color: #dbe1f0;
+  border-left-color: #dbe1f0;}
+
+hr{
+ color: grey;
+
 }

@@ -116,7 +116,7 @@ export class ProductComponent implements OnInit {
   }
 
   getPriceToDesign() {
-    this.Price.all = this.product.price;
+    this.Price.all = this.product.price.toFixed(2);
     let x = this.Price.all.toString();
     this.Price.first = x.split('.')[0];
     this.Price.second = x.split('.')[1];

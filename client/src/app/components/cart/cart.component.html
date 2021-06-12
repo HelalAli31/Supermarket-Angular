@@ -1,10 +1,20 @@
 <div class="m">
   <div class="c">
-    <mat-icon class="col-6 ShoppingCart" style="font-size: 40px"
+    <!-- <mat-icon
+      class="col-6 ShoppingCart"
+      matBadge="{{ items.length }}"
+      matBadgeColor="warn"
+      style="font-size: 40px"
       >shopping_cart
-    </mat-icon>
+    </mat-icon> -->
+    <mat-icon
+      matBadge="{{ items.length }}"
+     
+      style="font-size: 30px"
+      >shopping_cart</mat-icon
+    >
   </div>
-  <p class="NItems">{{ items.length }}</p>
+  <!-- <p class="NItems">{{ items.length }}</p> -->
   <div class="items">
     <div *ngFor="let item of items; index as pIndex" class="FixedDiv">
       <div class="row item" style="height: 100%">

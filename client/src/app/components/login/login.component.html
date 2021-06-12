@@ -66,11 +66,15 @@
 
     <br />
     <div style="margin: 30px; padding-left: 30px">
-      <button mat-raised-button (click)="login()" style="font-size: 30px">
+      <button
+        mat-raised-button
+        (click)="login()"
+        style="font-size: 20px; background-color: #f85f73; color: white"
+      >
         Login
       </button>
-      <label> {{ loginFailed }}</label>
-      <button mat-button routerLink="signUp" style="font-size: 20px">
+      <label style="font-size: 20px"> {{ loginFailed }}</label>
+      <button mat-button routerLink="signUp" class="SignUp" style="font-size: 20px">
         sign up
       </button>
     </div>

@@ -162,25 +162,23 @@
   </div>
 </div> -->
 
-<mat-card class="ProductCard">
-  <mat-card-header>
+<!-- <div class="ProductCard">
+  <div>
     <div mat-card-avatar class="example-header-image"></div>
-    <div class="row TitleDiv">
-      <mat-card-subtitle class="Title col-9">{{
-        product.title | titlecase
-      }}</mat-card-subtitle>
-    </div>
-  </mat-card-header>
+  </div>
   <div>
     <img [src]="imagePath" />
   </div>
-  <mat-card-content>
-    <div *ngIf="this.userRole === 'user'">
+  <div class="row ">
+    <h4 class="Title col-9">{{ product.title | titlecase }}</h4>
+  </div>
+  <br />
+  <div>
+    <div class="content" *ngIf="this.userRole === 'user'">
       <div class="Price mt-3">
-        <h2>₪{{ Price.first }}</h2>
-        <p class="SecondPrice">{{ Price.second }}</p>
+        {{ product.price }}
       </div>
-      <div>
+   
         <button
           mat-raised-button
           class="ActionButton"
@@ -188,9 +186,16 @@
         >
           {{ ActionName }}
         </button>
-      </div>
+      
     </div>
     <div *ngIf="this.userRole === 'admin'">
+      <div class="Price mt-3">
+        <span class="fprice">
+          <span>₪{{ Price.first }}</span>
+        </span>
+
+        <span class="SecondPrice">{{ Price.second }}</span>
+      </div>
       <button
         class="ActionButton"
         mat-raised-button
@@ -199,5 +204,39 @@
         EDIT
       </button>
     </div>
-  </mat-card-content>
-</mat-card>
+  </div>
+</div> -->
+<div class="MainContent">
+  <mat-card>
+    <img mat-card-image [src]="imagePath" />
+    <mat-card-header>
+      <mat-card-title
+        ><span>{{ product.title | titlecase }}</span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="description">{{ product.description }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <span>{{ product.price }}</span>
+      <button
+        *ngIf="this.userRole === 'user'"
+        mat-button
+        class="ActionButton"
+        (click)="AddToCart(product._id, product.price)"
+      >
+        {{ ActionName }}
+      </button>
+
+      <button
+        *ngIf="this.userRole === 'admin'"
+        class="ActionButton"
+        mat-raised-button
+        (click)="updateProduct(product)"
+      >
+        EDIT
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<hr />

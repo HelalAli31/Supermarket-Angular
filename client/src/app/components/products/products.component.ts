@@ -137,7 +137,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   getProductDetails(product: any) {
     this.productToUpdate = product;
-    this.updateProductEvent2.emit(product);
   }
 
   async editProduct(event: any) {

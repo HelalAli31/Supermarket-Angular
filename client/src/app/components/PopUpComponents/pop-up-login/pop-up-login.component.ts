@@ -110,8 +110,6 @@ export class PopUpLoginComponent implements OnInit {
     if (!this.userId) return;
     const result = await this.cartService.getCart(this.userId).then(
       (value: any) => {
-        console.log(value);
-
         const data = value.cart[value.cart.length - 1];
         if (data) {
           this.cartIsOpen = data.cartIsOpen;

@@ -4,7 +4,7 @@ body {
 }
 .LoginCard {
   color: black;
-  background-color: rgb(226, 208, 208);
+  background-color: white;
   /* opacity: 0.5; */
   width: 100%;
   height: 500px;
@@ -155,4 +155,10 @@ body {
       "M0,12 L226,12 C220,12 220.666667,12 228,12 C239,12 245,17 253,17 C261,17 268,12 278,12 C284.666667,12 285.333333,12 280,12"
     );
   }
+}
+
+.SignUp:hover {
+  background-color: #f85f73;
+  color: white;
+  margin-left: 10px;
 }

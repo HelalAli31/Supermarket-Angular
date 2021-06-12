@@ -111,7 +111,7 @@
   cursor: pointer;
   margin: 5px;
   height: 50px;
-  background-color: rgb(223, 56, 56);
+  background-color: #f85f73;
   backdrop-filter: blur(2rem);
   /* color: red; */
   /* border-bottom: 1px solid black;
@@ -125,7 +125,7 @@
   left: 10px; */
   border: none;
   width: 315px;
-  background-color: rgb(223, 56, 56);
+  background-color: #f85f73;
   opacity: 1;
 
   backdrop-filter: blur(2rem);
@@ -167,7 +167,7 @@
 
 .items {
   position: absolute;
-  top: 45px;
+  top: 55px;
   overflow: scroll;
   height: 590px;
 }
@@ -185,6 +185,7 @@
   top: 0px;
   color: black;
   width: 100%;
+  padding-bottom: 20px;
   /* height: 60px; */
   /* background-color: rgb(223, 56, 56); */
 }
@@ -200,4 +201,11 @@
   margin-top: 17px;
   color: black;
   border-left: 1px solid black;
+}
+.mat-badge-con323t22ent {
+  background: #f85f73 !important;
+  color: white;
+}
+::ng-deep .mat-badge-content {
+  background: #f85f73 !important;
 }
