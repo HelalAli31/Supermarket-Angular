@@ -167,7 +167,7 @@
 
 .items {
   position: absolute;
-  top: 40px;
+  top: 45px;
   overflow: scroll;
   height: 590px;
 }
@@ -183,8 +183,10 @@
 .c {
   position: absolute;
   top: 0px;
-  color: rgb(223, 56, 56);
+  color: black;
   width: 100%;
+  /* height: 60px; */
+  /* background-color: rgb(223, 56, 56); */
 }
 
 .b {

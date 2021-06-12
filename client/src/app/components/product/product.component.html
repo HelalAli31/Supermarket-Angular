@@ -171,35 +171,11 @@
       }}</mat-card-subtitle>
     </div>
   </mat-card-header>
-  <div class="">
-    <img class="" [src]="imagePath" />
+  <div>
+    <img [src]="imagePath" />
   </div>
   <mat-card-content>
     <div *ngIf="this.userRole === 'user'">
-      <!-- <div class="row">
-        <mat-slider
-          thumbLabel
-          tickInterval="1000"
-          step="1"
-          min="1"
-          max="100"
-          aria-label="units"
-          [(ngModel)]="amount"
-          class="col-4 ml-4"
-        ></mat-slider>
-        <div class="col-1 ArrowDiv">
-          <mat-icon class="Arrow" (click)="amount = amount + 1"
-            >keyboard_arrow_up</mat-icon
-          >
-          <mat-icon
-            *ngIf="amount > 1"
-            class="Arrow ArrowDown"
-            (click)="amount = amount - 1"
-            >keyboard_arrow_down</mat-icon
-          >
-        </div>
-        <p class="col-2 amount">{{ amount }}</p>
-      </div> -->
       <div class="Price mt-3">
         <h2>₪{{ Price.first }}</h2>
         <p class="SecondPrice">{{ Price.second }}</p>

@@ -7,8 +7,6 @@
   <p class="NItems">{{ items.length }}</p>
   <div class="items">
     <div *ngFor="let item of items; index as pIndex" class="FixedDiv">
-      <hr />
-
       <div class="row item" style="height: 100%">
         <div class="col-4">
           <img
@@ -40,6 +38,7 @@
           </h5>
         </div>
       </div>
+      <hr />
     </div>
   </div>
   <div class="b">

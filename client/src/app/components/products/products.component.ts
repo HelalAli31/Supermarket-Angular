@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ) {
     this.products = [];
     this.filterModel = '';
-    this.limit = 8;
+    this.limit = 12;
     this.from = 0;
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();

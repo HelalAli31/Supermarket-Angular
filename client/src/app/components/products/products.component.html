@@ -3,15 +3,17 @@
     class="example-container"
     [class.example-is-mobile]="mobileQuery.matches"
   >
-    <mat-toolbar class="example-toolbar toolbar">
-      <button mat-icon-button (click)="snav.toggle(); showCartIcon = false">
+    <mat-toolbar class="example-toolbar toolbar row">
+      <button
+        mat-icon-button
+        (click)="snav.toggle(); showCartIcon = false"
+        class="col-md-1 col-2"
+      >
         <mat-icon>menu</mat-icon>
       </button>
-      <h1 class="example-app-name">HouseMarket</h1>
-      <button mat-icon-button class="ExitButton" (click)="SignOut()">
-        <mat-icon>exit_to_app</mat-icon>
-      </button>
-      <a class="ToolBarServices" id="Services">
+      <h1 class="example-app-name col-10 col-md-4">HouseMarket</h1>
+
+      <a class="ToolBarServices col-4 col-md-1" id="Services">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -26,7 +28,7 @@
         </svg>
         Services</a
       >
-      <a class="ToolBarA" id="Delivery"
+      <a class="ToolBarA col-md-1 col-6" id="Delivery"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -40,7 +42,7 @@
           />
         </svg>
         Delivery
-        <div class="Content ContentDelievery">
+        <div class="Content ContentDelievery col-md-3 col-6">
           <table style="width: 100%">
             <tr>
               <th>Day</th>
@@ -81,7 +83,7 @@
           </table>
         </div>
       </a>
-      <a class="ToolBarA" id="Contact">
+      <a class="ToolBarA col-md-3 col-4" id="Contact">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -105,6 +107,14 @@
           </div>
         </div></a
       >
+      <button
+        mat-button
+        class="col-md-1 col-2"
+        style="margin-left: 4%"
+        (click)="SignOut()"
+      >
+        Sign Out
+      </button>
     </mat-toolbar>
 
     <mat-sidenav-container
@@ -140,7 +150,7 @@
             </h1>
           </div>
 
-          <div *ngIf="user[0]?.role === 'user'">
+          <div *ngIf="user[0]?.role === 'user'" style="margin-left: 5px">
             <button
               class="cancelButton"
               mat-icon-button
