@@ -3,14 +3,26 @@ body {
   /* height: 100%; */
 }
 .LoginCard {
-  color: white;
-  background-color: black;
-  opacity: 0.5;
-  width: 400px;
-  height: 400px;
-  margin-left: 570px;
-  margin-top: 40px;
+  color: black;
+  background-color: rgb(226, 208, 208);
+  /* opacity: 0.5; */
+  width: 100%;
+  height: 500px;
+  max-width: 400px;
+  /* margin-left: 570px;
+  margin-top: 40px; */
   font-size: 50px;
+  /* border: 1px solid grey; */
+}
+a {
+  color: black;
+}
+.Image {
+  background-image: url("https://image.freepik.com/free-photo/shopping-cart-is-concrete-podium-has-neon-illuminated-website-icon-back_172660-103.jpg");
+  background-repeat: no-repeat;
+  width: 300px;
+  background-size: cover;
+  background-position: center;
 }
 .loginName {
   font-size: 40px;
@@ -33,7 +45,9 @@ body {
   /* width: 100%; */
   /* max-width: 280px; */
   height: 53px;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
+  padding: 0px 17px;
 }
 .inp .border {
   position: absolute;
@@ -61,7 +75,7 @@ body {
   transition-delay: 0.15s;
 }
 .inp .check path {
-  stroke: white;
+  stroke: black;
   stroke-width: 2;
 }
 .inp input {
@@ -75,9 +89,9 @@ body {
   font-weight: 500;
   background: none;
   border-radius: 0;
-  color: white;
+  color: black;
   transition: all 0.15s ease;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid black;
 }
 .inp input:focus {
   outline: none;
@@ -92,7 +106,7 @@ body {
   transform: translate(0, 0) scale(1);
 }
 ::placeholder {
-  color: white;
+  color: black;
 }
 @-moz-keyframes elasticInput {
   33% {

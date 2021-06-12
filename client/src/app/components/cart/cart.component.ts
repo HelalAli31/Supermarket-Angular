@@ -69,24 +69,7 @@ export class CartComponent implements OnInit {
       resultStatus.then(
         (result: any) => {
           const value = result.message;
-          const dialogRef = this.dialog.open(DialogComponent, {
-            data: { value },
-          });
-          const cartId = result.order[0].cart_id;
-          this.cartService.UpdateCartOpenState(cartId);
-          this.fullPrice = 0;
-          this.items = [];
-          setTimeout(() => {
-            const dialogRef2 = this.dialog.open(PopUpOrderDoneComponent);
-            dialogRef2.afterClosed().subscribe((result: any) => {
-              if (result == 'true') {
-                this.newCart();
-              } else {
-                localStorage.clear();
-                this.router.navigate(['/']);
-              }
-            });
-          }, 3000);
+          this.AddOrder_dialog(value, result);
         },
         (reason: any) => {
           alert(reason);
@@ -95,15 +78,47 @@ export class CartComponent implements OnInit {
     }
   }
 
+  async AddOrder_dialog(value: any, result: any) {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: { value },
+    });
+    const cartId = result.order[0].cart_id;
+    this.cartService.UpdateCartOpenState(cartId);
+    this.fullPrice = 0;
+    this.items = [];
+    setTimeout(() => {
+      const dialogRef2 = this.dialog.open(PopUpOrderDoneComponent);
+      dialogRef2.afterClosed().subscribe((result: any) => {
+        if (result == 'true') {
+          this.newCart();
+        } else {
+          localStorage.clear();
+          this.router.navigate(['/']);
+        }
+      });
+    }, 3000);
+  }
+
   createOrderDetails(result: any) {
-    this.order.user_id = this.userId;
-    this.order.cart_id = this.cartId;
-    this.order.order_delivery_date = result.deliveryDate;
-    this.order.order_date = new Date(Date.now()).toString();
-    this.order.last_visa_number = result?.visaNumber;
-    this.order.total_price = this.fullPrice;
-    this.order.city = result.city;
-    this.order.street = result.street;
+    // this.order.user_id = this.userId;
+    // this.order.cart_id = this.cartId;
+    // this.order.order_delivery_date = result.deliveryDate;
+    // this.order.order_date = new Date(Date.now()).toString();
+    // this.order.last_visa_number = result?.visaNumber;
+    // this.order.total_price = this.fullPrice;
+    // this.order.city = result.city;
+    // this.order.street = result.street;
+
+    this.order = {
+      user_id: this.userId,
+      cart_id: this.cartId,
+      order_delivery_date: result.deliveryDate,
+      order_date: new Date(Date.now()).toString(),
+      last_visa_number: result?.visaNumber,
+      total_price: this.fullPrice,
+      city: result.city,
+      street: result.street,
+    };
   }
 
   async newCart() {
@@ -151,7 +166,7 @@ export class CartComponent implements OnInit {
     });
   }
 
-  async ngOnChanges() {
+  async UpdateStatus() {
     const a = await this.orderService.getOrder(this.cartId).then(
       (value: any) => {
         console.log(value);
@@ -173,12 +188,16 @@ export class CartComponent implements OnInit {
         alert(reason);
       }
     );
-    this.getCartItems();
   }
 
   async DeleteItemFromCart(event: any) {
     await this.cartService.deteleItemFromCart(event);
     await this.getCartItems();
+  }
+
+  async ngOnChanges() {
+    this.UpdateStatus();
+    this.getCartItems();
   }
 
   ngOnInit() {

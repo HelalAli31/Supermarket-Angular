@@ -78,6 +78,7 @@ router.post(
   async (req, res, next) => {
     const { cartId } = req.query;
     if (!cartId) return res.json("error");
+
     const cartItems = await getCartItems(cartId);
     if (!cartItems) throw new Error();
     return res.json(cartItems);

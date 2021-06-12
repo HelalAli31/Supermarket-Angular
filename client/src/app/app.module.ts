@@ -23,7 +23,6 @@ import { PopUpLoginComponent } from './components/PopUpComponents/pop-up-login/p
 import { CartComponent } from './components/cart/cart.component';
 import { PopUpOrderDetailsComponent } from './components/PopUpComponents/pop-up-order-details/pop-up-order-details.component';
 import { SingUpComponent } from './components/sing-up/sing-up.component';
-import { CartItemsComponent } from './components/cart-items/cart-items.component';
 import { PopUpEditItemComponent } from './components/PopUpComponents/pop-up-edit-item/pop-up-edit-item.component';
 import { DialogComponent } from './components/PopUpComponents/dialog/dialog.component';
 import { PopUpOrderDoneComponent } from './components/PopUpComponents/pop-up-order-done/pop-up-order-done.component';
@@ -46,7 +45,6 @@ import { SlideImagesComponent } from './components/slide-images/slide-images.com
     CartComponent,
     PopUpOrderDetailsComponent,
     SingUpComponent,
-    CartItemsComponent,
     PopUpEditItemComponent,
     DialogComponent,
     PopUpOrderDoneComponent,

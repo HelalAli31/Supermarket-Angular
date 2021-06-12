@@ -87,11 +87,6 @@ export class productActionsComponent implements OnInit, OnChanges, OnDestroy {
     const dialogRef = this.dialog.open(CategoryFormComponent, {
       data: { category },
     });
-    // dialogRef.afterClosed().subscribe(async (result) => {
-    //   if (!result) return;
-    //   await this.categoryService.addCategory(result.category);
-    //   await this.getCategories();
-    // });
   }
 
   ActionProduct() {

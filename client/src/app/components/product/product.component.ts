@@ -134,6 +134,5 @@ export class ProductComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
-    console.log('AAAAAA');
   }
 }

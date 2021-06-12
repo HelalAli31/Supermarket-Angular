@@ -70,7 +70,7 @@
 img {
   border-radius: 10px;
   width: 60%;
-  height: 150px;
+  height: 100px;
   margin-left: 6px;
 }
 .Arrow {
@@ -93,7 +93,7 @@ img {
   margin-right: 10px;
 }
 .ProductCard:hover img {
-  animation: ImageEffect 3s;
+  animation: ImageEffect 0.2s;
 }
 
 @keyframes ImageEffect {

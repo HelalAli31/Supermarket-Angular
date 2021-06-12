@@ -33,6 +33,7 @@
   display: table-cell;
   padding-left: 2px;
   height: 20px;
+  color: rgb(177, 58, 58);
 }
 .FixedDiv {
   top: 30px;
@@ -110,8 +111,9 @@
   cursor: pointer;
   margin: 5px;
   height: 50px;
-  background-color: #ffcdd2;
+  background-color: rgb(223, 56, 56);
   backdrop-filter: blur(2rem);
+  /* color: red; */
   /* border-bottom: 1px solid black;
   border-top: 1px solid black;
   border-left: 1px solid black; */
@@ -123,7 +125,7 @@
   left: 10px; */
   border: none;
   width: 315px;
-  background-color: #ffcdd2;
+  background-color: rgb(223, 56, 56);
   opacity: 1;
 
   backdrop-filter: blur(2rem);
@@ -181,12 +183,14 @@
 .c {
   position: absolute;
   top: 0px;
-  color: rgba(161, 156, 156, 0.836);
+  color: rgb(223, 56, 56);
+  width: 100%;
 }
+
 .b {
   position: absolute;
   bottom: 0px;
-  background-color: ffebee;
+  background-color: #ffebee;
   /* margin-top: 50px; */
 }
 
