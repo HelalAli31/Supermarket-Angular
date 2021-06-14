@@ -3,6 +3,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { ProductsService } from 'src/app/service/productService/products.service';
 import { OrdersService } from 'src/app/service/orderService/orders.service';
+// import { Aos } from 'aos';
+import * as Aos from 'aos';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,7 @@ export class HomeComponent implements OnInit {
   public productsNumber: any;
   private _mobileQueryListener: () => void;
   public productToUpdate: any;
+  public showLogin: boolean = false;
   public nOrders = 0;
   public nProducts = 0;
   public StopOrdersCount = setInterval(() => {
@@ -40,6 +43,10 @@ export class HomeComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.ordersNumber;
     this.productsNumber;
+  }
+
+  closeLogin() {
+    this.showLogin = false;
   }
 
   updateProduct(product: any) {

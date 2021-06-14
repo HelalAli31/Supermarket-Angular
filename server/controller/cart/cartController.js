@@ -49,6 +49,8 @@ async function addCart(userId) {
     const cart = {};
     cart.user_id = userId;
     const result = await cartModel.insertMany(cart);
+    console.log(result);
+
     return result;
   } catch (error) {
     console.log(error);

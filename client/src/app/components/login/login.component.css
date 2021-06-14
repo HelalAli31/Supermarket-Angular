@@ -7,8 +7,8 @@ body {
   background-color: white;
   /* opacity: 0.5; */
   width: 100%;
-  height: 500px;
-  max-width: 400px;
+  height: 400px;
+  /* max-width: 600px; */
   /* margin-left: 570px;
   margin-top: 40px; */
   font-size: 50px;
@@ -158,7 +158,12 @@ body {
 }
 
 .SignUp:hover {
-  background-color: #f85f73;
-  color: white;
+  background-color: #e0bba9;
   margin-left: 10px;
+}
+
+.BackButton {
+  float: right;
+  margin-top: 10px;
+  cursor: pointer;
 }

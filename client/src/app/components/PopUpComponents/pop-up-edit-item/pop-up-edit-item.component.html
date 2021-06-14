@@ -2,23 +2,34 @@
   <img
     src="{{ this.basePath }}/{{ data.image }}"
     class="Image row-4"
-    style="width: 70px; height: 70px"
+    style="width: 150px; height: 200px"
   />
 
-  <div class="col-5">
-    <h4 style="font-family: 'Kalam', cursive; margin-top: 20px">
+  <div class="col-8">
+    <h1 style="font-family: 'Kalam', cursive; margin-top: 20px">
       {{ data.title }}
-    </h4>
+    </h1>
+    <h3 style="font-family: 'Kalam', cursive; margin-top: 20px">
+      {{ data.description }}
+    </h3>
   </div>
-  <input
-    style="border-bottom: 1px solid grey; width: 70px"
-    matInput
-    type="number"
-    min="1"
-    [(ngModel)]="amount"
-    placeholder="amount"
-  />
-  <button class="SaveButton" mat-raised-button (click)="SaveAmount()">
-    Save
-  </button>
+  <div class="row col-12 ActionButton">
+    <div class="col-6"></div>
+    <input
+      style="border-bottom: 1px solid grey; width: 70px"
+      matInput
+      type="number"
+      min="1"
+      [(ngModel)]="amount"
+      placeholder="amount"
+      class="col-2 mt-3"
+    />
+    <button
+      class="SaveButton col-3 ml-2"
+      mat-button
+      (click)="SaveAmount()"
+    >
+      Save
+    </button>
+  </div>
 </div>

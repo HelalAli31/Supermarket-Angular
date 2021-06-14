@@ -23,11 +23,16 @@ export class PopUpOrderDetailsComponent implements OnInit {
   public disabledDates: any;
   public myInvalidDates: any;
   public InvalidDatesFilter: any;
+  public fullPrice: number;
   public user2: any = getPayload();
+  public deliveryPrice: number = 30;
+  public totalPrice: number;
+  public imageUrl: string;
+  public images: any;
 
   constructor(
     public dialogRef: MatDialogRef<PopUpOrderDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { items: any },
+    @Inject(MAT_DIALOG_DATA) public data: { items: any; fullPrice: number },
     private orderService: OrdersService
   ) {
     this.deliveryDate = moment(Date.now()).format('YYYY-MM-DD');
@@ -39,9 +44,16 @@ export class PopUpOrderDetailsComponent implements OnInit {
     this.filterModel = '';
     this.value = this.deliveryDate;
     this.myInvalidDates = [];
+    this.fullPrice = data?.fullPrice;
+    this.totalPrice = this.fullPrice + this.deliveryPrice;
+    this.imageUrl = './../../../../assets/1x/';
+    this.images = {
+      pickUp: this.imageUrl + 'outline_hail_black_24dp.png',
+      delivery: this.imageUrl + 'outline_local_shipping_black_24dp.png',
+    };
   }
 
-  onNoClick(): void {
+  buyNow(): void {
     const validtionDetails = this.getValidationDetails();
     if (validtionDetails)
       this.dialogRef.close({
@@ -49,23 +61,24 @@ export class PopUpOrderDetailsComponent implements OnInit {
         deliveryDate: this.deliveryDate,
         city: this.city,
         street: this.street,
+        total_price: this.totalPrice,
       });
   }
 
+  updatePrice(deliveryPrice: number) {
+    this.deliveryPrice = deliveryPrice;
+    this.totalPrice = this.fullPrice + this.deliveryPrice;
+  }
+
   getValidationDetails() {
-    if (
-      this.visaNumber?.toString().length == 4 &&
-      this.deliveryDate?.valueOf().toString().length &&
-      this.city?.length &&
-      this.street?.length &&
-      this.CheckValidDate()
-    ) {
-      return true;
-    } else {
-      return alert(
-        'something went wrong !!, check all details are required to continue'
-      );
-    }
+    if (this.visaNumber?.toString().length !== 4)
+      return alert('check visa number');
+    if (!this.deliveryDate?.valueOf().toString().length)
+      return alert('check delivery date');
+    if (!this.city?.length) return alert('pick up a city');
+    if (!this.street?.length) return alert('pick up a street');
+    if (!this.CheckValidDate()) return alert('delivery date is not valid ');
+    return true;
   }
 
   CheckValidDate() {
@@ -113,7 +126,6 @@ export class PopUpOrderDetailsComponent implements OnInit {
       let a = this.myInvalidDates[1];
       const b: any = moment(a).format('YYYY-MM-DD');
       const ValidationDate = this.CC(d, b);
-      console.log(ValidationDate);
       return !ValidationDate;
     };
   }
@@ -136,6 +148,7 @@ export class PopUpOrderDetailsComponent implements OnInit {
     const newPipe = new FilterPipe();
     this.filteredItems = newPipe.transform(this.data.items, this.filterModel);
   }
+
   async ngOnInit() {
     await this.orderService.getAllOrders().then(
       (result: any) => {

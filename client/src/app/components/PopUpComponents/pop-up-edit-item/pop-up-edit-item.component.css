@@ -1,9 +1,15 @@
 .SaveButton {
-  margin-left: 70%;
-  margin-top: 10px;
+  /* margin-left: 70%; */
+  /* margin-top: 10px; */
+  float: right;
+  background-color: #e0bba9;
 }
 
 .MainDiv {
   position: relative;
+  width: 100%;
+  min-width: 500px;
+}
 
+.ActionButton {
 }

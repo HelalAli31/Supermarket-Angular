@@ -42,7 +42,7 @@ function getProductsData() {
     },
     {
       title: "green smoothie",
-      type: "dairy",
+      type: "fruit",
       description: "sweet green apple",
       filename: "3.jpg",
       price: 7.5,

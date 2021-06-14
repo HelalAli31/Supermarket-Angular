@@ -53,7 +53,7 @@ export class CartComponent implements OnInit {
   openDialog(): void {
     if (!this.items || !this.items.length) return;
     const dialogRef = this.dialog.open(PopUpOrderDetailsComponent, {
-      data: { items: this.items },
+      data: { items: this.items, fullPrice: this.fullPrice },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (!result) return;
@@ -100,22 +100,13 @@ export class CartComponent implements OnInit {
   }
 
   createOrderDetails(result: any) {
-    // this.order.user_id = this.userId;
-    // this.order.cart_id = this.cartId;
-    // this.order.order_delivery_date = result.deliveryDate;
-    // this.order.order_date = new Date(Date.now()).toString();
-    // this.order.last_visa_number = result?.visaNumber;
-    // this.order.total_price = this.fullPrice;
-    // this.order.city = result.city;
-    // this.order.street = result.street;
-
     this.order = {
       user_id: this.userId,
       cart_id: this.cartId,
       order_delivery_date: result.deliveryDate,
       order_date: new Date(Date.now()).toString(),
       last_visa_number: result?.visaNumber,
-      total_price: this.fullPrice,
+      total_price: result.total_price,
       city: result.city,
       street: result.street,
     };
@@ -145,6 +136,7 @@ export class CartComponent implements OnInit {
         title: item.product_id.title,
         image: item.product_id.filename,
         amount: item.amount,
+        description: item.product_id.description,
       },
     });
     dialogRef.afterClosed().subscribe(async (result: any) => {

@@ -16,3 +16,8 @@
   height: 600px;
   margin-top: 10%;
 }
+
+.BuyButton {
+  background: rgba(133, 128, 128, 0.2);
+  backdrop-filter: blur(40px);
+}

@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row" *ngIf="this.LoggedIn === false">
   <div class="col-7 Image"></div>
-  <div class="LoginCard col-5">
+  <div class="LoginCard col-5" style="border: 1px solid grey">
     <!-- <h1 class="loginName mt-2">Login:</h1> -->
     <!-- <mat-form-field class="example-full-width">
       <mat-label>email:</mat-label>
@@ -10,7 +10,8 @@
       <mat-label>password:</mat-label>
       <input matInput placeholder="write your password" [(ngModel)]="password" />
     </mat-form-field> -->
-    <div style="margin-left: 20px; margin-top: 35%">
+
+    <div style="margin-top: 35%">
       <label for="inp" class="inp">
         <input
           [(ngModel)]="email"
@@ -37,7 +38,7 @@
       </label>
     </div>
 
-    <div style="margin-left: 20px">
+    <div>
       <label for="inp" class="inp">
         <input
           [(ngModel)]="password"
@@ -65,16 +66,21 @@
     </div>
 
     <br />
-    <div style="margin: 30px; padding-left: 30px">
+    <div style="margin: 10%; padding-left: 10%">
       <button
         mat-raised-button
         (click)="login()"
-        style="font-size: 20px; background-color: #f85f73; color: white"
+        style="font-size: 20px; background-color: #e0bba9; color: black"
       >
         Login
       </button>
       <label style="font-size: 20px"> {{ loginFailed }}</label>
-      <button mat-button routerLink="signUp" class="SignUp" style="font-size: 20px">
+      <button
+        mat-button
+        routerLink="signUp"
+        class="SignUp"
+        style="font-size: 20px"
+      >
         sign up
       </button>
     </div>
@@ -122,5 +128,12 @@
         </svg>
       </a>
     </div>
+  </div>
+</div>
+
+<div *ngIf="this.LoggedIn === true">
+  <h1>You Aleady logged in</h1>
+  <div>
+    do you want to sign out ? <button mat-raised-button (click)="signOut()">Sign Out</button>
   </div>
 </div>

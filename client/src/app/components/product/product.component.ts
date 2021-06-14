@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { OrdersService } from 'src/app/service/orderService/orders.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpEditItemComponent } from '../PopUpComponents/pop-up-edit-item/pop-up-edit-item.component';
+import * as Aos from 'aos';
 
 @Component({
   selector: 'app-product',
@@ -17,7 +18,7 @@ import { PopUpEditItemComponent } from '../PopUpComponents/pop-up-edit-item/pop-
 })
 export class ProductComponent implements OnInit {
   @Input() product: any;
-  @Input() cartId: any;
+  @Input() cart: any;
   @Output() updateProductEvent = new EventEmitter<any>();
   @Output() AddItemsToCartEvent = new EventEmitter<any>();
   public basePath: string;
@@ -47,6 +48,7 @@ export class ProductComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.userRole = '';
     this.amount = 1;
+
     this.item = {};
     this.ActionName = 'Add';
     this.Price = {};
@@ -78,7 +80,12 @@ export class ProductComponent implements OnInit {
     const item = this.product;
     console.log(item);
     const dialogRef = this.dialog.open(PopUpEditItemComponent, {
-      data: { image: item.filename, amount: this.amount, title: item.title },
+      data: {
+        image: item.filename,
+        amount: this.amount,
+        title: item.title,
+        description: item.description,
+      },
     });
     dialogRef.afterClosed().subscribe(async (result: any) => {
       console.log(result);
@@ -94,7 +101,7 @@ export class ProductComponent implements OnInit {
   }
 
   async UpdateAction() {
-    await this.cartService.getCartItems(this.cartId)?.then(
+    await this.cartService.getCartItems(this.cart)?.then(
       (result) => {
         this.UpdateActionButtonName(result);
       },
@@ -105,7 +112,10 @@ export class ProductComponent implements OnInit {
   }
   UpdateActionButtonName(result: any) {
     if (!result || !Array.isArray(result)) return;
-    if (!result.length) this.ActionName = 'Add';
+    if (!result.length) {
+      this.ActionName = 'Add';
+      this.amount = 1;
+    }
     this.ActionName = 'Add';
     result.map((p: any) => {
       if (p.product_id._id == this.product._id) {
@@ -115,13 +125,6 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  getPriceToDesign() {
-    this.Price.all = this.product.price.toFixed(2);
-    let x = this.Price.all.toString();
-    this.Price.first = x.split('.')[0];
-    this.Price.second = x.split('.')[1];
-  }
-
   async ngOnInit() {
     this.imagePath =
       this.product?.image || this.basePath + this.product?.filename;
@@ -129,7 +132,9 @@ export class ProductComponent implements OnInit {
     const user = data[0]?.role;
     this.userRole = user;
     if (this.userRole === 'user') this.UpdateAction();
-    this.getPriceToDesign();
+
+    this.amount = 1;
+    Aos.init();
   }
 
   ngOnDestroy(): void {

@@ -1,91 +1,71 @@
-<div class="productsCard">
-  <div class="HomePageCard">
-    <mat-toolbar
-      style="background-color: black; color: white; opacity: 0.5"
-      id="section1"
-    >
-      <span>HouseMarket</span>
-    </mat-toolbar>
-    <div class="row mt-5" style="margin-left: 1%;">
-      <app-login class="col-12"></app-login>
-    </div>
-    <!-- <div class="main" id="section12">
-      <a href="#section23"> <h2 class="AboutName">About us</h2></a>
-    </div>
-    <div>
-      <div class="CircleDetails C1">
-        <p>
-          {{ nOrders }}
-        </p>
-        <br />
-        <h3>Orders!</h3>
-      </div>
-    </div>
-    <div>
-      <div class="CircleDetails C2">
-        <p>{{ nProducts }}</p>
-        <br />
-        <h3>products!</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="main AboutUsContent col-5 mb-3" id="section23">
-        <div>
-          <h2>delivering to everywhere in the country</h2>
-          <div class="row">
-            <mat-icon class="col-1">check_box</mat-icon>
-            <h4 class="col-8">got alot of products</h4>
-          </div>
-          <div class="row">
-            <mat-icon class="col-1">check_box</mat-icon>
-            <h4 class="col-8">saving your time</h4>
-          </div>
+<div class="Main">
+  <h1 class="ml-3">HouseMarket</h1>
 
-          <div class="row">
-            <mat-icon class="col-1">check_box</mat-icon>
-            <h4 class="col-8">
-              A central invoice detailing the monthly purchases
-            </h4>
+  <div class="HomePageCard container">
+    <div class="row" style="margin-left: 1%">
+      <div class="col-12 row" *ngIf="!showLogin">
+        <!-- <span class="col-1"></span> -->
+        <div class="col-12 col-lg-9">
+          <app-login (closeLoginEvent)="closeLogin()"></app-login>
+        </div>
+
+        <div class="col-lg-3 col-12">
+          <div class="aboutUs ContentDiv">
+            <h2>Delivering everywhere</h2>
+            <div class="row">
+              <mat-icon class="col-1">check_box</mat-icon>
+              <h4 class="col-8">got alot of products</h4>
+            </div>
+            <div class="row">
+              <mat-icon class="col-1">check_box</mat-icon>
+              <h4 class="col-8">saving your time</h4>
+            </div>
+
+            <div class="row">
+              <mat-icon class="col-1">check_box</mat-icon>
+              <h4 class="col-8">
+                A central invoice detailing the monthly purchases
+              </h4>
+            </div>
+            <div class="row">
+              <mat-icon class="col-1">check_box</mat-icon>
+              <h4 class="col-8">
+                Payment once a month by bank transfer / check / credit card
+              </h4>
+            </div>
           </div>
-          <div class="row">
-            <mat-icon class="col-1">check_box</mat-icon>
-            <h4 class="col-8">
-              Payment once a month by bank transfer / check / credit card
-            </h4>
+        </div>
+        <!-- <div
+          class="col-md-4 col-5 ContentDiv LoginIconDiv"
+          (click)="showLogin = true"
+        >
+          <mat-icon class="LoginIcon">account_circle</mat-icon>
+          <h1 style="color: black; margin-left: 30px">Login Now!</h1>
+        </div> -->
+        <div class="container">
+          <div class="col-md-12 row col-12 mt-3">
+            <span class="col-12 col-md-2"></span>
+
+            <div class="col-md-3 col-4 DetailsDiv">
+              <div>
+                <h1 class="mt-3">{{ nOrders }}</h1>
+                <h3>Orders</h3>
+              </div>
+            </div>
+            <div class="col-md-3 col-4 ml-5 DetailsDiv">
+              <div>
+                <h1 class="mt-3">{{ nProducts }}</h1>
+                <h3>Products</h3>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-3 AboutMe">
-        <mat-icon style="font-size: 50px">supervised_user_circle</mat-icon>
-        <p style="margin-top: 10px">Helal Ali</p>
-        <div class="row" style="font-size: 20px">
-          <p class="col-1">
-            <mat-icon style="font-size: 20px">assignment_turned_in</mat-icon>
-          </p>
-          <p class="col-3">LinkdIn</p>
-          <a
-            href="https://www.linkedin.com/in/helal-ali-898247213/"
-            style="color: white"
-          >
-            <h4 class="col-7">
-              https://www.linkedin.com/in/helal-ali-898247213/
-            </h4>
-          </a>
-        </div>
-        <div class="row" style="font-size: 20px">
-          <p class="col-1">
-            <mat-icon style="font-size: 20px">email</mat-icon>
-          </p>
-          <p class="col-11">Email</p>
-          <h4 class="col-12">HelalAli1@hotmail.com</h4>
-        </div>
+
+      <div></div>
+      <div class="col-12 LoginMainDiv" *ngIf="showLogin">
+        <app-login></app-login>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>
-
-<!-- <form class="login">
-  <input type="text" placeholder="Username" />
-  <input type="password" placeholder="Password" />
-  <button style="background-color: #9e9999">Login</button>
-</form> -->

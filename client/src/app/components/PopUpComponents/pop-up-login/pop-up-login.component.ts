@@ -100,22 +100,18 @@ export class PopUpLoginComponent implements OnInit {
     );
     this.OpenedCartDetails.totalPrice = totalCartPrice;
     this.OpenedCartDetails.date = moment(data.date).format('DD/MM/YYYY');
+    console.log(this.OpenedCartDetails.date);
   }
 
-  async ngOnInit() {
-    const userResult = await getPayload();
-    this.userId = userResult.data[0]._id;
-    this.userName.firstName = userResult.data[0].first_name;
-    this.userName.lastName = userResult.data[0].last_name;
-    if (!this.userId) return;
+  async getCart() {
     const result = await this.cartService.getCart(this.userId).then(
       (value: any) => {
         const data = value.cart[value.cart.length - 1];
         if (data) {
           this.cartIsOpen = data.cartIsOpen;
           this.cart = value.cart;
+          console.log(this.cart);
           if (this.cartIsOpen === false) {
-            console.log('Aa');
             this.getLastOrderDate(data._id);
           } else {
             console.log(data, value);
@@ -129,6 +125,14 @@ export class PopUpLoginComponent implements OnInit {
         alert(reason);
       }
     );
-    console.log('done');
+  }
+
+  async ngOnInit() {
+    const userResult = await getPayload();
+    this.userId = userResult.data[0]._id;
+    this.userName.firstName = userResult.data[0].first_name;
+    this.userName.lastName = userResult.data[0].last_name;
+    if (!this.userId) return;
+    this.getCart();
   }
 }

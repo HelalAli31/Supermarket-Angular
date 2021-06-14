@@ -1,5 +1,5 @@
-.product:hover .title {
-  animation: fadeIn 3s;
+.MainContent {
+  animation: FadeIn 3s;
 }
 .titleDiv {
   display: flex;
@@ -45,11 +45,12 @@
   padding: 0px 10px;
   color: black;
   align-items: center;
-  border-bottom: solid 1px #f85f73;
+  border-bottom: solid 3px #e0bba9;
   border-radius: 5px;
+  width: 180px;
 }
 .ActionButton:hover {
-  background-color: #f85f73;
+  /* background-color: #e0bba9; */
 }
 
 .Title {
@@ -102,8 +103,12 @@
 img {
   border-radius: 10px;
   width: 70%;
-  height: 200px;
+  height: 150px;
   margin-left: 6px;
+}
+mat-card-content > span {
+  font-size: 17px;
+  margin-top: 10px;
 }
 .Arrow {
   width: 5px;
@@ -161,7 +166,7 @@ img {
 
 .description {
   display: block;
-  width: 200px;
+  width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -184,14 +189,19 @@ mat-card-actions {
 .mat-card:hover:not([class*="mat-elevation-z"]) {
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 50%);
+  background: #f7f0f2;
+  backdrop-filter: blur(40px);
 }
 
 .MainContent {
   border: 1px solid transparent;
   border-right-color: #dbe1f0;
-  border-left-color: #dbe1f0;}
+  border-left-color: #dbe1f0;
+}
+/* .MainContent:hover .ActionButton {
+  display: inline-block;
+} */
 
-hr{
- color: grey;
-
+hr {
+  color: grey;
 }

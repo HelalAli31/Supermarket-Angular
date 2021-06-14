@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 
 const cartSchema = new mongoose.Schema({
   user_id: {
@@ -8,7 +9,7 @@ const cartSchema = new mongoose.Schema({
   date: {
     type: Date,
     require: true,
-    default: Date.now(),
+    default: moment().toDate().getTime(),
   },
   cartIsOpen: {
     type: Boolean,

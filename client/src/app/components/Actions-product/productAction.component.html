@@ -73,6 +73,7 @@
           >please insert product price
         </mat-error>
       </mat-form-field>
+
       <br />
       <mat-form-field>
         <input
@@ -89,12 +90,16 @@
       <br />
       <br />
 
-      <button mat-raised-button color="primary" (click)="ActionProduct()">
+      <button
+        mat-raised-button
+        style="background-color: #e0bba9d3"
+        (click)="ActionProduct()"
+      >
         {{ ActionName }} product
       </button>
       <button
         mat-raised-button
-        color="primary"
+        style="background-color: #e0bba9d3"
         class="ResetButton"
         (click)="resetProduct()"
       >

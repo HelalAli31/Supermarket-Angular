@@ -8,7 +8,24 @@
       class="mb-5"
       style="border-bottom: 1px solid grey; width: 200px"
     />
+
     <div class="row">
+      <h3 class="6 mt-4">+</h3>
+      <div class="col-8">
+        <h2>Price: {{ fullPrice | number: "1.2-2" }}₪</h2>
+
+        <h2>
+          {{ deliveryPrice | number: "1.2-2" }}₪ <span>(delivery price)</span>
+        </h2>
+      </div>
+
+      <h1 style="font-weight: bolder; color: #c02a3e">
+        Total Price : {{ totalPrice | number: "1.2-2" }}₪
+      </h1>
+    </div>
+    <hr />
+
+    <div class="row mt-1">
       <h3 class="col-5">name</h3>
       <h3 class="col-2 ml-4">amount</h3>
       <h3 class="col-3 ml-3">price</h3>
@@ -27,7 +44,7 @@
     </div>
   </div>
   <div class="col-6 DetailsDiv">
-    <h1>Order Details</h1>
+    <h1 style="color: #c02a3e">Order Details</h1>
     <mat-form-field style="width: 300px !important">
       <input
         matInput
@@ -62,7 +79,16 @@
       <input matInput placeholder="street.." [(ngModel)]="street" />
     </mat-form-field>
     <br />
-    <button mat-raised-button (click)="onNoClick()" class="mt-5">
+    <button mat-raised-button class="col-1 mr-2" (click)="updatePrice(30)">
+      delivery
+    </button>
+    <img [src]="images.delivery" width="30px" height="30px" /> /
+    <button mat-raised-button class="col-1 mr-2" (click)="updatePrice(0)">
+      pick up
+    </button>
+    <img [src]="images.pickUp" width="30px" height="30px" />
+    <br />
+    <button mat-raised-button (click)="buyNow()" class="mt-5 BuyButton">
       Buy Now!
     </button>
     <button class="ml-2" mat-button mat-dialog-close>back</button>

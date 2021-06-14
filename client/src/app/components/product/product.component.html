@@ -208,17 +208,18 @@
 </div> -->
 <div class="MainContent">
   <mat-card>
-    <img mat-card-image [src]="imagePath" />
+    <img class="mt-2" mat-card-image [src]="imagePath" />
     <mat-card-header>
       <mat-card-title
-        ><span>{{ product.title | titlecase }}</span>
+        ><h2>₪{{ product.price | number: "1.2-2" }}</h2>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
+      <span>{{ product.title | titlecase }}</span>
       <p class="description">{{ product.description }}</p>
     </mat-card-content>
     <mat-card-actions>
-      <span>{{ product.price }}</span>
+      <span></span>
       <button
         *ngIf="this.userRole === 'user'"
         mat-button

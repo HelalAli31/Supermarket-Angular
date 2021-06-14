@@ -18,7 +18,8 @@ async function getAllProducts(from, limit, value, key) {
       .find({}, { __v: false })
       .populate("category", "name", categoryModel)
       .limit(Number(limit))
-      .skip(Number(from));
+      .skip(Number(from))
+      .sort({ category: 1 });
 
     return result;
   } catch (error) {

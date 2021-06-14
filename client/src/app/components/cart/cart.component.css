@@ -111,8 +111,11 @@
   cursor: pointer;
   margin: 5px;
   height: 50px;
-  background-color: #f85f73;
-  backdrop-filter: blur(2rem);
+  color: rgb(8, 6, 6);
+  background-color: #e0bba9;
+
+  /* background-color: #999595;
+  backdrop-filter: blur(2rem); */
   /* color: red; */
   /* border-bottom: 1px solid black;
   border-top: 1px solid black;
@@ -125,10 +128,9 @@
   left: 10px; */
   border: none;
   width: 315px;
-  background-color: #f85f73;
-  opacity: 1;
-
-  backdrop-filter: blur(2rem);
+  /* background-color: #999595; */
+  border: 1px solid grey;
+  background-color: #e0bba9;
 }
 .button span {
   cursor: pointer;
@@ -175,7 +177,7 @@
   position: relative;
   background-color: white;
   color: black;
-  min-height: 690px;
+  min-height: 689px;
   width: 300px;
   margin: 0px;
   padding: 0px;
@@ -194,6 +196,7 @@
   position: absolute;
   bottom: 0px;
   background-color: #ffebee;
+
   /* margin-top: 50px; */
 }
 
@@ -202,10 +205,10 @@
   color: black;
   border-left: 1px solid black;
 }
-.mat-badge-con323t22ent {
-  background: #f85f73 !important;
-  color: white;
-}
+
 ::ng-deep .mat-badge-content {
-  background: #f85f73 !important;
+  background: rgba(54, 53, 53, 0.733);
+  color: white;
+  /* opacity: 0.5; */
+  font-size: 17px;
 }

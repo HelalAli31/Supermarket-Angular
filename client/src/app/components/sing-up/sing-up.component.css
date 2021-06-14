@@ -1,8 +1,18 @@
 .MainDiv {
-  width: 80%;
+  /* width: 80%;
   margin-left: 30px;
-  margin-top: 30px;
+  margin-top: 30px; */
+  width: 80%;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 10%;
 }
 mat-form-field {
   margin-left: 10px;
+}
+.BackButton {
+  float: right;
 }

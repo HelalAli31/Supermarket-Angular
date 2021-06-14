@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'src/app/service/userService/user.service';
 import getPayload from '../../service/Payload/getPayload';
 import getIsAdmin from '../../service/Payload/isAdmin';
@@ -12,10 +12,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  @Output() closeLoginEvent = new EventEmitter<any>();
   public email: string;
   public password: string;
   public token: any;
   public loginFailed: string;
+  public LoggedIn: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -45,6 +47,13 @@ export class LoginComponent implements OnInit {
       }
     } else this.loginFailed = this.token;
   }
-
-  ngOnInit(): void {}
+  signOut() {
+    localStorage.clear();
+    this.router.navigate(['/']);
+    this.LoggedIn = false;
+  }
+  async ngOnInit() {
+    const data = await getPayload();
+    if (data) this.LoggedIn = true;
+  }
 }

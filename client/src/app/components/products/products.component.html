@@ -26,7 +26,10 @@
             d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
           />
         </svg>
-        Services</a
+        Services
+        <div class="Content ServicesContent">
+          <h3 class="ml-2">Call us : 0543596761</h3>
+        </div></a
       >
       <a class="ToolBarA col-md-1 col-6" id="Delivery"
         ><svg
@@ -98,19 +101,29 @@
         </svg>
         Contact us
         <div class="Content ContentContact">
-          <h2>Send feedback:</h2>
-          <div>
-            <input placeholder="message" />
-            <button mat-button style="margin-left: 5px; margin-bottom: 10px">
-              Send
-            </button>
+          <div class="ml-2">
+            <h5 style="font-size: 16px">Send feedback:</h5>
+            <div>
+              <input
+                matInput
+                style="
+                  margin: 3px 5px;
+                  width: 60%;
+                  border-bottom: 1px solid white;
+                "
+                placeholder="message"
+              />
+              <button mat-button style="margin-left: 5px; margin-bottom: 10px">
+                Send
+              </button>
+            </div>
           </div>
         </div></a
       >
       <button
         mat-button
         class="col-md-1 col-2"
-        style="margin-left: 4%"
+        style="margin-left: 4%; color: black"
         (click)="SignOut()"
       >
         Sign Out
@@ -137,7 +150,7 @@
               mat-icon-button
               (click)="snav.toggle(); showCartIcon = true"
             >
-              <mat-icon>cancel</mat-icon>
+              <mat-icon style="font-size: 20px">cancel</mat-icon>
             </button>
             <app-productAction
               [product]="productToUpdate"
@@ -156,7 +169,7 @@
               mat-icon-button
               (click)="snav.toggle(); showCartIcon = true"
             >
-              <mat-icon>cancel</mat-icon>
+              <mat-icon style="font-size: 20px">cancel</mat-icon>
             </button>
             <app-cart
               [userId]="this.user[0]._id"
@@ -182,7 +195,7 @@
           >
         </div>
 
-        <!-- <app-slide-images></app-slide-images> -->
+        <app-slide-images></app-slide-images>
 
         <div style="margin-left: 15%" class="row mt-2">
           <h2 class="col-1 col-sm-1 mt-3">
@@ -205,7 +218,12 @@
               (click)="getProducts('All')"
               mat-flat-button
               class="col-4 col-md-1"
-              style="color: black; height: 100%; margin-top: 30px"
+              style="
+                color: black;
+                height: 100%;
+                margin-top: 30px;
+                font-size: 16px;
+              "
               >All</a
             >
             <app-categories
@@ -221,7 +239,7 @@
               class="col-lg-3 col-sm-6 col-12 mt-5"
               *ngFor="let product of filterProducts"
               [product]="product"
-              [cartId]="cartId"
+              [cart]="cartId"
               (updateProductEvent)="getProductDetails($event)"
               (AddItemsToCartEvent)="addItemsToCart($event)"
             ></app-product>

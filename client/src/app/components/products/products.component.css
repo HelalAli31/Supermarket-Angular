@@ -18,8 +18,10 @@
   /* margin-left: 300px; */
 }
 .toolbar {
-  color: black;
-  background-color: #f85f73;
+  /* background: rgba(133, 128, 128, 0.2);
+  backdrop-filter: blur(40px);
+  color: black; */
+  background-color: #e0bba9d3;
 }
 
 .All {
@@ -60,17 +62,20 @@
 }
 .cancelButton {
   margin-left: 260px;
-  color: black;
+  color: rgba(46, 43, 43, 0.733);
+  /* opacity: 0.5;   */
   height: 32px;
 }
+
 .CartIcon {
   background-repeat: no-repeat;
   display: inline-block;
   fill: currentColor;
   justify-content: center;
-  font-size: 50px;
+  font-size: 40px;
   margin-left: 10px;
-  color: rgb(53, 51, 51);
+  color: #bb9c8cf5;
+  backdrop-filter: blur(40px);
 }
 .NextAndPref {
   font-size: 20px;
@@ -85,23 +90,23 @@
   /* margin-left: 30%; */
   color: black;
   cursor: pointer;
+  font-size: 15px;
 }
 .ToolBarA {
   margin-left: 2%;
   color: black;
   cursor: pointer;
+  font-size: 15px;
 }
-.ToolBarA {
-  margin-left: 2%;
-  color: black;
-  cursor: pointer;
-}
+
 .Content {
   display: none;
-  background-color: black;
-  opacity: 0.5;
-  color: white;
+  background-color: #e0bba9;
+  /* opacity: 0.5; */
+  color: black;
   width: 300px;
+  border-radius: 15%;
+  font-size: 15px;
 }
 td,
 tr {
@@ -114,7 +119,11 @@ tr {
   position: fixed;
   z-index: 100;
 }
-
+#Services:hover .ServicesContent {
+  display: block;
+  position: fixed;
+  z-index: 100;
+}
 #Contact:hover .ContentContact {
   display: block;
 

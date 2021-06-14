@@ -1,4 +1,8 @@
 <div class="MainDiv">
+  <button class="BackButton mr-5" routerLink="/" mat-raised-button>
+    <mat-icon>home</mat-icon>
+  </button>
+
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="SignUserFormFirst">
       <form [formGroup]="SignUserFormFirst">

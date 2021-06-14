@@ -8,6 +8,7 @@ import { CartService } from 'src/app/service/cartService/cart.service';
 
 import { ProductsService } from 'src/app/service/productService/products.service';
 import { CategoryService } from 'src/app/service/categoryService/category.service';
+import * as Aos from 'aos';
 
 @Component({
   selector: 'app-products',
@@ -56,15 +57,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.cartId = '';
     this.item = {};
     this.ProductActionResult = '';
-  }
-
-  async ngOnInit() {
-    await this.getProducts();
-    const { data } = await getPayload();
-    this.user = data;
-    this.subscriber = this.route.params.subscribe((params) => {
-      this.cartId = params['cartId'];
-    });
   }
 
   SignOut() {
@@ -158,5 +150,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.subscriber.unsubscribe();
+  }
+  async ngOnInit() {
+    await this.getProducts();
+    const { data } = await getPayload();
+    this.user = data;
+    this.subscriber = this.route.params.subscribe((params) => {
+      this.cartId = params['cartId'];
+    });
   }
 }

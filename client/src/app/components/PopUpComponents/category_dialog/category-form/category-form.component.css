@@ -1,7 +1,7 @@
-button {
-  background-color: grey;
-  color: white;
-}
 .Main {
   width: 500px;
+}
+button:hover {
+  background-color: #dfbdacb2;
+  color: black;
 }
