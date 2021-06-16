@@ -10,17 +10,12 @@
   max-width: 1250px; */
   max-width: 100%;
   width: 1400px;
-  /* position: fixed; */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  /* margin-left: 300px; */
 }
 .toolbar {
-  /* background: rgba(133, 128, 128, 0.2);
-  backdrop-filter: blur(40px);
-  color: black; */
   background-color: #e0bba9d3;
 }
 
@@ -29,7 +24,6 @@
   margin-left: 300px;
   cursor: pointer;
   margin-top: 8px;
-  /* top: 40px; */
   position: relative;
 }
 
@@ -93,18 +87,25 @@
   font-size: 15px;
 }
 .ToolBarA {
-  margin-left: 2%;
+  /* margin-left: 2%; */
   color: black;
   cursor: pointer;
   font-size: 15px;
 }
-
+.OrdersButton {
+  margin-top: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  color: black;
+}
+.OrdersButton :hover {
+  color: black;
+}
 .Content {
   display: none;
   background-color: #e0bba9;
-  /* opacity: 0.5; */
   color: black;
-  width: 300px;
+  /* width: 300px; */
   border-radius: 15%;
   font-size: 15px;
 }
@@ -136,5 +137,11 @@ tr {
     position: relative;
     padding: 50px;
     margin-top: 20px;
+  }
+  .ToolBarServices {
+    margin-top: 20px;
+  }
+  .ToolBarA {
+    margin-top: 18px;
   }
 }

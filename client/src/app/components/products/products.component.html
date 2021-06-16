@@ -7,13 +7,13 @@
       <button
         mat-icon-button
         (click)="snav.toggle(); showCartIcon = false"
-        class="col-md-1 col-2"
+        class="col-lg-1 col-md-1 col-3"
       >
         <mat-icon>menu</mat-icon>
       </button>
-      <h1 class="example-app-name col-10 col-md-4">HouseMarket</h1>
+      <h1 class="example-app-name col-9 col-lg-3 col-md-2">HouseMarket</h1>
 
-      <a class="ToolBarServices col-4 col-md-1" id="Services">
+      <a class="ToolBarServices col-4 col-lg-1 col-md-2" id="Services">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -31,7 +31,7 @@
           <h3 class="ml-2">Call us : 0543596761</h3>
         </div></a
       >
-      <a class="ToolBarA col-md-1 col-6" id="Delivery"
+      <a class="ToolBarA col-lg-1 col-md-2 col-4" id="Delivery"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -45,7 +45,7 @@
           />
         </svg>
         Delivery
-        <div class="Content ContentDelievery col-md-3 col-6">
+        <div class="Content ContentDelievery col-lg-3 col-md-2 col-6">
           <table style="width: 100%">
             <tr>
               <th>Day</th>
@@ -86,7 +86,7 @@
           </table>
         </div>
       </a>
-      <a class="ToolBarA col-md-3 col-4" id="Contact">
+      <a class="ToolBarA col-lg-1 col-md-2 col-4" id="Contact">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -120,9 +120,14 @@
           </div>
         </div></a
       >
+      <div class="col-6 col-lg-3 col-md-1 OrdersButton">
+        <a mat-button style="margin-left: 5px; margin-bottom: 10px">
+          Last Orders
+        </a>
+      </div>
       <button
         mat-button
-        class="col-md-1 col-2"
+        class="col-md-1 col-4"
         style="margin-left: 4%; color: black"
         (click)="SignOut()"
       >
