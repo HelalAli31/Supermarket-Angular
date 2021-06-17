@@ -39,6 +39,7 @@
 .Side {
   position: fixed;
   height: 100%;
+  /* margin-top: 62px; */
 }
 
 .SideButton {
@@ -95,9 +96,9 @@
 .OrdersButton {
   margin-top: 8px;
   cursor: pointer;
-  font-size: 15px;
   color: black;
 }
+
 .OrdersButton :hover {
   color: black;
 }
@@ -143,5 +144,8 @@ tr {
   }
   .ToolBarA {
     margin-top: 18px;
+  }
+  .SlideImages {
+    margin-top: 10px;
   }
 }

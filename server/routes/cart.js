@@ -93,7 +93,7 @@ router.put(
       const { item } = req.body;
       const cartItem = await addItemToCart(item);
       if (!cartItem) throw new Error();
-      return res.json(`item added`);
+      return res.json("item added");
     } catch (error) {
       console.log(error);
       return next({ message: "GENERAL ERROR", status: 400 });

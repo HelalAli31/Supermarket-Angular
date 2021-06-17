@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/service/cartService/cart.service';
 import { OrdersService } from 'src/app/service/orderService/orders.service';
 import { DialogComponent } from '../PopUpComponents/dialog/dialog.component';
+import { PopUpDeleteItemComponent } from '../PopUpComponents/pop-up-delete-item/pop-up-delete-item.component';
 import { PopUpEditItemComponent } from '../PopUpComponents/pop-up-edit-item/pop-up-edit-item.component';
 import { PopUpOrderDetailsComponent } from '../PopUpComponents/pop-up-order-details/pop-up-order-details.component';
 import { PopUpOrderDoneComponent } from '../PopUpComponents/pop-up-order-done/pop-up-order-done.component';
@@ -131,12 +132,14 @@ export class CartComponent implements OnInit {
   }
 
   EditItemAmount(item: any) {
+    console.log(item);
     const dialogRef = this.dialog.open(PopUpEditItemComponent, {
       data: {
         title: item.product_id.title,
         image: item.product_id.filename,
         amount: item.amount,
         description: item.product_id.description,
+        type: item.product_id.category,
       },
     });
     dialogRef.afterClosed().subscribe(async (result: any) => {
@@ -182,9 +185,16 @@ export class CartComponent implements OnInit {
     );
   }
 
-  async DeleteItemFromCart(event: any) {
-    await this.cartService.deteleItemFromCart(event);
-    await this.getCartItems();
+  async DeleteItemFromCart(item: any) {
+    const dialogRef = this.dialog.open(PopUpDeleteItemComponent, {
+      data: {
+        title: item.product_id.title,
+      },
+    });
+    dialogRef.afterClosed().subscribe(async (result: any) => {
+      console.log(result);
+      if (result == 'true') await this.cartService.deteleItemFromCart(item._id);
+    });
   }
 
   async ngOnChanges() {

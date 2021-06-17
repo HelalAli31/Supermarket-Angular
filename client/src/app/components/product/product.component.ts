@@ -67,7 +67,8 @@ export class ProductComponent implements OnInit {
   }
 
   openSnackBar(result: any) {
-    this.snackBar.open(result, 'Nice', {
+    const msg = result.replaceAll('"', '');
+    this.snackBar.open(msg, 'Nice', {
       duration: 2000,
     });
   }
@@ -85,6 +86,7 @@ export class ProductComponent implements OnInit {
         amount: this.amount,
         title: item.title,
         description: item.description,
+        type: item.category._id,
       },
     });
     dialogRef.afterClosed().subscribe(async (result: any) => {

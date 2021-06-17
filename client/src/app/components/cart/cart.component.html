@@ -23,17 +23,21 @@
             class="Image"
           />
         </div>
-        <div class="col-5">
+        <div class="col-6">
           <h4 style="font-family: 'Kalam', cursive">
             {{ item.product_id.title }}
           </h4>
           <h4 style="font-family: 'Kalam', cursive">
-            {{ item.amount }} | {{ item.full_price | number: "1.2-2" }}₪
+            <mat-icon style="font-size: 12px">close</mat-icon>{{ item.amount }}
+            <span *ngIf="item.product_id.category == '6091d3f715858c0954951892'"
+              >kg</span
+            >
+            | {{ item.full_price | number: "1.2-2" }}₪
           </h4>
         </div>
-        <div class="col-2">
+        <div class="col-1">
           <mat-icon
-            (click)="DeleteItemFromCart(item._id)"
+            (click)="DeleteItemFromCart(item)"
             style="cursor: pointer; color: rgba(46, 43, 43, 0.733)"
             class="Delete"
             >delete_forever</mat-icon
@@ -41,7 +45,7 @@
           <br />
           <h5
             style="
-              margin: 20px 10px;
+              margin: 20px -10px;
               cursor: pointer;
               color: rgba(54, 53, 53, 0.733);
             "

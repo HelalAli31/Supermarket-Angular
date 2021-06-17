@@ -34,9 +34,12 @@
 
     <div *ngFor="let item of filteredItems; index as pIndex">
       <div class="row">
-        <div class="col-6">{{ pIndex }} . {{ item.product_id.title }}</div>
+        <div class="col-6">{{ pIndex + 1 }} . {{ item.product_id.title }}</div>
         <div class="col-2">
           {{ item.amount }}
+          <span *ngIf="item.product_id.category == '6091d3f715858c0954951892'"
+            >kg</span
+          >
         </div>
         <div class="col-4">{{ item.full_price | number: "1.2-2" }}₪</div>
       </div>
@@ -79,16 +82,26 @@
       <input matInput placeholder="street.." [(ngModel)]="street" />
     </mat-form-field>
     <br />
-    <button mat-raised-button class="col-1 mr-2 pl-2" (click)="updatePrice(30)">
-      delivery
-    </button>
-    <img [src]="images.delivery" width="30px" height="30px" /> /
-    <button mat-raised-button class="col-1 mr-2 pl-2" (click)="updatePrice(0)">
-      pick up
-    </button>
-    <img [src]="images.pickUp" width="30px" height="30px" />
+    <div>
+      <button
+        mat-raised-button
+        class="col-1 mr-2 pl-2"
+        (click)="updatePrice('true')"
+      >
+        delivery
+      </button>
+      <img [src]="images.delivery" width="30px" height="30px" /> /
+      <button
+        mat-raised-button
+        class="col-1 mr-2 pl-2"
+        (click)="updatePrice('false')"
+      >
+        pick up
+      </button>
+      <img [src]="images.pickUp" width="30px" height="30px" />
+    </div>
     <br />
-    <button mat-raised-button (click)="buyNow()" class="mt-5 BuyButton">
+    <button mat-raised-button (click)="buyNow()" class="mt-2 BuyButton">
       Buy Now!
     </button>
     <button class="ml-2" mat-button mat-dialog-close>back</button>

@@ -8,8 +8,13 @@
 .MainDiv {
   position: relative;
   width: 100%;
-  min-width: 500px;
+  max-width: 500px;
+}
+mat-icon {
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-.ActionButton {
+button {
+  height: 35px;
 }

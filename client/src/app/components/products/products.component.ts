@@ -16,6 +16,7 @@ import * as Aos from 'aos';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
+  // public myScriptElement: HTMLScriptElement;
   @Output() updateProductEvent2 = new EventEmitter<any>();
   public products: any;
   public filterModel: string;
@@ -44,6 +45,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private cartItemsService: CartService,
     private categoryService: CategoryService
   ) {
+    // this.myScriptElement = document.getElementsByClassName('.Side');
     this.products = [];
     this.filterModel = '';
     this.limit = 12;

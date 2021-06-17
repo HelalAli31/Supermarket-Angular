@@ -45,12 +45,15 @@ export class PopUpOrderDetailsComponent implements OnInit {
     this.value = this.deliveryDate;
     this.myInvalidDates = [];
     this.fullPrice = data?.fullPrice;
+    if (this.fullPrice >= 700) this.deliveryPrice = 15;
     this.totalPrice = this.fullPrice + this.deliveryPrice;
     this.imageUrl = './../../../../assets/1x/';
     this.images = {
       pickUp: this.imageUrl + 'outline_hail_black_24dp.png',
       delivery: this.imageUrl + 'outline_local_shipping_black_24dp.png',
     };
+
+    console.log(this.filteredItems);
   }
 
   buyNow(): void {
@@ -65,8 +68,11 @@ export class PopUpOrderDetailsComponent implements OnInit {
       });
   }
 
-  updatePrice(deliveryPrice: number) {
-    this.deliveryPrice = deliveryPrice;
+  updatePrice(delivery: string) {
+    console.log(delivery);
+    if (delivery == 'false') this.deliveryPrice = 0;
+    else if (this.fullPrice < 700) this.deliveryPrice = 30;
+    else this.deliveryPrice = 15;
     this.totalPrice = this.fullPrice + this.deliveryPrice;
   }
 
