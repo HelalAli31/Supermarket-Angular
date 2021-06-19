@@ -42,8 +42,9 @@ export class CartService {
     const token = localStorage.getItem('token');
     if (!token) return;
     const result = this.httpService
-      .post(`${CART_URL}/getItems?cartId=${cartId}`, {
+      .post(`${CART_URL}/getItems`, {
         Authorization: localStorage.getItem('token'),
+        cartId,
       })
       .toPromise();
     return result;

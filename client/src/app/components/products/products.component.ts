@@ -9,6 +9,8 @@ import { CartService } from 'src/app/service/cartService/cart.service';
 import { ProductsService } from 'src/app/service/productService/products.service';
 import { CategoryService } from 'src/app/service/categoryService/category.service';
 import * as Aos from 'aos';
+import { MatDialog } from '@angular/material/dialog';
+import { LastOrdersComponent } from '../PopUpComponents/last-orders/last-orders.component';
 
 @Component({
   selector: 'app-products',
@@ -43,7 +45,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private cartItemsService: CartService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    public dialog: MatDialog
   ) {
     // this.myScriptElement = document.getElementsByClassName('.Side');
     this.products = [];
@@ -66,8 +69,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.router.navigate([`/`]);
   }
 
-  async addItemsToCart(event: any) {
-    let isItemToADD = await this.checkItem(event);
+  async addItemsToCart(event: any, dontUpdate?: boolean) {
+    console.log(event);
+
+    let isItemToADD = await this.checkItem(event, dontUpdate);
     if (isItemToADD) {
       this.item.product_id = event.id;
       this.item.amount = event.amount;
@@ -77,14 +82,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     } else return;
   }
 
-  async checkItem(event: any) {
+  async checkItem(event: any, dontUpdate?: boolean) {
     let Additem = true;
     await this.cartItemsService.getCartItems(this.cartId)?.then(
       async (result: any) => {
         let itemFound = this.findItem(result, event);
         if (itemFound?.length) {
           Additem = false;
-          this.ItemFound_UpdateDetails(itemFound[0], event);
+          if (!dontUpdate) this.ItemFound_UpdateDetails(itemFound[0], event);
         }
       },
       (reason) => {
@@ -149,6 +154,21 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.getProducts();
   }
 
+  OpenLastOrders() {
+    const dialogRef2 = this.dialog.open(LastOrdersComponent);
+    dialogRef2.afterClosed().subscribe((result: any) => {
+      result?.data.map(async (item: any) => {
+        console.log(item);
+        const itemEvent = {
+          price: item.product_id.price,
+          amount: item.amount,
+          id: item.product_id._id,
+        };
+        await this.addItemsToCart(itemEvent, true);
+      });
+    });
+  }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.subscriber.unsubscribe();
@@ -157,6 +177,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     await this.getProducts();
     const { data } = await getPayload();
     this.user = data;
+    console.log(this.user[0].role === 'admin');
     this.subscriber = this.route.params.subscribe((params) => {
       this.cartId = params['cartId'];
     });

@@ -30,6 +30,7 @@ import { CategoryPopUpComponent } from './components/PopUpComponents/category_di
 import { CategoryFormComponent } from './components/PopUpComponents/category_dialog/category-form/category-form.component';
 import { SlideImagesComponent } from './components/slide-images/slide-images.component';
 import { PopUpDeleteItemComponent } from './components/PopUpComponents/pop-up-delete-item/pop-up-delete-item.component';
+import { LastOrdersComponent } from './components/PopUpComponents/last-orders/last-orders.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { PopUpDeleteItemComponent } from './components/PopUpComponents/pop-up-de
     CategoryFormComponent,
     SlideImagesComponent,
     PopUpDeleteItemComponent,
+    LastOrdersComponent,
   ],
   imports: [
     BrowserModule,

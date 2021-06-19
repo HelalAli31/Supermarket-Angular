@@ -26,9 +26,19 @@ async function updateCartStatus(cartId) {
 
 async function getCartItems(cartId) {
   try {
-    const result = await cartItemsModel
-      .find({ cart_id: cartId }, { __v: false })
-      .populate("product_id", productModel);
+    let result = [];
+    if (Array.isArray(cartId)) {
+      for (let index = 0; index < cartId.length; index++) {
+        let data = await cartItemsModel
+          .find({ cart_id: cartId[index].cartId }, { __v: false })
+          .populate("product_id", productModel);
+        result.push(data);
+      }
+    } else {
+      result = await cartItemsModel
+        .find({ cart_id: cartId }, { __v: false })
+        .populate("product_id", productModel);
+    }
     return result;
   } catch (error) {
     console.log(error);

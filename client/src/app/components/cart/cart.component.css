@@ -171,16 +171,18 @@
   position: absolute;
   top: 55px;
   overflow: scroll;
-  height: 590px;
+  height: 490px;
+  background-color: white;
 }
 .m {
   position: relative;
-  background-color: white;
+  /* background-color: #e0bba9; */
   color: black;
-  min-height: 689px;
+  min-height: 580px;
   width: 300px;
   margin: 0px;
-  padding-left: 10px;
+  /* padding-left: 10px; */
+  padding: 5px;
 }
 .c {
   position: absolute;

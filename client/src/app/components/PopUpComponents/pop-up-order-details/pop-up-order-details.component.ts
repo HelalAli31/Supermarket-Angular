@@ -39,6 +39,7 @@ export class PopUpOrderDetailsComponent implements OnInit {
     this.visaNumber;
     this.street = this.user2.data[0]?.street;
     this.city = this.user2.data[0]?.city;
+    console.log(this.user2)
     this.minDate = moment(Date.now()).format('YYYY-MM-DD');
     this.filteredItems = data.items;
     this.filterModel = '';
@@ -158,6 +159,7 @@ export class PopUpOrderDetailsComponent implements OnInit {
   async ngOnInit() {
     await this.orderService.getAllOrders().then(
       (result: any) => {
+        console.log(result);
         if (!result) return;
         this.orders = result;
         this.validationDatesAvailable();

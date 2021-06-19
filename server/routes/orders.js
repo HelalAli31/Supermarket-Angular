@@ -47,7 +47,8 @@ router.post("/", getValidationFunction("getOrder"), async (req, res, next) => {
 });
 router.post("/All", async (req, res, next) => {
   try {
-    const order = await getAllOrders();
+    const { userId } = req.body;
+    const order = await getAllOrders(userId);
     if (!order) throw new Error();
     return res.json({ order });
   } catch (error) {

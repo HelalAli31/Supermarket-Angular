@@ -11,7 +11,8 @@ const updateStatusSchema = Joi.object().keys({
 });
 
 const getItemsSchema = Joi.object().keys({
-  cartId: Joi.string().required(),
+  cartId: Joi.required(),
+  Authorization: Joi.string(),
 });
 const AddItemsSchema = Joi.object().keys({
   product_id: Joi.string().required(),
@@ -55,7 +56,7 @@ const validationsObj = {
   },
 
   getItems: (req, res, next) => {
-    const { error } = getItemsSchema.validate(req.query);
+    const { error } = getItemsSchema.validate(req.body);
     if (error) {
       console.log(error.details);
       return next(error.details);

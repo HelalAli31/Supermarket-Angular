@@ -5,6 +5,7 @@ import getIsAdmin from '../../service/Payload/isAdmin';
 import { PopUpLoginComponent } from '../PopUpComponents/pop-up-login/pop-up-login.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/service/cartService/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -18,11 +19,14 @@ export class LoginComponent implements OnInit {
   public token: any;
   public loginFailed: string;
   public LoggedIn: boolean = false;
+  public cartId: string = '';
+  public user: any;
 
   constructor(
     private userService: UserService,
     private bottomSheet: MatBottomSheet,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {
     this.email = '';
     this.password = '';
@@ -47,6 +51,23 @@ export class LoginComponent implements OnInit {
       }
     } else this.loginFailed = this.token;
   }
+
+  async backHome() {
+    const isAdmin = getIsAdmin();
+    if (isAdmin) {
+      this.router.navigate([`/products/admin`]);
+    }
+    this.cartService.getCart(this.user._id).then(
+      (result: any) => {
+        this.cartId = result.cart[result.cart.length - 1]._id;
+        this.router.navigate([`/products/${this.cartId}`]);
+        console.log(this.cartId);
+      },
+      (reason: any) => {
+        console.log(reason);
+      }
+    );
+  }
   signOut() {
     localStorage.clear();
     this.router.navigate(['/']);
@@ -54,6 +75,10 @@ export class LoginComponent implements OnInit {
   }
   async ngOnInit() {
     const data = await getPayload();
-    if (data) this.LoggedIn = true;
+
+    if (data) {
+      this.LoggedIn = true;
+      this.user = data.data[0];
+    }
   }
 }

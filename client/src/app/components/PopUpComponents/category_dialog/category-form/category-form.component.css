@@ -5,3 +5,7 @@ button:hover {
   background-color: #dfbdacb2;
   color: black;
 }
+
+button {
+  background-color: rgb(177, 165, 165);
+}

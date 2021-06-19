@@ -30,6 +30,7 @@ export class AppComponent {
       (result: any) => {
         this.cartId = result.cart[result.cart.length - 1]._id;
         this.router.navigate([`/products/${this.cartId}`]);
+        console.log(this.cartId);
       },
       (reason: any) => {
         console.log(reason);

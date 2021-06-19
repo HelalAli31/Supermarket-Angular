@@ -8,9 +8,15 @@ async function getOrder(cartId) {
   }
 }
 
-async function getAllOrders(cartId) {
+async function getAllOrders(userId) {
   try {
-    const result = await orderModel.find({});
+    if (!userId) {
+      var result = await orderModel.find({});
+    } else {
+      var data = await orderModel.find({ user_id: userId });
+      if (!Array.isArray(data)) return;
+      var result = data.reverse().slice(0, 3);
+    }
     return result;
   } catch (error) {
     console.log(error);

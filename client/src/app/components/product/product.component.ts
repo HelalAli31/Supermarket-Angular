@@ -56,7 +56,6 @@ export class ProductComponent implements OnInit {
       .getChangesToCart()
       .subscribe(async (result: any) => {
         this.openSnackBar(result);
-        console.log('getChangesToCart');
         this.UpdateAction();
       });
     this.subscription = this.orderService
@@ -79,7 +78,6 @@ export class ProductComponent implements OnInit {
 
   AddToCart(itemId: string, price: number) {
     const item = this.product;
-    console.log(item);
     const dialogRef = this.dialog.open(PopUpEditItemComponent, {
       data: {
         image: item.filename,
@@ -93,7 +91,7 @@ export class ProductComponent implements OnInit {
       console.log(result);
       if (result?.amount === item?.amount) return;
       if (!result || !result.amount || result.amount < 0) return;
-      const fullPrice = result.amount * item.price;
+      // const fullPrice = result.amount * item.price;
       this.item.amount = result.amount;
       this.item.id = itemId;
       this.item.price = price;

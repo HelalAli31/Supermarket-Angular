@@ -1,3 +1,6 @@
+.MainDiv {
+  background-color: rgb(255, 255, 255);
+}
 .productsCard {
   margin-left: 20px;
 }
@@ -38,8 +41,10 @@
 }
 .Side {
   position: fixed;
-  height: 100%;
-  /* margin-top: 62px; */
+  height: 85%;
+  margin-top: 63px;
+  border-top: 1px solid rgb(173, 173, 173);
+  border-radius: 4%;
 }
 
 .SideButton {
@@ -57,8 +62,9 @@
 }
 .cancelButton {
   margin-left: 260px;
-  color: rgba(46, 43, 43, 0.733);
   /* opacity: 0.5;   */
+
+  color: rgba(46, 43, 43, 0.733);
   height: 32px;
 }
 

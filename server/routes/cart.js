@@ -76,30 +76,32 @@ router.post(
   "/getItems",
   getValidationFunction("getItems"),
   async (req, res, next) => {
-    const { cartId } = req.query;
-    if (!cartId) return res.json("error");
-
-    const cartItems = await getCartItems(cartId);
-    if (!cartItems) throw new Error();
-    return res.json(cartItems);
-  }
-);
-
-router.put(
-  "/AddItems",
-  getValidationFunction("AddItems"),
-  async (req, res, next) => {
     try {
-      const { item } = req.body;
-      const cartItem = await addItemToCart(item);
-      if (!cartItem) throw new Error();
-      return res.json("item added");
+      const { cartId } = req.body;
+      if (!cartId) return res.json("error");
+      const cartItems = await getCartItems(cartId);
+
+      if (!cartItems) throw new Error();
+      return res.json(cartItems);
     } catch (error) {
       console.log(error);
       return next({ message: "GENERAL ERROR", status: 400 });
     }
   }
 );
+
+router.put("/AddItems", async (req, res, next) => {
+  try {
+    const { item } = req.body;
+    console.log(item);
+    const cartItem = await addItemToCart(item);
+    if (!cartItem) throw new Error();
+    return res.json("item added");
+  } catch (error) {
+    console.log(error);
+    return next({ message: "GENERAL ERROR", status: 400 });
+  }
+});
 
 router.put(
   "/deleteItem",

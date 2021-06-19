@@ -18,10 +18,11 @@ export class OrdersService {
       .toPromise();
     return result;
   }
-  getAllOrders() {
+  getAllOrders(userId?: string) {
     const result = this.httpService
       .post(`${ORDER_URL}/All`, {
         Authorization: localStorage.getItem('token'),
+        userId,
       })
       .toPromise();
     return result;
