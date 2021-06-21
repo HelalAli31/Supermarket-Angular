@@ -79,27 +79,36 @@ export class CartComponent implements OnInit {
     }
   }
 
-  async AddOrder_dialog(value: any, result: any) {
+  async AddOrder_dialog(value: any, MainResult: any) {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { value },
+      data: {
+        value,
+        PrintOrderDetails: {
+          items: this.items,
+          order: MainResult.order[0],
+        },
+      },
     });
+    dialogRef.afterClosed().subscribe(() => {
+      this.opanDialogDone(MainResult);
+    });
+  }
+
+  opanDialogDone(result: any) {
     const cartId = result.order[0].cart_id;
     this.cartService.UpdateCartOpenState(cartId);
     this.fullPrice = 0;
     this.items = [];
-    setTimeout(() => {
-      const dialogRef2 = this.dialog.open(PopUpOrderDoneComponent);
-      dialogRef2.afterClosed().subscribe((result: any) => {
-        if (result == 'true') {
-          this.newCart();
-        } else {
-          localStorage.clear();
-          this.router.navigate(['/']);
-        }
-      });
-    }, 3000);
+    const dialogRef2 = this.dialog.open(PopUpOrderDoneComponent);
+    dialogRef2.afterClosed().subscribe((result: any) => {
+      if (result == 'true') {
+        this.newCart();
+      } else {
+        localStorage.clear();
+        this.router.navigate(['/']);
+      }
+    });
   }
-
   createOrderDetails(result: any) {
     this.order = {
       user_id: this.userId,
@@ -140,6 +149,7 @@ export class CartComponent implements OnInit {
         amount: item.amount,
         description: item.product_id.description,
         type: item.product_id.category,
+        price: item.product_id.price,
       },
     });
     dialogRef.afterClosed().subscribe(async (result: any) => {
@@ -183,6 +193,17 @@ export class CartComponent implements OnInit {
         alert(reason);
       }
     );
+  }
+  async clearCart() {
+    const dialogRef = this.dialog.open(PopUpDeleteItemComponent, {
+      data: {
+        title: 'All items ',
+      },
+    });
+    dialogRef.afterClosed().subscribe(async (result: any) => {
+      console.log(result);
+      if (result == 'true') await this.cartService.clearCart(this.cartId);
+    });
   }
 
   async DeleteItemFromCart(item: any) {

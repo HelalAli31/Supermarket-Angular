@@ -12,7 +12,7 @@
   width: 300px;
   height: 100%;
   min-height: 100%;
-  background-color: white;
+  /* background-color:  */
   color: black;
   /* position: relative; */
 
@@ -172,17 +172,16 @@
   top: 55px;
   overflow: scroll;
   height: 490px;
-  background-color: white;
+  background-color: rgb(255, 249, 249);
 }
 .m {
   position: relative;
-  /* background-color: #e0bba9; */
   color: black;
   min-height: 580px;
   width: 300px;
   margin: 0px;
   /* padding-left: 10px; */
-  padding: 5px;
+  /* padding: 5px; */
 }
 .c {
   position: absolute;
@@ -191,9 +190,17 @@
   width: 100%;
   padding-bottom: 20px;
   /* height: 60px; */
-  /* background-color: rgb(223, 56, 56); */
+  background-color: rgb(255, 249, 249);
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: space-between;
+  justify-content: space-between;
 }
-
+.Null {
+  display: flex;
+  margin-top: 60%;
+  margin-left: 50px;
+}
 .b {
   position: absolute;
   bottom: 0px;

@@ -1,20 +1,28 @@
 <div class="m">
-  <div class="c">
-    <!-- <mat-icon
-      class="col-6 ShoppingCart"
-      matBadge="{{ items.length }}"
-      matBadgeColor="warn"
-      style="font-size: 40px"
-      >shopping_cart
-    </mat-icon> -->
+  <div class="c row">
     <mat-icon
+      class="col-2"
       matBadge="{{ items.length }}"
       style="font-size: 30px; color: rgba(46, 43, 43, 0.733)"
       >shopping_cart</mat-icon
     >
+    <h2
+      *ngIf="items.length"
+      class="col-3"
+      style="cursor: pointer"
+      (click)="clearCart()"
+    >
+      <mat-icon>refresh</mat-icon>
+    </h2>
   </div>
   <!-- <p class="NItems">{{ items.length }}</p> -->
+
   <div class="items">
+    <div class="Null" *ngIf="!items.length">
+      <h2>you cart is empty!</h2>
+
+      <mat-icon>hourglass_empty</mat-icon>
+    </div>
     <div *ngFor="let item of items; index as pIndex" class="FixedDiv">
       <div class="row item" style="height: 100%">
         <div class="col-4">

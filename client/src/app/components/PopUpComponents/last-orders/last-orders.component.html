@@ -24,7 +24,7 @@
         <th>Price (₪)</th>
       </tr>
 
-      <tr *ngFor="let item of filterItems">
+      <tr *ngFor="let item of filterItems; index as pIndex">
         <td>{{ item.product_id.title }}</td>
         <td>{{ item.amount }}</td>
         <td>{{ item.full_price | number: "1.2-2" }}</td>

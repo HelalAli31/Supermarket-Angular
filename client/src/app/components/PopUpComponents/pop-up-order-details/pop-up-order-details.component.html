@@ -1,51 +1,4 @@
 <div class="MainDiv row">
-  <div class="col-6 Items">
-    <input
-      matInput
-      placeholder="search"
-      [(ngModel)]="filterModel"
-      (keyup)="filterOperation()"
-      class="mb-5"
-      style="border-bottom: 1px solid grey; width: 200px"
-    />
-
-    <div class="row">
-      <h3 class="6 mt-4">+</h3>
-      <div class="col-8">
-        <h2>Price: {{ fullPrice | number: "1.2-2" }}₪</h2>
-
-        <h2>
-          {{ deliveryPrice | number: "1.2-2" }}₪ <span>(delivery price)</span>
-        </h2>
-      </div>
-
-      <h1 style="font-weight: bolder; color: #c02a3e">
-        Total Price : {{ totalPrice | number: "1.2-2" }}₪
-      </h1>
-    </div>
-    <hr />
-
-    <div class="row mt-1">
-      <h3 class="col-5">name</h3>
-      <h3 class="col-2 ml-4">amount</h3>
-      <h3 class="col-3 ml-3">price</h3>
-    </div>
-    <hr />
-
-    <div *ngFor="let item of filteredItems; index as pIndex">
-      <div class="row">
-        <div class="col-6">{{ pIndex + 1 }} . {{ item.product_id.title }}</div>
-        <div class="col-2">
-          {{ item.amount }}
-          <span *ngIf="item.product_id.category == '6091d3f715858c0954951892'"
-            >kg</span
-          >
-        </div>
-        <div class="col-4">{{ item.full_price | number: "1.2-2" }}₪</div>
-      </div>
-      <br />
-    </div>
-  </div>
   <div class="col-6 DetailsDiv">
     <h1 style="color: #c02a3e">Order Details</h1>
     <mat-form-field style="width: 300px !important">
@@ -105,5 +58,52 @@
       Buy Now!
     </button>
     <button class="ml-2" mat-button mat-dialog-close>back</button>
+  </div>
+  <div class="col-5 Items ml-2">
+    <mat-icon class="SearchIcon">search</mat-icon>
+    <input
+      matInput
+      placeholder="search"
+      [(ngModel)]="filterModel"
+      (keyup)="filterOperation()"
+      style="border-bottom: 1px solid grey; width: 200px"
+    />
+
+    <div class="row mt-4">
+      <h3 class="6 mt-4">+</h3>
+      <div class="col-8">
+        <h3>Price: {{ fullPrice | number: "1.2-2" }}₪</h3>
+
+        <h3>
+          {{ deliveryPrice | number: "1.2-2" }}₪ <span>(delivery price)</span>
+        </h3>
+      </div>
+
+      <h1 style="font-weight: bolder; color: #c02a3e">
+        Total Price : {{ totalPrice | number: "1.2-2" }}₪
+      </h1>
+    </div>
+    <hr />
+
+    <div class="row mt-1">
+      <h3 class="col-5">name</h3>
+      <h3 class="col-2 ml-4">amount</h3>
+      <h3 class="col-3 ml-3">price</h3>
+    </div>
+    <hr />
+
+    <div *ngFor="let item of filteredItems; index as pIndex">
+      <div class="row">
+        <div class="col-6">{{ pIndex + 1 }} . {{ item.product_id.title }}</div>
+        <div class="col-2">
+          {{ item.amount }}
+          <span *ngIf="item.product_id.category == '6091d3f715858c0954951892'"
+            >kg</span
+          >
+        </div>
+        <div class="col-4">{{ item.full_price | number: "1.2-2" }}₪</div>
+      </div>
+      <br />
+    </div>
   </div>
 </div>

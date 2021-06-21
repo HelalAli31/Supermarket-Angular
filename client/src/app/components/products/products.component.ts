@@ -18,8 +18,8 @@ import { LastOrdersComponent } from '../PopUpComponents/last-orders/last-orders.
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  // public myScriptElement: HTMLScriptElement;
-  @Output() updateProductEvent2 = new EventEmitter<any>();
+  @Output()
+  updateProductEvent2 = new EventEmitter<any>();
   public products: any;
   public filterModel: string;
   public filterProducts: any;
@@ -177,7 +177,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     await this.getProducts();
     const { data } = await getPayload();
     this.user = data;
-    console.log(this.user[0].role === 'admin');
+    console.log(this.user[0].role);
     this.subscriber = this.route.params.subscribe((params) => {
       this.cartId = params['cartId'];
     });

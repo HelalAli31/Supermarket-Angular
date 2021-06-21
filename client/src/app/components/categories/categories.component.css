@@ -1,5 +1,7 @@
 .cateLink {
   /* display: flex; */
   color: black;
-  font-size: 14px;
+  font-size: 17px;
+  background-color: rgb(255, 249, 249);
+  font-family: "Caveat", cursive;
 }

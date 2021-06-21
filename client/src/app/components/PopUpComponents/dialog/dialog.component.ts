@@ -9,19 +9,23 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DialogComponent implements OnInit {
   public statusResult: string;
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { value: string },
+    @Inject(MAT_DIALOG_DATA)
+    public data: { value: string; PrintOrderDetails: boolean },
     public dialogRef: MatDialogRef<DialogComponent>
   ) {
     this.statusResult = '';
   }
-
+  CloseAndPrint() {
+    this.dialogRef.close();
+  }
   ngOnInit(): void {
     console.log(this.data);
     console.log(this.data?.value);
     this.statusResult = this.data?.value;
-
-    setTimeout(() => {
-      this.dialogRef.close();
-    }, 2500);
+    if (!this.data?.PrintOrderDetails) {
+      setTimeout(() => {
+        this.dialogRef.close();
+      }, 2500);
+    } else console.log(this.data.PrintOrderDetails);
   }
 }

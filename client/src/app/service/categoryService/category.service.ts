@@ -11,9 +11,10 @@ export class CategoryService {
   public subject = new Subject<any>();
   constructor(private httpService: HttpClient) {}
   getCategories() {
-    return this.httpService
+    const result = this.httpService
       .post(CATEGORY_URL, { Authorization: localStorage.getItem('token') })
       .toPromise();
+    return result;
   }
   addCategory(category: any) {
     const categoryName = category?.name;

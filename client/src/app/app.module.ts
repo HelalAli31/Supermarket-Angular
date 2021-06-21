@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { NgxPrintModule } from 'ngx-print';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
@@ -31,6 +33,7 @@ import { CategoryFormComponent } from './components/PopUpComponents/category_dia
 import { SlideImagesComponent } from './components/slide-images/slide-images.component';
 import { PopUpDeleteItemComponent } from './components/PopUpComponents/pop-up-delete-item/pop-up-delete-item.component';
 import { LastOrdersComponent } from './components/PopUpComponents/last-orders/last-orders.component';
+import { PrintOrderComponent } from './components/print-order/print-order.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ import { LastOrdersComponent } from './components/PopUpComponents/last-orders/la
     SlideImagesComponent,
     PopUpDeleteItemComponent,
     LastOrdersComponent,
+    PrintOrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +71,7 @@ import { LastOrdersComponent } from './components/PopUpComponents/last-orders/la
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    NgxPrintModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

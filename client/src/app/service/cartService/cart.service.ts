@@ -102,6 +102,33 @@ export class CartService {
     );
     return result;
   }
+  clearCart(cartId: string) {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    const result = this.httpService
+      .put(
+        `${CART_URL}/clearCart?cartId=${cartId}`,
+        {
+          Authorization: localStorage.getItem('token'),
+        },
+        {
+          headers: new HttpHeaders({
+            Authorization: token,
+          }),
+          responseType: 'text',
+        }
+      )
+      .toPromise();
+    result.then(
+      (value) => {
+        this.subject.next(value);
+      },
+      (reason) => {
+        console.log(reason);
+      }
+    );
+    return result;
+  }
 
   addItemsToCart(item: any) {
     const token = localStorage.getItem('token');

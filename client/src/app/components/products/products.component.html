@@ -7,12 +7,55 @@
       <button
         mat-icon-button
         (click)="snav.toggle(); showCartIcon = !showCartIcon"
-        class="col-lg-1 col-md-1 col-3"
+        class="col-xl-1"
       >
         <mat-icon>menu</mat-icon>
       </button>
-      <h1 class="example-app-name col-9 col-lg-3 col-md-2">HouseMarket</h1>
+      <h1 class="example-app-name col-xl-2">HouseMarket</h1>
 
+      <div class="col-lg-3 row">
+        <h2 class="col-1 col-sm-1">
+          <mat-icon class="SearchIcon">search</mat-icon>
+        </h2>
+        <div class="col-6">
+          <mat-form-field class="example-full-width">
+            <mat-label>search</mat-label>
+            <input
+              class="Search"
+              matInput
+              placeholder="product name"
+              [(ngModel)]="filterModel"
+              (keyup)="getProducts(filterModel, 'title')"
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- <mat-form-field class="example-full-width">
+          <mat-label>search</mat-label>
+          <input
+            matInput
+            placeholder="product name"
+            [(ngModel)]="filterModel"
+            (keyup)="getProducts(filterModel, 'title')"
+          />
+        </mat-form-field> -->
+        <!-- <div class="row mt-2">
+          <h2 class="col-1 col-sm-1 mt-3">
+            <mat-icon>search</mat-icon>
+          </h2>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>search</mat-label>
+            <input
+              matInput
+              placeholder="product name"
+              [(ngModel)]="filterModel"
+              (keyup)="getProducts(filterModel, 'title')"
+            />
+          </mat-form-field> -->
+        <!-- </div> -->
+      </div>
+      <!-- 
       <a class="ToolBarServices col-4 col-lg-1 col-md-2" id="Services">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +88,7 @@
           />
         </svg>
         Delivery
-        <div class="Content ContentDelievery col-lg-3 col-md-2 col-6">
+        <div class="Content ml-2 ContentDelievery col-lg-3 col-md-2 col-6">
           <table style="width: 100%">
             <tr>
               <th>Day</th>
@@ -119,8 +162,8 @@
             </div>
           </div>
         </div></a
-      >
-      <div class="col-6 col-lg-3 col-md-2 OrdersButton">
+      > -->
+      <div class="col-xl-2 OrdersButton">
         <div *ngIf="this.user[0]?.role !== 'admin'">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -138,15 +181,29 @@
           <a
             mat-button
             (click)="OpenLastOrders()"
-            style="margin-left: 5px; margin-bottom: 10px"
+            style="margin-left: 5px; margin-bottom: 10px; cursor: pointer"
           >
             Last Orders
           </a>
         </div>
       </div>
+      <div class="col-2 mr-2">
+        <a class="ToolBarServices col-4 col-lg-1 col-md-2" id="Services">
+          <img
+            src="../../../assets/icons/contact.png"
+            height="20px"
+            width="20px"
+          />
+          Contact Us
+          <div class="Content ServicesContent">
+            <div class="ml-2">Call : +972 543596761</div>
+            <div class="ml-2">Sms : helalali1@hotmail.com</div>
+          </div></a
+        >
+      </div>
       <button
         mat-button
-        class="col-md-1 col-4"
+        class="col-md-6 col-4 col-lg-1"
         style="margin-left: 4%; color: black"
         (click)="SignOut()"
       >
@@ -160,6 +217,7 @@
       autosize
     >
       <mat-sidenav
+        #scroll
         class="Side"
         #snav
         opened
@@ -187,7 +245,10 @@
             </h1>
           </div>
 
-          <div *ngIf="user[0]?.role === 'user'" style="margin-left: 5px">
+          <div
+            *ngIf="user[0]?.role === 'user'"
+            style="margin-left: 5px; background-color: rgb(255, 249, 249)"
+          >
             <button
               class="cancelButton"
               mat-icon-button
@@ -204,8 +265,14 @@
       </mat-sidenav>
 
       <mat-sidenav-content style="overflow-x: hidden">
-        <app-slide-images class="SlideImages"></app-slide-images>
+        <div class="Sub">
+          <app-slide-images class="SlideImages"></app-slide-images>
 
+          <h1 class="Title mt-5">POPULAR PRODUCTS</h1>
+          <h4>all products are available!!</h4>
+
+          <!-- <br /> -->
+        </div>
         <div *ngIf="showCartIcon === true" class="SideButton2">
           <mat-icon
             *ngIf="user[0]?.role === 'user'"
@@ -221,33 +288,12 @@
           >
         </div>
 
-        <div style="margin-left: 15%" class="row mt-2">
-          <h2 class="col-1 col-sm-1 mt-3">
-            <mat-icon>search</mat-icon>
-          </h2>
-
-          <mat-form-field class="example-full-width col-9 col-sm-3 mr-5">
-            <mat-label>search</mat-label>
-            <input
-              matInput
-              placeholder="product name"
-              [(ngModel)]="filterModel"
-              (keyup)="getProducts(filterModel, 'title')"
-            />
-          </mat-form-field>
-        </div>
         <div>
-          <div class="row mt-2" style="margin-left: 10%">
+          <div class="row mt-5" style="margin-left: 10%">
             <a
               (click)="getProducts('All')"
               mat-flat-button
-              class="col-4 col-md-1"
-              style="
-                color: black;
-                height: 100%;
-                margin-top: 30px;
-                font-size: 16px;
-              "
+              class="col-4 col-md-1 AllCategory"
               >All</a
             >
             <app-categories
@@ -260,7 +306,7 @@
         <div class="container">
           <div class="row">
             <app-product
-              class="col-lg-3 col-sm-6 col-12 mt-5"
+              class="col-lg-3 col-md-6 col-12 mt-5"
               *ngFor="let product of filterProducts"
               [product]="product"
               [cart]="cartId"
@@ -269,6 +315,7 @@
             ></app-product>
           </div>
         </div>
+
         <div style="margin-top: 50px">
           <button class="NextAndPref" (click)="prev()" mat-button>
             <mat-icon>navigate_before</mat-icon>Prev
@@ -281,6 +328,119 @@
           >
             Next <mat-icon>navigate_next</mat-icon>
           </button>
+        </div>
+
+        <div>
+          <div class="categories-area section-padding40 gray-bg mt-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div
+                    class="single-cat mb-50 wow fadeInUp"
+                    data-wow-duration="1s"
+                    data-wow-delay=".2s"
+                    style="
+                      visibility: visible;
+                      animation-duration: 1s;
+                      animation-delay: 0.2s;
+                      animation-name: fadeInUp;
+                    "
+                  >
+                    <div class="cat-icon">
+                      <img
+                        src="../../../assets/icons/delivery.png"
+                        alt=""
+                        data-pagespeed-url-hash="1965786122"
+                        onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+                      />
+                    </div>
+                    <div class="cat-cap">
+                      <h5>Fast &amp; Free Delivery</h5>
+                      <p>Free delivery on all orders</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div
+                    class="single-cat mb-50 wow fadeInUp"
+                    data-wow-duration="1s"
+                    data-wow-delay=".2s"
+                    style="
+                      visibility: visible;
+                      animation-duration: 1s;
+                      animation-delay: 0.2s;
+                      animation-name: fadeInUp;
+                    "
+                  >
+                    <div class="cat-icon">
+                      <img
+                        src="../../../assets/icons/credit-card.png"
+                        alt=""
+                        data-pagespeed-url-hash="2260286043"
+                        onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+                      />
+                    </div>
+                    <div class="cat-cap">
+                      <h5>Secure Payment</h5>
+                      <p>Free delivery on all orders</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div
+                    class="single-cat mb-50 wow fadeInUp"
+                    data-wow-duration="1s"
+                    data-wow-delay=".4s"
+                    style="
+                      visibility: visible;
+                      animation-duration: 1s;
+                      animation-delay: 0.4s;
+                      animation-name: fadeInUp;
+                    "
+                  >
+                    <div class="cat-icon">
+                      <img
+                        src="../../../assets/icons/money-back-guarantee.png"
+                        alt=""
+                        data-pagespeed-url-hash="2554785964"
+                        onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+                      />
+                    </div>
+                    <div class="cat-cap">
+                      <h5>Money Back Guarantee</h5>
+                      <p>Free delivery on all orders</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div
+                    class="single-cat mb-50 wow fadeInUp"
+                    data-wow-duration="1s"
+                    data-wow-delay=".5s"
+                    style="
+                      visibility: visible;
+                      animation-duration: 1s;
+                      animation-delay: 0.5s;
+                      animation-name: fadeInUp;
+                    "
+                  >
+                    <div class="cat-icon">
+                      <img
+                        src="../../../assets/icons/24-hours.png"
+                        alt=""
+                        data-pagespeed-url-hash="2849285885"
+                        onload="pagespeed.CriticalImages.checkImageForCriticality(this);"
+                      />
+                    </div>
+                    <div class="cat-cap">
+                      <h5>Online Support</h5>
+                      <p>Free delivery on all orders</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>

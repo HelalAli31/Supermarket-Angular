@@ -85,6 +85,7 @@ export class ProductComponent implements OnInit {
         title: item.title,
         description: item.description,
         type: item.category._id,
+        price: item.price,
       },
     });
     dialogRef.afterClosed().subscribe(async (result: any) => {
@@ -124,17 +125,23 @@ export class ProductComponent implements OnInit {
       }
     });
   }
-
+  ngOnChanges() {
+    if (this.userRole === 'user') {
+      this.UpdateAction();
+      this.amount = 1;
+    }
+  }
   async ngOnInit() {
     this.imagePath =
       this.product?.image || this.basePath + this.product?.filename;
     const { data } = await getPayload();
     const user = data[0]?.role;
     this.userRole = user;
-    if (this.userRole === 'user') this.UpdateAction();
-
-    this.amount = 1;
-    Aos.init();
+    console.log(this.userRole);
+    if (this.userRole === 'user') {
+      this.UpdateAction();
+      this.amount = 1;
+    }
   }
 
   ngOnDestroy(): void {

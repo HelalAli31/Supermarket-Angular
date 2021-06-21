@@ -1,8 +1,16 @@
 .MainDiv {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 249, 249);
 }
 .productsCard {
   margin-left: 20px;
+}
+.AllCategory {
+  color: black;
+  height: 100%;
+  margin-top: 30px;
+  font-size: 16px;
+  background-color: rgb(255, 249, 249);
+  font-family: "Caveat", cursive;
 }
 
 .Menu {
@@ -19,7 +27,12 @@
   justify-content: space-between;
 }
 .toolbar {
-  background-color: #e0bba9d3;
+  /* background-color: #e0bba9d3; */
+  background-color: #e4c8bc;
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 }
 
 .All {
@@ -42,7 +55,7 @@
 .Side {
   position: fixed;
   height: 85%;
-  margin-top: 63px;
+  margin-top: 70px;
   border-top: 1px solid rgb(173, 173, 173);
   border-radius: 4%;
 }
@@ -65,6 +78,7 @@
   /* opacity: 0.5;   */
 
   color: rgba(46, 43, 43, 0.733);
+
   height: 32px;
 }
 
@@ -75,7 +89,7 @@
   justify-content: center;
   font-size: 40px;
   margin-left: 10px;
-  color: #bb9c8cf5;
+  color: #aa8f82f5;
   backdrop-filter: blur(40px);
 }
 .NextAndPref {
@@ -101,7 +115,6 @@
 }
 .OrdersButton {
   margin-top: 8px;
-  cursor: pointer;
   color: black;
 }
 
@@ -120,10 +133,33 @@ td,
 tr {
   margin-left: 20%;
 }
+mat-label,
+.Search {
+  font-family: inherit;
+}
+.SearchIcon {
+  margin-top: 30px;
+  font-size: 23px;
+}
+
+.Sub {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-content: stretch;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+}
+.Title {
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+  font-size: 40px;
+}
 
 #Delivery:hover .ContentDelievery {
   display: block;
-
   position: fixed;
   z-index: 100;
 }
@@ -139,6 +175,18 @@ tr {
   z-index: 100;
 }
 
+.cat-icon > img {
+  width: 60px;
+  height: 60px;
+}
+
+.categories-area {
+  padding-top: 100px;
+  padding-bottom: 50px;
+  position: relative;
+  background: #f2e1d9;
+}
+
 @media only screen and (max-width: 600px) {
   .Side {
     position: relative;
@@ -152,6 +200,6 @@ tr {
     margin-top: 18px;
   }
   .SlideImages {
-    margin-top: 10px;
+    /* margin-top: 10px; */
   }
 }

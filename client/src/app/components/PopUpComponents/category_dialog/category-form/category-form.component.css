@@ -1,11 +1,8 @@
 .Main {
   width: 500px;
 }
-button:hover {
-  background-color: #dfbdacb2;
-  color: black;
-}
 
 button {
-  background-color: rgb(177, 165, 165);
+  background-color: #ccaa999a;
+  color: black;
 }

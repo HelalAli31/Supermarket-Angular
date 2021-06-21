@@ -60,11 +60,13 @@ export class CategoryFormComponent implements OnInit {
     this.categoryService.getCategories().then(
       (result: any) => {
         this.categories = result;
+        console.log(result);
       },
       (reason) => {
         console.log(reason);
       }
     );
+    console.log(this.categories);
   }
   async ngOnInit() {
     await this.getCategories();

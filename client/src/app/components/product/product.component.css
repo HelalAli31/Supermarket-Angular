@@ -185,6 +185,7 @@ mat-card-actions {
 }
 .mat-card:not([class*="mat-elevation-z"]) {
   box-shadow: none;
+  background-color: rgb(255, 249, 249);
 }
 .mat-card:hover:not([class*="mat-elevation-z"]) {
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),

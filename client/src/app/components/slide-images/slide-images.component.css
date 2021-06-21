@@ -12,8 +12,9 @@
 #slider figure img {
   float: left;
   width: 20%;
-  height: 500px;
+  height: 300px;
 }
+
 @keyframes slider {
   0% {
     left: 0%;
