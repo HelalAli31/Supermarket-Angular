@@ -1,7 +1,12 @@
 const categoryModel = require("../../models/categorySchema");
-async function getAllCategories() {
+async function getAllCategories(limit, from) {
   try {
-    const result = await categoryModel.find({}, { __v: false });
+    let result = await categoryModel.find({}, { __v: false });
+
+    if (limit) {
+      console.log("limit");
+      result = result.slice(from, limit);
+    }
     return result;
   } catch (error) {
     console.log(error);

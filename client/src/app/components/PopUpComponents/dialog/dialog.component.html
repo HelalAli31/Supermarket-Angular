@@ -10,15 +10,17 @@
     <mat-icon>error</mat-icon>
   </h1>
   <br />
-  <div class="row">
-    <button class="col-6" mat-button printSectionId="PrintMe" ngxPrint>
-      Print Now!
-    </button>
-    <button class="col-6" mat-button mat-dialog-close>Okay!</button>
-  </div>
-  <div id="PrintMe">
-    <app-print-order
-      [OrderDetails]="this.data.PrintOrderDetails"
-    ></app-print-order>
+  <div *ngIf="this.data.PrintOrderDetails">
+    <div class="row">
+      <button class="col-6" mat-button printSectionId="PrintMe" ngxPrint>
+        Print Now!
+      </button>
+      <button class="col-6" mat-button mat-dialog-close>Okay!</button>
+    </div>
+    <div id="PrintMe">
+      <app-print-order
+        [OrderDetails]="this.data.PrintOrderDetails"
+      ></app-print-order>
+    </div>
   </div>
 </div>

@@ -93,7 +93,7 @@ router.post(
 router.put("/AddItems", async (req, res, next) => {
   try {
     const { item } = req.body;
-    console.log(item);
+
     const cartItem = await addItemToCart(item);
     if (!cartItem) throw new Error();
     return res.json("item added");

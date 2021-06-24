@@ -10,9 +10,13 @@ const CATEGORY_URL = 'http://localhost:5000/category';
 export class CategoryService {
   public subject = new Subject<any>();
   constructor(private httpService: HttpClient) {}
-  getCategories() {
+  getCategories(limit?: number, from?: number) {
     const result = this.httpService
-      .post(CATEGORY_URL, { Authorization: localStorage.getItem('token') })
+      .post(CATEGORY_URL, {
+        Authorization: localStorage.getItem('token'),
+        limit,
+        from,
+      })
       .toPromise();
     return result;
   }

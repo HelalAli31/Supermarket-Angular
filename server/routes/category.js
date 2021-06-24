@@ -24,7 +24,8 @@ router.use(async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const categories = await getAllCategories();
+    const { limit, from } = req.body;
+    const categories = await getAllCategories(limit, from);
     if (!categories) throw new Error();
     return res.json(categories);
   } catch (error) {

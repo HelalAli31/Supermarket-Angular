@@ -11,6 +11,8 @@ export class CategoriesComponent implements OnInit {
   @Output() categoryIdEvent = new EventEmitter<string>();
   public categories: any;
   public subscription: Subscription;
+  public limit: number = 6;
+  public from: number = 0;
 
   constructor(private categoryService: CategoryService) {
     this.categories = [];
@@ -28,9 +30,21 @@ export class CategoriesComponent implements OnInit {
   }
 
   async getcategories() {
-    this.categories = await this.categoryService.getCategories();
+    this.categories = await this.categoryService.getCategories(
+      this.limit,
+      this.from
+    );
   }
-
+  async prevCate() {
+    if (this.from === 0) return;
+    this.from = this.from - 1;
+    await this.getcategories();
+  }
+  async nextCate() {
+    if (this.categories.length < this.limit) return;
+    this.from = this.from + 1;
+    await this.getcategories();
+  }
   getCategoryId(id: string) {
     this.categoryIdEvent.emit(id);
   }

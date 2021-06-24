@@ -54,12 +54,10 @@ async function addItemToCart(item) {
   }
 }
 async function addCart(userId) {
-  console.log("AddCart");
   try {
     const cart = {};
     cart.user_id = userId;
     const result = await cartModel.insertMany(cart);
-    console.log(result);
 
     return result;
   } catch (error) {

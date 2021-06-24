@@ -7,13 +7,15 @@
       <button
         mat-icon-button
         (click)="snav.toggle(); showCartIcon = !showCartIcon"
-        class="col-xl-1"
+        class="col-1"
       >
         <mat-icon>menu</mat-icon>
       </button>
-      <h1 class="example-app-name col-xl-2">HouseMarket</h1>
+      <h1 class="example-app-name col-xl-2 col-lg-2 col-md-2 col-4">
+        HouseMarket
+      </h1>
 
-      <div class="col-lg-3 row">
+      <div class="col-xl-3 col-lg-3 col-md-5 col-5 row">
         <h2 class="col-1 col-sm-1">
           <mat-icon class="SearchIcon">search</mat-icon>
         </h2>
@@ -163,7 +165,7 @@
           </div>
         </div></a
       > -->
-      <div class="col-xl-2 OrdersButton">
+      <div class="col-xl-2 col-lg-2 col-md-4 col-4 OrdersButton">
         <div *ngIf="this.user[0]?.role !== 'admin'">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -187,7 +189,7 @@
           </a>
         </div>
       </div>
-      <div class="col-2 mr-2">
+      <div class="col-xl-2 col-lg-2 col-md-2 col-4 mr-2">
         <a class="ToolBarServices col-4 col-lg-1 col-md-2" id="Services">
           <img
             src="../../../assets/icons/contact.png"
@@ -203,7 +205,7 @@
       </div>
       <button
         mat-button
-        class="col-md-6 col-4 col-lg-1"
+        class="col-md-6 col-2 col-md-2 col-lg-1"
         style="margin-left: 4%; color: black"
         (click)="SignOut()"
       >
@@ -265,8 +267,22 @@
       </mat-sidenav>
 
       <mat-sidenav-content style="overflow-x: hidden">
-        <div class="Sub">
-          <app-slide-images class="SlideImages"></app-slide-images>
+        <div>
+          <div class="row mt-5" style="margin-left: 10%">
+            <!-- <a
+              (click)="getProducts('All')"
+              mat-flat-button
+              class="col-4 col-md-1 AllCategory"
+              >All</a
+            > -->
+            <app-categories
+              class="col-12 category"
+              (categoryIdEvent)="getProducts($event, '_id')"
+            ></app-categories>
+          </div>
+        </div>
+        <div class="Sub mr-5">
+          <!-- <app-slide-images class="SlideImages"></app-slide-images> -->
 
           <h1 class="Title mt-5">POPULAR PRODUCTS</h1>
           <h4>all products are available!!</h4>
@@ -286,21 +302,6 @@
             (click)="snav.toggle(); showCartIcon = false"
             >chrome_reader_mode</mat-icon
           >
-        </div>
-
-        <div>
-          <div class="row mt-5" style="margin-left: 10%">
-            <a
-              (click)="getProducts('All')"
-              mat-flat-button
-              class="col-4 col-md-1 AllCategory"
-              >All</a
-            >
-            <app-categories
-              class="col-12 col-md-8"
-              (categoryIdEvent)="getProducts($event, '_id')"
-            ></app-categories>
-          </div>
         </div>
 
         <div class="container">

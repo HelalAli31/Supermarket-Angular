@@ -1,18 +1,28 @@
 <div class="container" style="width: 100%">
   <span>
     <section>
-      <div class="row">
-        <div
-          class="col-lg-4 col-md-4 col-xl-2 col-sm-6 col-12"
-          *ngFor="let cat of categories"
-        >
-          <a
-            (click)="getCategoryId(cat._id)"
-            mat-flat-button
-            style="margin: 10px 10px"
-            class="cateLink"
-            >{{ cat.name }}</a
+      <div class="row Main">
+        <div class="col-1 Icons">
+          <mat-icon (click)="prevCate()">navigate_before</mat-icon>
+        </div>
+        <div class="col-10 row">
+          <div
+            class="col-12 col-md-4 col-lg-3 col-xl-2"
+            *ngFor="let cat of categories"
           >
+            <img
+              src="../../../assets/highlights/{{ cat.name }}.webp"
+              width="100px"
+              height="100px"
+              (click)="getCategoryId(cat._id)"
+            />
+            <h3 mat-flat-button style="margin: 10px 10px" class="cateLink">
+              {{ cat.name }}
+            </h3>
+          </div>
+        </div>
+        <div class="col-1 Icons">
+          <mat-icon (click)="nextCate()">navigate_next</mat-icon>
         </div>
       </div>
     </section>

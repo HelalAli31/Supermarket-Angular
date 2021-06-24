@@ -206,3 +206,10 @@ mat-card-actions {
 hr {
   color: grey;
 }
+
+@media only screen and (max-width: 769px) {
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
