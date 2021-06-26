@@ -28,6 +28,9 @@ const editItemAmountSchema = Joi.object().keys({
   amount: Joi.number().required(),
   fullPrice: Joi.number().required(),
 });
+const clearCartSchema = Joi.object().keys({
+  cartId: Joi.string().required(),
+});
 
 const validationsObj = {
   getCart: (req, res, next) => {
@@ -81,6 +84,14 @@ const validationsObj = {
   },
   editItemAmount: (req, res, next) => {
     const { error } = editItemAmountSchema.validate(req.body.data);
+    if (error) {
+      console.log(error.details);
+      return next(error.details);
+    }
+    return next();
+  },
+  clearCart: (req, res, next) => {
+    const { error } = clearCartSchema.validate(req.query);
     if (error) {
       console.log(error.details);
       return next(error.details);

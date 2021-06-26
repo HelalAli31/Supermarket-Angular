@@ -119,7 +119,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   async getProducts(valueName?: any, keyName?: any) {
-    console.log('valueName', valueName);
     this.products = await this.productsService.getProducts(
       this.from,
       this.limit,

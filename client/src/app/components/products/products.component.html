@@ -269,12 +269,6 @@
       <mat-sidenav-content style="overflow-x: hidden">
         <div>
           <div class="row mt-5" style="margin-left: 10%">
-            <!-- <a
-              (click)="getProducts('All')"
-              mat-flat-button
-              class="col-4 col-md-1 AllCategory"
-              >All</a
-            > -->
             <app-categories
               class="col-12 category"
               (categoryIdEvent)="getProducts($event, '_id')"

@@ -85,6 +85,15 @@ async function editAmount(itemId, amount, fullPrice) {
   }
 }
 
+async function clearCart(cartId) {
+  try {
+    const result = await cartItemsModel.deleteMany({ cart_id: cartId });
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   getCart,
   getCartItems,
@@ -93,4 +102,5 @@ module.exports = {
   deleteItemFromCart,
   updateCartStatus,
   editAmount,
+  clearCart,
 };

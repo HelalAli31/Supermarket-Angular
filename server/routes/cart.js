@@ -7,6 +7,7 @@ const {
   addCart,
   deleteItemFromCart,
   editAmount,
+  clearCart,
 } = require("../controller/cart/cartController");
 const router = express.Router();
 const { verifyJWT } = require("../controller/JWT/jwt");
@@ -102,6 +103,21 @@ router.put("/AddItems", async (req, res, next) => {
     return next({ message: "GENERAL ERROR", status: 400 });
   }
 });
+router.put(
+  "/clearCart",
+  getValidationFunction("clearCart"),
+  async (req, res, next) => {
+    try {
+      const { cartId } = req.query;
+      const cartItems = await clearCart(cartId);
+      if (!cartItems) throw new Error();
+      return res.json("item deleted!");
+    } catch (error) {
+      console.log(error);
+      return next({ message: "GENERAL ERROR", status: 400 });
+    }
+  }
+);
 
 router.put(
   "/deleteItem",

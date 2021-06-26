@@ -39,7 +39,7 @@ export class PopUpOrderDetailsComponent implements OnInit {
     this.visaNumber;
     this.street = this.user2.data[0]?.street;
     this.city = this.user2.data[0]?.city;
-    console.log(this.user2)
+    console.log(this.user2);
     this.minDate = moment(Date.now()).format('YYYY-MM-DD');
     this.filteredItems = data.items;
     this.filterModel = '';
@@ -59,14 +59,21 @@ export class PopUpOrderDetailsComponent implements OnInit {
 
   buyNow(): void {
     const validtionDetails = this.getValidationDetails();
-    if (validtionDetails)
+
+    if (validtionDetails) {
+      const stringVisaNumber = this.visaNumber.toString();
+      const lastvisaNumber = stringVisaNumber.slice(
+        stringVisaNumber.length - 4
+      );
+      console.log(lastvisaNumber);
       this.dialogRef.close({
-        visaNumber: this.visaNumber,
+        visaNumber: lastvisaNumber,
         deliveryDate: this.deliveryDate,
         city: this.city,
         street: this.street,
         total_price: this.totalPrice,
       });
+    }
   }
 
   updatePrice(delivery: string) {
@@ -78,8 +85,6 @@ export class PopUpOrderDetailsComponent implements OnInit {
   }
 
   getValidationDetails() {
-    if (this.visaNumber?.toString().length !== 4)
-      return alert('check visa number');
     if (!this.deliveryDate?.valueOf().toString().length)
       return alert('check delivery date');
     if (!this.city?.length) return alert('pick up a city');
