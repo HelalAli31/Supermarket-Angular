@@ -99,15 +99,8 @@ export class CartComponent implements OnInit {
     this.cartService.UpdateCartOpenState(cartId);
     this.fullPrice = 0;
     this.items = [];
-    const dialogRef2 = this.dialog.open(PopUpOrderDoneComponent);
-    dialogRef2.afterClosed().subscribe((result: any) => {
-      if (result == 'true') {
-        this.newCart();
-      } else {
-        localStorage.clear();
-        this.router.navigate(['/']);
-      }
-    });
+
+    this.newCart();
   }
   createOrderDetails(result: any) {
     this.order = {
