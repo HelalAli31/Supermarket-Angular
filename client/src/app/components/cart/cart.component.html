@@ -6,14 +6,19 @@
       style="font-size: 30px; color: rgba(46, 43, 43, 0.733)"
       >shopping_cart</mat-icon
     >
+
     <h2
       *ngIf="items.length"
       class="col-3"
       style="cursor: pointer"
       (click)="clearCart()"
     >
-      <mat-icon>refresh</mat-icon>
+      <mat-icon class="col-3">refresh</mat-icon>
     </h2>
+    <div class="col-2 infoDiv">
+      <mat-icon class="infoIcon">info</mat-icon>
+      <div class="info ml-3">Buy more than 700₪ , get half delivery price.</div>
+    </div>
   </div>
   <!-- <p class="NItems">{{ items.length }}</p> -->
 

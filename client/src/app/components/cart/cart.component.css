@@ -222,7 +222,24 @@
   /* opacity: 0.5; */
   font-size: 17px;
 }
-
+.info {
+  display: none;
+}
+.infoDiv {
+  cursor: pointer;
+}
+.infoIcon {
+  font-size: 18px;
+}
+.infoDiv:hover .info {
+  display: block;
+  width: 200px;
+  margin-left: 50px;
+  background-color: #e0bba9;
+  color: black;
+  /* position: fixed; */
+  z-index: 100;
+}
 @media only screen and (max-width: 990px) {
   .m {
     min-height: 570px;
