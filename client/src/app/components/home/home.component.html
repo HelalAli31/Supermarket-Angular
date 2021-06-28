@@ -4,7 +4,6 @@
   <div class="HomePageCard container">
     <div class="row" style="margin-left: 1%">
       <div class="col-12 row" *ngIf="!showLogin">
-        <!-- <span class="col-1"></span> -->
         <div class="col-12 col-lg-9">
           <app-login (closeLoginEvent)="closeLogin()"></app-login>
         </div>
@@ -35,13 +34,7 @@
             </div>
           </div>
         </div>
-        <!-- <div
-          class="col-md-4 col-5 ContentDiv LoginIconDiv"
-          (click)="showLogin = true"
-        >
-          <mat-icon class="LoginIcon">account_circle</mat-icon>
-          <h1 style="color: black; margin-left: 30px">Login Now!</h1>
-        </div> -->
+       
         <div class="container">
           <div class="col-md-12 row col-12 mt-3">
             <span class="col-12 col-md-2"></span>
